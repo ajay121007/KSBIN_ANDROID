@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KS</string>
+    <string name="welcome_to_n_k_s_billing_associates"><![CDATA[Welcome to \n K.S. Billing & Associates]]></string>
+    <string name="title_activity_login_sign_up">LoginSignUpActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forget_password"><u>Forget Password?</u></string>
+</resources>
