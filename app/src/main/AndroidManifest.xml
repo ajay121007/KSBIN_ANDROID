@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignableDocumentActivity"></activity>
+        <activity android:name=".activities.PaymentActivity"></activity>
+        <activity android:name=".activities.ChangePolicyDetials1Activity" />
+        <activity android:name=".activities.SignableDocument2Activity" />
+        <activity android:name=".activities.SignableDocumentActivity" />
         <activity android:name=".activities.IdCardDocumentActivity" />
         <activity android:name=".activities.RenewalActivity" />
         <activity android:name=".activities.FileClaimActivity" />

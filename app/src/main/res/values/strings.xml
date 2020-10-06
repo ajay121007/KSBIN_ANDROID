@@ -29,4 +29,8 @@
     <string name="status">Status</string>
     <string name="sign_now"><u>Sign now</u></string>
     <string name="search">Search</string>
+
+    <string name="updated_on">Updated on</string>
+    <string name="view_download">View/Download</string>
+    <string name="enter_details">Enter Details</string>
 </resources>

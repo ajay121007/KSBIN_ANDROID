@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dim_10dp"
+        tools:context=".activities.ChangePolicyDetials1Activity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Change my Policy details" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_40dp"
+            app:errorEnabled="true"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signIn_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/down_arrow"
+                android:drawableRight="@drawable/down_arrow"
+                android:drawablePadding="5dp"
+                android:hint="Select a Subject" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_30dp"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/select_policy_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/down_arrow"
+                android:drawableRight="@drawable/down_arrow"
+                android:drawablePadding="5dp"
+                android:hint="Select a Policy" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_10dp"
+            android:layout_marginTop="@dimen/margin_60dp"
+            android:text="@string/enter_details"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dim_14sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/dim_331dp"
+            android:layout_height="@dimen/dim_175dp"
+            android:layout_marginLeft="@dimen/dim_10dp"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:background="@color/light_purple"
+            app:cardCornerRadius="@dimen/dim_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sample "
+                android:padding="@dimen/margin_4dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_13sp" />
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="@dimen/margin_100"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rouned_corner_btn"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</layout>
