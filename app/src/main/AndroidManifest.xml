@@ -9,15 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.SignableDocumentActivity"></activity>
+        <activity android:name=".activities.IdCardDocumentActivity" />
+        <activity android:name=".activities.RenewalActivity" />
+        <activity android:name=".activities.FileClaimActivity" />
+        <activity android:name=".activities.UploadDocumentActivity" />
+        <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
+        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.ConfirmationActivity" />
         <activity
-            android:name=".LoginSignUpActivity"
+            android:name=".activities.LoginSignUpActivity"
             android:label="@string/title_activity_login_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SplashScreen"
+        <activity
+            android:name=".activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

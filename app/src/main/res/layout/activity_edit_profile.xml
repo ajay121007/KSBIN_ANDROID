@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_10dp"
+        tools:context=".activities.EditProfileActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_100"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_name_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/user_name_icon"
+                android:drawablePadding="5dp"
+                android:hint="Name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/email_icon"
+                android:drawablePadding="5dp"
+                android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_tel_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/phone_icon"
+                android:drawablePadding="5dp"
+                android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_60dp"
+            android:padding="@dimen/margin_4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:drawableRight="@drawable/ic_arrow_forward"
+                android:text="Change Password"
+                android:textSize="@dimen/dim_15sp" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:layout_width="@dimen/dim_269dp"
+            android:layout_height="@dimen/dim_42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_100"
+            android:background="@drawable/rouned_corner_btn"
+            android:text="@string/update"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/dim_15sp" />
+
+    </LinearLayout>
+
+</layout>

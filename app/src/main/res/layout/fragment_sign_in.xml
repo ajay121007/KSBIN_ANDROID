@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signIn_email_editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableLeft="@drawable/email_icon"
@@ -36,6 +37,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signIn_pwd_editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableStart="@drawable/lock_icon"
@@ -46,6 +48,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/forgetText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4dp"
@@ -53,6 +56,7 @@
             android:text="@string/forget_password" />
 
         <Button
+            android:id="@+id/signIn_btn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center"

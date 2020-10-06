@@ -8,4 +8,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign In</string>
     <string name="forget_password"><u>Forget Password?</u></string>
+    <string name="your_account_has_been_successfully_n_registered_to_complete_the_process_n_please_check_your_email_for_validation_n_request">Your account has been successfully \n registered. To complete the process \n please check your email for validation \n request.</string>
+    <string name="register"><u>Register</u></string>
+    <string name="password_reset">Password Reset</string>
+    <string name="done">Done</string>
+    <string name="update">Update</string>
+    <string name="upload_your_document">Upload your Document</string>
+    <string name="attach_document_photo">Attach Document Photo \n Max size: 10MB</string>
+    <string name="upload_dmv_licence">Upload DMV Licence</string>
+    <string name="upload_ddc_licence">Upload DDC Licence</string>
+    <string name="upload_tcl_licence">Upload TCL Licence</string>
+    <string name="upload_send"><![CDATA[Upload & Send]]></string>
+    <string name="documents_n_id_cards">Documents \n Id Cards</string>
+    <string name="documents_naadhar_cards_id">Documents \nAadhar Cards Id</string>
+    <string name="documents_ndriving_license">Documents \nDriving License</string>
+    <string name="documents_nvoter_card">Documents \nVoter Card</string>
+    <string name="name">Name</string>
+    <string name="contract">Contract</string>
+    <string name="updated">Updated</string>
+    <string name="status">Status</string>
+    <string name="sign_now"><u>Sign now</u></string>
+    <string name="search">Search</string>
 </resources>

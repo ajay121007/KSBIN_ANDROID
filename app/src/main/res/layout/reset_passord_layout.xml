@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+
+    <ImageView
+        android:layout_marginTop="@dimen/dim_150dp"
+        android:layout_width="@dimen/dim_124dp"
+        android:layout_height="@dimen/dim_122dp"
+        android:src="@drawable/ic_reset_done_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_22_sp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:text="@string/password_reset"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dim_15sp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/padding_10dp"
+        android:text="Your password has been reset \n Successfully"/>
+    
+    
+    <Button
+        android:id="@+id/done_btn"
+        android:layout_width="@dimen/dim_269dp"
+        android:layout_height="@dimen/dim_42dp"
+        android:background="@drawable/rouned_corner_btn"
+        android:text="@string/done"
+        android:layout_marginTop="@dimen/margin_100"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
+</layout>
