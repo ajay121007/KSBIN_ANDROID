@@ -33,4 +33,6 @@
     <string name="updated_on">Updated on</string>
     <string name="view_download">View/Download</string>
     <string name="enter_details">Enter Details</string>
+    <string name="policy">Policy</string>
+    <string name="payment">Payment</string>
 </resources>

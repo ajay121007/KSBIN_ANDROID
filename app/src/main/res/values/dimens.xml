@@ -60,4 +60,10 @@
     <dimen name="dim_30dp">30dp</dimen>
     <dimen name="dim_343dp">343dp</dimen>
     <dimen name="dim_103dp">103dp</dimen>
+    <dimen name="dim_41dp">41dp</dimen>
+    <dimen name="dim_24sp">24sp</dimen>
+    <dimen name="dim_17sp">17sp</dimen>
+    <dimen name="dim_10sp">10sp</dimen>
+    <dimen name="dim_98dp">98dp</dimen>
+    <dimen name="dim_15dp">15dp</dimen>
 </resources>
