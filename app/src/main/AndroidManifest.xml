@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ks">
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".InsuranceApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.dashboard.DashBoardActivity"></activity>
         <activity android:name=".activities.PaymentActivity" />
         <activity android:name=".activities.ChangePolicyDetials1Activity" />
         <activity android:name=".activities.SignableDocument2Activity" />
@@ -23,7 +24,7 @@
         <activity android:name=".activities.ForgotPasswordActivity" />
         <activity android:name=".activities.ConfirmationActivity" />
         <activity
-            android:name=".activities.LoginSignUpActivity"
+            android:name=".activities.loginsignup.LoginSignUpActivity"
             android:label="@string/title_activity_login_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

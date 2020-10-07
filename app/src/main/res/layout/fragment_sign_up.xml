@@ -1,117 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/padding_10dp"
-    tools:context=".fragments.LoginFragment">
-
-    <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ks.activities.loginsignup.SignUpViewModel" />
+    </data>
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <com.google.android.material.textfield.TextInputLayout
+        android:layout_height="wrap_content">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_70dp"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_10dp"
+            tools:context=".fragments.SignUpFragment">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_name_editText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/user_name_icon"
-                android:drawablePadding="@dimen/padding_5dp"
-                android:hint="Name" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_email_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/email_icon"
-                android:drawablePadding="@dimen/padding_5dp"
-                android:hint="Email" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_70dp"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.nameError}"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_phn_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/phone_icon"
-                android:drawablePadding="@dimen/padding_5dp"
-                android:hint="Tel" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_name_editText"
+                        android:layout_width="match_parent"
+                        android:text="@={viewModel.name}"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/user_name_icon"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:hint="Name" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.emailError}"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_password_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/lock_icon"
-                android:drawableLeft="@drawable/lock_icon"
-                android:drawablePadding="@dimen/padding_5dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                tools:ignore="RtlCompat" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sign_up_confirm_pwd_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableStart="@drawable/lock_icon"
-                android:drawablePadding="@dimen/padding_5dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                tools:ignore="RtlCompat" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/signUp_btn"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="@dimen/margin_60dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rouned_corner_btn"
-            android:text="Sign Up"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_email_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.email}"
+                        android:drawableLeft="@drawable/email_icon"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:hint="Email" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-    </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.phoneError}"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_phn_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.phone}"
+                        android:drawableLeft="@drawable/phone_icon"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:hint="Tel" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.passwordError}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_password_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.password}"
+                        android:drawableStart="@drawable/lock_icon"
+                        android:drawableLeft="@drawable/lock_icon"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        tools:ignore="RtlCompat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.confirmPasswordError}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sign_up_confirm_pwd_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableStart="@drawable/lock_icon"
+                        android:drawablePadding="@dimen/padding_5dp"
+                        android:text="@={viewModel.confirmPassword}"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        tools:ignore="RtlCompat" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/signUp_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="@dimen/margin_60dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rouned_corner_btn"
+                    android:text="Sign Up"
+                    android:onClick="@{()->viewModel.signUp()}"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
 
-</FrameLayout>
+            </LinearLayout>
+            <include
+               android:id="@+id/loader"
+                android:visibility="gone"
+                layout="@layout/progress_layout"/>
+
+        </FrameLayout>
+    </ScrollView>
+</layout>

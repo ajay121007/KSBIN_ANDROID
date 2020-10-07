@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <LinearLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/dim_98dp"
         android:layout_height="@dimen/margin_100"
         android:layout_marginTop="@dimen/dim_10dp"
         android:layout_marginLeft="@dimen/dim_10dp"
-        app:cardElevation="@dimen/dim_10dp"
-        app:cardCornerRadius="@dimen/dim_15dp">
+        android:layout_marginBottom="@dimen/dim_10dp"
+        android:layout_marginEnd="@dimen/dim_10dp"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="@dimen/dim_15dp"
+        android:layout_marginStart="@dimen/dim_10dp">
 
         <LinearLayout
             android:layout_width="match_parent"

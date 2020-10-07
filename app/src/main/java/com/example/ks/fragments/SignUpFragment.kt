@@ -5,14 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.ks.R
+import com.example.ks.activities.loginsignup.SignUpViewModel
+import com.example.ks.common.BaseFragment
+import com.example.ks.databinding.FragmentSignUpBinding
+import com.example.ks.setVisibility
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : BaseFragment() {
+    lateinit var   binding:FragmentSignUpBinding
+    private val loginViewModel:SignUpViewModel by viewModel{ parametersOf(this)}
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        loginViewModel.email.observe(this, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        })
 
     }
 
@@ -21,7 +36,19 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+       binding = DataBindingUtil.inflate<FragmentSignUpBinding>(
+            layoutInflater,
+            R.layout.fragment_sign_up,
+            container,
+            false
+        )
+        binding.lifecycleOwner=viewLifecycleOwner
+        binding.executePendingBindings()
+        binding.viewModel=loginViewModel
+//        loginViewModel.emailError.observe(this, Observer {
+//            binding.tlName.error=it
+//        })
+        return binding.root
     }
 
 
