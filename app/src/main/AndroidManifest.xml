@@ -14,11 +14,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.ProfileActivity"></activity>
         <activity android:name=".activities.dashboard.DashBoardActivity" />
-        <activity android:name=".activities.PaymentActivity" />
+        <activity android:name=".activities.payment.PaymentActivity" />
         <activity android:name=".activities.ChangePolicyDetials1Activity" />
         <activity android:name=".activities.SignableDocument2Activity" />
-        <activity android:name=".activities.SignableDocumentActivity" />
-        <activity android:name=".activities.IdCardDocumentActivity" />
+        <activity android:name=".activities.signabledocument.SignableDocumentActivity" />
+        <activity android:name=".activities.document.IdCardDocumentActivity" />
         <activity android:name=".activities.RenewalActivity" />
         <activity android:name=".activities.FileClaimActivity" />
         <activity android:name=".activities.UploadDocumentActivity" />

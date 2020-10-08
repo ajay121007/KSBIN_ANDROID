@@ -26,7 +26,7 @@ class SignUpFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         loginViewModel.email.observe(this, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+          //  Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
 
     }
