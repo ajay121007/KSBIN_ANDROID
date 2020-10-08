@@ -3,6 +3,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.example.ks.models.DashBoardResponse.Data.Policy" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
 
 
@@ -50,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dim_10dp"
-                android:text="Ethero7586"
+                android:text="@{model.policyNumber}"
                 android:textColor="@android:color/black"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_simple_heading_policy" />
@@ -75,10 +80,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dim_10dp"
-                android:text="20 oct 2020"
+                android:text="@{model.policyFromStr}"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_14sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_starting"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_starting"
                 app:layout_constraintTop_toBottomOf="@id/text_starting" />
 
             <TextView
@@ -97,14 +104,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:layout_marginLeft="140dp"
-                android:text="20 oct 2025"
+                android:text="@{model.policyToStr}"
+                android:layout_marginTop="@dimen/dim_5dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_14sp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/starting_date"
-                app:layout_constraintTop_toBottomOf="@id/ending_text" />
+                app:layout_constraintEnd_toEndOf="@+id/ending_text"
+                app:layout_constraintStart_toStartOf="@+id/ending_text"
+                app:layout_constraintTop_toBottomOf="@+id/ending_text" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

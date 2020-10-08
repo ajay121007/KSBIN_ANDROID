@@ -1,12 +1,16 @@
 package com.example.ks.di
 
 
+
 import com.example.ks.activities.claim.FileClaimViewModel
+
+import com.example.ks.activities.payment.PaymentViewModel
+
 import com.example.ks.activities.dashboard.DashBoardViewModel
 import com.example.ks.activities.document.IdCardDocumentViewModel
 import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.activities.loginsignup.SignUpViewModel
-import com.example.ks.activities.payment.PaymentViewModel
+
 import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.activities.upload.UploadViewModel
 import com.example.ks.api.ApiService

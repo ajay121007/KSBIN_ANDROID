@@ -1,7 +1,9 @@
 package com.example.ks.repo
 
+import com.example.ks.activities.payment.PaymentResponse
 import com.example.ks.api.ApiService
-import com.example.ks.model.contarctListResponse.ContractListResponse
+import com.example.ks.model.contarctListResponse.ContractResponse
+import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
@@ -36,7 +38,7 @@ class AuthRepo(private val apiService: ApiService
     }
 
 
-    suspend fun getContractList(): ResultWrapper<ContractListResponse?> {
+    suspend fun getContractList(): ResultWrapper<ContractResponse?> {
         return when(val call = safeApiCall { apiService.getContractList() }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
@@ -47,7 +49,7 @@ class AuthRepo(private val apiService: ApiService
         }
     }
 
-    suspend fun getInvoice(): ResultWrapper<InvoiceListResponse?> {
+    suspend fun getInvoice(): ResultWrapper<PaymentResponse?> {
         return when(val call = safeApiCall { apiService.getInvoiceList() }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
@@ -69,7 +71,7 @@ class AuthRepo(private val apiService: ApiService
         }
     }
 
-    suspend fun signContractToken(body:HashMap<String,String?>): ResultWrapper<ResponseBody?> {
+    suspend fun signContractToken(body:HashMap<String,String?>): ResultWrapper<SignTokenResponse?> {
         return when(val call = safeApiCall { apiService.signContractToken(body) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)

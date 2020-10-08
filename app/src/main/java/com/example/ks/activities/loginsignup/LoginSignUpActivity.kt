@@ -23,8 +23,8 @@ class LoginSignUpActivity : AppCompatActivity() {
 
         private fun setUpTabs(){
             val adapter=ViewPagerAdapter(supportFragmentManager)
-            adapter.addFragments(SignUpFragment(), "Login")
-            adapter.addFragments(LoginFragment(), "SignUp")
+            adapter.addFragments(SignUpFragment(), "Sign Up")
+            adapter.addFragments(LoginFragment(), "Login")
             activityLoginSignUpBinding.viewPager.adapter=adapter
             activityLoginSignUpBinding.tabLayout.setupWithViewPager(activityLoginSignUpBinding.viewPager)
         }

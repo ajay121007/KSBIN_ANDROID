@@ -7,79 +7,83 @@
             name="viewModel"
             type="com.example.ks.activities.loginsignup.LoginViewModel" />
     </data>
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"
-        tools:context=".fragments.LoginFragment">
-
-        <LinearLayout
+        android:layout_height="wrap_content">
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:padding="4dp"
+            tools:context=".fragments.LoginFragment">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_100"
-                app:errorEnabled="true"
-                setError="@{viewModel.emailError}"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signIn_email_editText"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@={viewModel.email}"
-                    android:drawableLeft="@drawable/email_icon"
-                    android:drawablePadding="5dp"
-                    android:hint="Email" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_10dp"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.emailError}"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signIn_email_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.email}"
+                        android:drawableLeft="@drawable/email_icon"
+                        android:drawablePadding="5dp"
+                        android:hint="Email" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                setError="@{viewModel.passwordError}"
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signIn_pwd_editText"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@={viewModel.password}"
-                    android:drawableStart="@drawable/lock_icon"
-                    android:hint="Password"
-                    android:drawablePadding="5dp"
-                    android:inputType="textPassword"
-                    tools:ignore="RtlCompat"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    setError="@{viewModel.passwordError}"
+                    app:passwordToggleEnabled="true">
 
-            <TextView
-                android:id="@+id/forgetText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_4dp"
-                android:gravity="end"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signIn_pwd_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.password}"
+                        android:drawableStart="@drawable/lock_icon"
+                        android:hint="Password"
+                        android:drawablePadding="5dp"
+                        android:inputType="textPassword"
+                        tools:ignore="RtlCompat"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                android:text="@string/forget_password" />
+                <TextView
+                    android:id="@+id/forgetText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    android:gravity="end"
 
-            <Button
-                android:id="@+id/signIn_btn"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="100dp"
-                android:background="@drawable/rouned_corner_btn"
-                android:text="@string/sign_in"
-                android:textAllCaps="false"
-                android:onClick="@{()->viewModel.login()}"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
+                    android:text="@string/forget_password" />
 
-    </FrameLayout>
+                <Button
+                    android:id="@+id/signIn_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/rouned_corner_btn"
+                    android:text="@string/sign_in"
+                    android:textAllCaps="false"
+                    android:onClick="@{()->viewModel.login()}"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </ScrollView>
 </layout>

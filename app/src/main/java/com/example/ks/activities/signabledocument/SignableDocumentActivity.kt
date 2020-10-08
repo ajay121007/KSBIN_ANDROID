@@ -1,18 +1,23 @@
 package com.example.ks.activities.signabledocument
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.ks.R
-import com.example.ks.activities.loginsignup.LoginViewModel
+import com.example.ks.adapters.ContractActions
+import com.example.ks.adapters.OnContractItemClick
+import com.example.ks.adapters.SignbaleAdapter
+import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivitySignableDocumentBinding
+import com.example.ks.model.contarctListResponse.ContractResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class SignableDocumentActivity : AppCompatActivity() {
+class SignableDocumentActivity : BaseActivity(), OnContractItemClick {
 
     val viewModel: SignableDocumentModel by viewModel { parametersOf(this) }
     lateinit var binding: ActivitySignableDocumentBinding
+    lateinit var adapter:SignbaleAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signable_document)
@@ -20,6 +25,18 @@ class SignableDocumentActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        adapter= SignbaleAdapter(this)
+        binding.rv.adapter=adapter
         viewModel.getContractList()
+        viewModel.liveData.observe(this, Observer {
+            adapter.submitList(it)
+        })
+    }
+
+    override fun onItemClick(actionType: ContractActions, item: ContractResponse.ContractModel) {
+        when(actionType){
+            ContractActions.SIGN -> viewModel.signToken(item.id)
+            ContractActions.VIEW -> TODO()
+        }
     }
 }

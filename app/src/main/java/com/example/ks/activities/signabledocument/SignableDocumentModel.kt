@@ -1,7 +1,9 @@
 package com.example.ks.activities.signabledocument
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ks.common.UICallBacks
+import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.repo.AuthRepo
 import com.example.ks.utils.MyViewModel
 import com.example.ks.utils.ResultWrapper
@@ -10,17 +12,22 @@ import kotlinx.coroutines.launch
 
 class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
 
-
+    val liveData=MutableLiveData<List<ContractResponse.ContractModel?>>()
     fun getContractList(){
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
             when(val response=authRepo.getContractList()){
-
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200)
+                    {
                         uiCallBacks.onToast(data.message)
+                        response.value.data?.let {
+
+                            liveData.postValue(it)
+                        }
+                    }
                     else uiCallBacks.onToast(data.message)
                 }
                 is ResultWrapper.GenericError -> {
@@ -39,5 +46,21 @@ class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo:
 
         }
     }
-
+    fun signToken(contractId: String?): Unit {
+        coroutineScope.launch {
+            val map=HashMap<String,String?>().apply {
+                put("contract_id",contractId)
+            }
+            uiCallBacks.onLoading(true)
+            when(val response= authRepo.signContractToken(map)){
+                is ResultWrapper.Success -> {
+                    uiCallBacks.onToast(response.value?.data?.token)
+                    uiCallBacks.onLoading(false)
+                }
+                is ResultWrapper.GenericError -> TODO()
+                ResultWrapper.SocketTimeOutError -> TODO()
+                ResultWrapper.NetworkError -> TODO()
+            }
+        }
+    }
 }

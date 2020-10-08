@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "com.example.ks"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -90,6 +90,9 @@ dependencies {
 
     //adding paging
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
+
+    // carousel view
+    implementation 'com.synnapps:carouselview:0.1.5'
 //    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 //    implementation 'com.github.addisonelliott:SegmentedButton:3.1.7'
 

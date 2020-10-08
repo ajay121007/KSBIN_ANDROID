@@ -1,13 +1,18 @@
 package com.example.ks.api
 
 
-import com.example.ks.model.contarctListResponse.ContractListResponse
+
 import com.example.ks.model.documentid.DocumentIdListResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
 
 import com.example.ks.activities.payment.PaymentResponse
+
 import com.example.ks.model.upload.UploadResponse
+
+import com.example.ks.model.contarctListResponse.ContractResponse
+import com.example.ks.model.contarctListResponse.SignTokenResponse
+
 
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.models.LoginResponse
@@ -45,16 +50,17 @@ interface ApiService {
 
 
     @GET("contracts")
-    suspend fun getContractList():Response<ContractListResponse>
+    suspend fun getContractList():Response<ContractResponse>
 
     @GET("invoices")
-    suspend fun getInvoiceList():Response<InvoiceListResponse>
+    suspend fun getInvoiceList():Response<PaymentResponse?>
 
     @GET("documents")
     suspend fun getDocumentAndIdsList():Response<DocumentIdListResponse>
 
     @POST("sign-contract-token")
-    suspend fun signContractToken(@FieldMap map: HashMap<String,String?>):Response<ResponseBody>
+    @FormUrlEncoded
+    suspend fun signContractToken(@FieldMap map: HashMap<String,String?>):Response<SignTokenResponse>
 
     @POST("upload-claim")
     suspend fun uploadClaim(@FieldMap map: HashMap<String,String?>):Response<ResponseBody>

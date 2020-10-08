@@ -7,13 +7,13 @@ data class PaymentResponse(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")
-    val `data`: List<Data>,
+    val `data`: List<PaymentModel>,
     @SerializedName("message")
     val message: String,
     @SerializedName("valid")
     val valid: Boolean
 ) {
-    data class Data(
+    data class PaymentModel(
         @SerializedName("created_at")
         val createdAt: String,
         @SerializedName("due")
@@ -33,6 +33,6 @@ data class PaymentResponse(
         @SerializedName("updated_at")
         val updatedAt: String,
         @SerializedName("user_id")
-        val userId: Int
+        val userId: String
     )
 }

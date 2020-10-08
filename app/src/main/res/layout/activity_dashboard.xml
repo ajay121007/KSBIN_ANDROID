@@ -7,171 +7,94 @@
         <variable
             name="handler"
             type="com.example.ks.activities.dashboard.OnDashBoardActions" />
+       <variable
+           name="viewModel"
+           type="com.example.ks.activities.dashboard.DashBoardViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.dashboard.DashBoardActivity">
-
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="@dimen/dim_41dp"
-        android:layout_height="@dimen/dim_42dp"
-        android:onClick="@{()->handler.onTapProfile()}"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@color/light_purple"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginLeft="@dimen/dim_20dp"/>
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Welcome\nJack "
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/dim_24sp"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    <TextView
-        android:id="@+id/text_policy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Policy"
-        android:textSize="@dimen/dim_17sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/profile_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_40dp"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="@dimen/dim_330dp"
-        android:layout_height="@dimen/dim_150dp"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:cardCornerRadius="@dimen/dim_10dp"
-        app:layout_constraintTop_toBottomOf="@id/text_policy">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="147dp">
-
-            <TextView
-                android:id="@+id/text_simple_heading_policy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="292dp"
-                android:layout_marginRight="292dp"
-                android:text="@string/policy"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/policy_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_10dp"
-                android:text="Ethero7586"
-                android:textColor="@android:color/black"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_simple_heading_policy" />
-
-            <TextView
-                android:id="@+id/text_starting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_20dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="256dp"
-                android:layout_marginRight="256dp"
-                android:text="Starting From"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/policy_name" />
-
-            <TextView
-                android:id="@+id/starting_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_10dp"
-                android:text="20 oct 2020"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_14sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_starting" />
-
-            <TextView
-                android:id="@+id/ending_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginRight="28dp"
-                android:text="Ending On"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="140dp"
-                android:layout_marginLeft="140dp"
-                android:text="20 oct 2025"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_14sp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/starting_date"
-                app:layout_constraintTop_toBottomOf="@id/ending_text" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/heading_document"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginEnd="272dp"
-        android:layout_marginRight="272dp"
-        android:text="Documents &amp; Data"
-        android:textColor="@android:color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view" />
-    <GridView
-        android:id="@+id/grid_View"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/color_bg"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/heading_document"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:numColumns="3"
-        android:horizontalSpacing="2dp"
-        android:verticalSpacing="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginRight="@dimen/dim_20dp"
-        android:padding="@dimen/dim_5dp"
-        tools:listitem="@layout/gridview_row_layout"
-        android:layout_marginTop="@dimen/dim_20dp"/>
+        android:layout_height="match_parent"
+        tools:context=".activities.dashboard.DashBoardActivity">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/dim_41dp"
+            android:layout_height="@dimen/dim_42dp"
+            app:imageUrl="@{viewModel.data.Data.user.userImageUrl}"
+            android:onClick="@{()->handler.onTapProfile()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@color/light_purple"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginLeft="@dimen/dim_20dp"/>
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Hello Welcome \n`+viewModel.data.Data.user.name}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dim_24sp"
+            android:layout_marginTop="@dimen/dim_10dp"
+            app:layout_constraintTop_toBottomOf="@id/profile_image"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
+            android:id="@+id/text_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Policy"
+            android:textSize="@dimen/dim_17sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/profile_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_marginTop="@dimen/dim_40dp"/>
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/rv_policy"
+            app:radius="10dp"
+            android:layout_width="@dimen/dim_330dp"
+            android:layout_height="@dimen/dim_150dp"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_marginTop="@dimen/dim_20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:indicatorVisibility="gone"
+            app:cardCornerRadius="@dimen/dim_10dp"
+            app:layout_constraintTop_toBottomOf="@id/text_policy"
+            android:layout_marginStart="@dimen/dim_20dp"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/heading_document"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginEnd="272dp"
+            android:layout_marginRight="272dp"
+            android:text="Documents &amp; Data"
+            android:textColor="@android:color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_policy" />
+        <GridView
+            android:id="@+id/grid_View"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/heading_document"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:numColumns="3"
+            android:horizontalSpacing="2dp"
+            android:verticalSpacing="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_marginRight="@dimen/dim_20dp"
+            android:padding="@dimen/dim_5dp"
+            tools:listitem="@layout/gridview_row_layout"
+            android:layout_marginTop="@dimen/dim_20dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

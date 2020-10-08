@@ -3,55 +3,54 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="@dimen/dim_5dp"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <data>
+        <variable
+            name="model"
+            type="com.example.ks.activities.payment.PaymentResponse.PaymentModel" />
+    </data>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/dim_343dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/dim_103dp"
             app:cardCornerRadius="@dimen/dim_10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginVertical="@dimen/dim_5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.068">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+
+                android:layout_marginHorizontal="@dimen/dim_10dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/dim_5dp">
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10dp"
                     android:layout_marginTop="@dimen/dim_10dp"
-                    android:text="Ethero7586"
+                    android:text="@{model.userId}"
                     android:textColor="@android:color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10dp"
-                    android:text="$523"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{`$`+model.price}"
                     android:textColor="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.877"
-                    app:layout_constraintStart_toEndOf="@+id/textView16"
-                    app:layout_constraintTop_toTopOf="parent" />
+
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10dp"
                     android:layout_marginTop="@dimen/dim_10dp"
                     android:text="Invoice"
                     android:textColor="@android:color/black"
@@ -63,21 +62,17 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10dp"
                     android:text="Succeful"
                     android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.88"
-                    app:layout_constraintStart_toEndOf="@+id/textView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10dp"
                     android:layout_marginTop="@dimen/dim_10dp"
-                    android:text="12345678"
+                    android:text="@{model.invoiceNo}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,13 +81,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="20 Oct 2020, 8:45pm"
+                    android:text="@{model.createdAt}"
+                    android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.797"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintStart_toEndOf="@+id/textView19"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
 
@@ -102,5 +94,4 @@
         </androidx.cardview.widget.CardView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,4 +5,5 @@
     <color name="colorAccent">#6262E3</color>
     <color name="editTextStyles" tools:override="true">#6262E3</color>
     <color name="light_purple">#C0C0F6</color>
+    <color name="color_bg">#F5F5F9</color>
 </resources>

@@ -12,7 +12,7 @@
             app:cardCornerRadius="@dimen/dim_15dp"
             android:padding="@dimen/dim_10dp"
             android:layout_margin="4dp"
-            app:cardElevation="@dimen/dim_10dp"
+            app:cardElevation="@dimen/dim_2dp"
            >
 
             <LinearLayout
