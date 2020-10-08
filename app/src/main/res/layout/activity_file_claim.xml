@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/padding_10dp"
-        tools:context=".activities.FileClaimActivity">
+        tools:context=".activities.claim.FileClaimActivity">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
@@ -66,6 +66,7 @@
 
 
             <LinearLayout
+                android:id="@+id/attacheClaimPics"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/doted_lines"
@@ -74,6 +75,7 @@
 
 
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/attach_file" />

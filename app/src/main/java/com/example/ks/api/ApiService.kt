@@ -7,6 +7,7 @@ import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
 
 import com.example.ks.activities.payment.PaymentResponse
+import com.example.ks.model.upload.UploadResponse
 
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.models.LoginResponse
@@ -15,13 +16,11 @@ import com.example.ks.models.SignUpResponse
 import com.example.ks.utils.ErrorResponse
 import com.example.ks.utils.ResultWrapper
 import com.squareup.moshi.Moshi
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.HttpException
 import retrofit2.Response
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -65,6 +64,10 @@ interface ApiService {
 
     @GET("profile-details")
     suspend fun getProfileInfo():Response<ProfileDetailResponse>
+
+    @Multipart
+    @POST("upload-document")
+    suspend fun uploadDocs(@Part fileDocs: MultipartBody.Part, @Part fileName: MultipartBody.Part): Response<UploadResponse>
 
 }
 

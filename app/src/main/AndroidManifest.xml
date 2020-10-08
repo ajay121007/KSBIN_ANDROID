@@ -3,7 +3,8 @@
     package="com.example.ks">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".InsuranceApp"
         android:allowBackup="true"
@@ -20,8 +21,14 @@
         <activity android:name=".activities.signabledocument.SignableDocumentActivity" />
         <activity android:name=".activities.document.IdCardDocumentActivity" />
         <activity android:name=".activities.RenewalActivity" />
-        <activity android:name=".activities.FileClaimActivity" />
-        <activity android:name=".activities.UploadDocumentActivity" />
+        <activity android:name=".activities.claim.FileClaimActivity" />
+        <activity android:name=".activities.upload.UploadDocumentActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="com.package.name.MyActivity"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
         <activity android:name=".activities.EditProfileActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
@@ -33,13 +40,12 @@
         <activity
             android:name=".activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="com.package.name.MyActivity"/>
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
-        <activity android:name=".activities.profile.ProfileActivity" />
     </application>
 
 </manifest>

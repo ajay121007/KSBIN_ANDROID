@@ -1,12 +1,14 @@
 package com.example.ks.di
 
 
-import PaymentViewModel
+import com.example.ks.activities.claim.FileClaimViewModel
 import com.example.ks.activities.dashboard.DashBoardViewModel
 import com.example.ks.activities.document.IdCardDocumentViewModel
 import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.activities.loginsignup.SignUpViewModel
+import com.example.ks.activities.payment.PaymentViewModel
 import com.example.ks.activities.signabledocument.SignableDocumentModel
+import com.example.ks.activities.upload.UploadViewModel
 import com.example.ks.api.ApiService
 import com.example.ks.api.Constants
 import com.example.ks.common.UICallBacks
@@ -33,8 +35,10 @@ val viewModels = module {
     viewModel { (uiCallBacks: UICallBacks)->LoginViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->DashBoardViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->SignableDocumentModel(uiCallBacks,get()) }
-    viewModel { (uiCallBacks: UICallBacks)->PaymentViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)-> PaymentViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->IdCardDocumentViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)->UploadViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)->FileClaimViewModel(uiCallBacks,get()) }
 
 }
 

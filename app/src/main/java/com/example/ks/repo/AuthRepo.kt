@@ -5,11 +5,13 @@ import com.example.ks.model.contarctListResponse.ContractListResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
+import com.example.ks.model.upload.UploadResponse
 import com.example.ks.models.LoginResponse
 import com.example.ks.models.SignUpResponse
 import com.example.ks.sharedpref.SharedPreferenceHelper
 import com.example.ks.utils.ResultWrapper
 import com.example.ks.utils.safeApiCall
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 
 /**
@@ -103,6 +105,18 @@ class AuthRepo(private val apiService: ApiService
 
     suspend fun getProfileInfo(): ResultWrapper<ProfileDetailResponse?> {
         return when(val call = safeApiCall { apiService.getProfileInfo() }){
+            is ResultWrapper.Success ->{
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
+    }
+
+    suspend fun uploadDocs(fileDocs: MultipartBody.Part,
+                           fileName: MultipartBody.Part,): ResultWrapper<UploadResponse?> {
+        return when(val call = safeApiCall { apiService.uploadDocs(fileDocs,fileName) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
             }
