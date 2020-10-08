@@ -13,9 +13,9 @@ class AuthInterceptor(private val  sharedPreferenceHelper: SharedPreferenceHelpe
         var req = chain.request()
         // DONT INCLUDE API KEYS IN YOUR SOURCE CODE
         sharedPreferenceHelper.getUser()?.let {
-            req.newBuilder().addHeader("Authorization","Bearer ${it.data?.token?.accessToken}")
+            req=req.newBuilder().addHeader("Authorization","Bearer ${it.data?.token?.accessToken}").build()
         }
-        req = req.newBuilder().build()
+
         return chain.proceed(req)
     }
 }

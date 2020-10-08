@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    
-    <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/dim_98dp"
-        android:layout_height="@dimen/margin_100"
-app:cardUseCompatPadding="true"
-        app:cardElevation="@dimen/dim_2dp"
-        app:cardCornerRadius="@dimen/dim_15dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/dim_98dp"
+            android:layout_height="@dimen/margin_100"
+            app:cardCornerRadius="@dimen/dim_15dp"
+            android:padding="@dimen/dim_10dp"
+            android:layout_margin="4dp"
+            app:cardElevation="@dimen/dim_10dp"
+           >
 
-            <ImageView
-                android:id="@+id/grid_image"
-                android:layout_width="23dp"
-                android:layout_height="27dp"
-                android:layout_marginLeft="@dimen/dim_10dp"
-                android:layout_marginTop="@dimen/dim_20dp"
-                android:src="@drawable/ic_paymenticon" />
-
-            <TextView
-                android:id="@+id/grid_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_10dp"
-                android:layout_marginTop="@dimen/dim_20dp"
-                android:text="@string/payment"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_10sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/grid_image"
+                    android:layout_width="23dp"
+                    android:layout_height="27dp"
+                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginTop="@dimen/dim_20dp"
+                    android:src="@drawable/ic_paymenticon" />
+
+                <TextView
+                    android:id="@+id/grid_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginTop="@dimen/dim_20dp"
+                    android:text="@string/payment"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dim_10sp" />
 
 
-    </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-</LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 </layout>

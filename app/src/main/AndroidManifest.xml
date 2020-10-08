@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.profile.ProfileActivity"></activity>
         <activity android:name=".activities.dashboard.DashBoardActivity" />
         <activity android:name=".activities.payment.PaymentActivity" />
         <activity android:name=".activities.ChangePolicyDetials1Activity" />
@@ -39,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.profile.ProfileActivity" />
     </application>
 
 </manifest>

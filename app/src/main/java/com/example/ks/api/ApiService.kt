@@ -1,11 +1,16 @@
 package com.example.ks.api
 
+
 import com.example.ks.model.contarctListResponse.ContractListResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
+
+import com.example.ks.activities.payment.PaymentResponse
+
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.models.LoginResponse
+import com.example.ks.models.ProfileResponse
 import com.example.ks.models.SignUpResponse
 import com.example.ks.utils.ErrorResponse
 import com.example.ks.utils.ResultWrapper
@@ -60,6 +65,7 @@ interface ApiService {
 
     @GET("profile-details")
     suspend fun getProfileInfo():Response<ProfileDetailResponse>
+
 }
 
 

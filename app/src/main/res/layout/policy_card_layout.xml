@@ -1,61 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="handler"
-            type="com.example.ks.activities.dashboard.OnDashBoardActions" />
-    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.dashboard.DashBoardActivity">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="@dimen/dim_41dp"
-        android:layout_height="@dimen/dim_42dp"
-        android:onClick="@{()->handler.onTapProfile()}"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@color/light_purple"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginLeft="@dimen/dim_20dp"/>
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Welcome\nJack "
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/dim_24sp"
-        android:layout_marginTop="@dimen/dim_10dp"
-        app:layout_constraintTop_toBottomOf="@id/profile_image"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-    <TextView
-        android:id="@+id/text_policy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Policy"
-        android:textSize="@dimen/dim_17sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/profile_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_40dp"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dim_10dp"
+    android:layout_gravity="center_horizontal"
+  >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/card_view_policy"
         android:layout_width="@dimen/dim_330dp"
         android:layout_height="@dimen/dim_150dp"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_20dp"
+        android:layout_margin="@dimen/dim_10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:cardCornerRadius="@dimen/dim_10dp"
-        app:layout_constraintTop_toBottomOf="@id/text_policy">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:cardElevation="@dimen/dim_10dp"
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -91,7 +59,7 @@
                 android:id="@+id/text_starting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dim_20dp"
+                android:layout_marginLeft="@dimen/dim_10dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="256dp"
                 android:layout_marginRight="256dp"
@@ -143,34 +111,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/heading_document"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginEnd="272dp"
-        android:layout_marginRight="272dp"
-        android:text="Documents &amp; Data"
-        android:textColor="@android:color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view" />
-    <GridView
-        android:id="@+id/grid_View"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/heading_document"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:numColumns="3"
-        android:horizontalSpacing="2dp"
-        android:verticalSpacing="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginLeft="@dimen/dim_20dp"
-        android:layout_marginRight="@dimen/dim_20dp"
-        android:padding="@dimen/dim_5dp"
-        tools:listitem="@layout/gridview_row_layout"
-        android:layout_marginTop="@dimen/dim_20dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
