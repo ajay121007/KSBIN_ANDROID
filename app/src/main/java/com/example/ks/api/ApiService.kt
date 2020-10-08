@@ -28,9 +28,7 @@ interface ApiService {
 
     @POST("login")
     @FormUrlEncoded
-    suspend fun login(
-        @FieldMap map: HashMap<String,String?>
-    ):Response<LoginResponse>
+    suspend fun login(@FieldMap map: HashMap<String,String?>):Response<LoginResponse>
 
     @GET("dashboard")
     suspend fun getDashboardData():Response<DashBoardResponse>

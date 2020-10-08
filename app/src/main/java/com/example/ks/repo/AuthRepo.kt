@@ -10,10 +10,10 @@ import com.example.ks.utils.safeApiCall
 /**
  * Created by skycap.
  */
-class AuthRepo(private val apiService: ApiService,private val sharedPreferenceHelper: SharedPreferenceHelper){
+class AuthRepo(private val apiService: ApiService
+               ,private val sharedPreferenceHelper: SharedPreferenceHelper){
     suspend fun signUp(body:HashMap<String,String?>): ResultWrapper<SignUpResponse?> {
         return safeApiCall { apiService.signUp(body) }
-
     }
 
     suspend fun login(body:HashMap<String,String?>): ResultWrapper<LoginResponse?> {
