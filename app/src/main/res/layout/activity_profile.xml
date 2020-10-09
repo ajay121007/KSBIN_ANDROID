@@ -73,6 +73,7 @@
                     <include
                         layout="@layout/policy_card_layout"/>
                     <include
+                        app:viewModel="@{viewModel}"
                         layout="@layout/profile_layout" />
 
 

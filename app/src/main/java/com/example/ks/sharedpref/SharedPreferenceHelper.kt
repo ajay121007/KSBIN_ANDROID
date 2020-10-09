@@ -90,4 +90,9 @@ class SharedPreferenceHelper(val context: Context) {
         return if(sharedPreferenceString.isNullOrEmpty()) null
         else Gson().fromJson<LoginResponse>(sharedPreferenceString,LoginResponse::class.java)
     }
+
+    fun clearAllData(){
+        val settings: SharedPreferences = context.getSharedPreferences(PREF_FILE, 0)
+        settings.edit().clear().apply()
+    }
 }

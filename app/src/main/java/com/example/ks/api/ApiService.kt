@@ -50,7 +50,6 @@ interface ApiService {
     suspend fun getDashboardData():Response<DashBoardResponse>
 
 
-
     @GET("contracts")
     suspend fun getContractList():Response<ContractResponse>
 
@@ -59,6 +58,9 @@ interface ApiService {
 
     @GET("documents")
     suspend fun getDocumentAndIdsList():Response<DocumentIdListResponse>
+
+    @GET("logout")
+    suspend fun logOut():Response<Any>
 
     @POST("sign-contract-token")
     @FormUrlEncoded

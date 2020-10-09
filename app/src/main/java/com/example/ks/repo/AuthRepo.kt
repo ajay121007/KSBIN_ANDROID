@@ -157,4 +157,16 @@ class AuthRepo(private val apiService: ApiService
     }
 
 
+    suspend fun logOut(): ResultWrapper<Any?> {
+        return when(val call = safeApiCall { apiService.logOut() }){
+            is ResultWrapper.Success ->{
+                sharedPreferenceHelper.clearAllData()
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
+    }
+
 }
