@@ -28,7 +28,6 @@ class FileClaimActivity : BaseActivity() {
 
     private fun initView() {
       //  viewModel.getContractList()
-
         clickEvent()
     }
 

@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "com.example.ks"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -100,5 +100,8 @@ dependencies {
     implementation 'com.nabinbhandari.android:permissions:3.8'
 
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
+
+    //circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

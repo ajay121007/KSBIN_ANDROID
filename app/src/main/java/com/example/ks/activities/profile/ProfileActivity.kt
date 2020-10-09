@@ -1,13 +1,12 @@
 package com.example.ks.activities.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
-import com.example.ks.activities.EditProfileActivity
+import com.example.ks.activities.editprofile.EditProfileActivity
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityProfileBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,9 +31,14 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
         }
         profileBinding.lifecycleOwner=this
         profileBinding.executePendingBindings()
-        profileViewModel.getProfileData()
+
 
         }
+
+    override fun onResume() {
+        super.onResume()
+        profileViewModel.getProfileData()
+    }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when(item?.itemId){

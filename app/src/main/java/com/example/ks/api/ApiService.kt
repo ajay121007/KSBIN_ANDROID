@@ -80,6 +80,14 @@ interface ApiService {
     @Multipart
     @POST("upload-claim")
     suspend fun uploadClaimDocs(@Part fileDocs: MultipartBody.Part, @Part fileName: MultipartBody.Part): Response<UploadClaimImageResponse>
+
+
+    @Multipart
+    @POST("update-profile")
+    suspend fun updateProfile(@Part userImage: MultipartBody.Part, @Part userName: MultipartBody.Part,
+                              @Part userPhone: MultipartBody.Part,
+                              @Part userEmail: MultipartBody.Part): Response<UploadClaimImageResponse>
+
 }
 
 

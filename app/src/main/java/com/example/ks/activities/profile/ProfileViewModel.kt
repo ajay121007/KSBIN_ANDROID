@@ -21,6 +21,7 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
             when(val response=userRepo.getProfileInfo()){
                 is ResultWrapper.Success -> {
                     UserConstants.userProfile=response.value
+
                     liveData.postValue(response.value)
                     uiCallBacks.onLoading(false)
                     uiCallBacks.onToast(response.value?.message)

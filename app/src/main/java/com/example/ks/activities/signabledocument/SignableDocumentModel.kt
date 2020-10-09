@@ -3,16 +3,20 @@ package com.example.ks.activities.signabledocument
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ks.common.UICallBacks
+import com.example.ks.constants.UserConstants
 import com.example.ks.model.contarctListResponse.ContractResponse
+import com.example.ks.models.DashBoardResponse
 import com.example.ks.repo.AuthRepo
 import com.example.ks.utils.MyViewModel
 import com.example.ks.utils.ResultWrapper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import skycap.android.core.livedata.SingleEventLiveData
 
 class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
 
     val liveData=MutableLiveData<List<ContractResponse.ContractModel?>>()
+    val signToken=SingleEventLiveData<String>()
     fun getContractList(){
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
@@ -54,8 +58,10 @@ class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo:
             uiCallBacks.onLoading(true)
             when(val response= authRepo.signContractToken(map)){
                 is ResultWrapper.Success -> {
+                    UserConstants.signToken= response.value?.data?.token.toString()
                     uiCallBacks.onToast(response.value?.data?.token)
                     uiCallBacks.onLoading(false)
+                    signToken.postValue(response.value?.data?.token)
                 }
                 is ResultWrapper.GenericError -> TODO()
                 ResultWrapper.SocketTimeOutError -> TODO()

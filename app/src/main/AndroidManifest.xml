@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.webview.WebViewActivity"/>
         <activity android:name=".activities.profile.ProfileActivity"></activity>
         <activity android:name=".activities.dashboard.DashBoardActivity" />
         <activity android:name=".activities.payment.PaymentActivity" />
@@ -27,7 +28,7 @@
             
         </activity>
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
-        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".activities.editprofile.EditProfileActivity" />
         <activity android:name=".activities.ForgotPasswordActivity" />
         <activity android:name=".activities.ConfirmationActivity" />
         <activity
