@@ -68,4 +68,5 @@
     <dimen name="dim_98dp">98dp</dimen>
     <dimen name="dim_15dp">15dp</dimen>
     <dimen name="dim_2dp">2dp</dimen>
+    <dimen name="dim_2dp">2dp</dimen>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:padding="@dimen/dim_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/edit_profile_image"
+            android:layout_width="88dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="2dp"
+            android:src="@drawable/user_name_icon" />
+
+        <ImageView
+            android:id="@+id/edit_image_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dim_2dp"
+            android:layout_marginTop="@dimen/margin_60dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            android:translationZ="2dp" />
+
+
+    </FrameLayout>
+</layout>
