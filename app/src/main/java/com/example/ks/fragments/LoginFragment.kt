@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
-import com.example.ks.activities.ForgotPasswordActivity
+import com.example.ks.activities.forgot.ForgotPasswordActivity
 import com.example.ks.activities.dashboard.DashBoardActivity
 import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.common.BaseFragment
@@ -36,7 +36,7 @@ class LoginFragment : BaseFragment() {
             lifecycleOwner=viewLifecycleOwner
             executePendingBindings()
             forgetText.setOnClickListener {
-                startActivity(Intent(requireContext(),ForgotPasswordActivity::class.java))
+                startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
             }
         }
 

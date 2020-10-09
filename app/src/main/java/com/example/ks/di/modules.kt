@@ -9,6 +9,7 @@ import com.example.ks.activities.payment.PaymentViewModel
 import com.example.ks.activities.dashboard.DashBoardViewModel
 import com.example.ks.activities.document.IdCardDocumentViewModel
 import com.example.ks.activities.editprofile.EditProfileViewModel
+import com.example.ks.activities.forgot.ForgotPasswordViewModel
 import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.activities.loginsignup.SignUpViewModel
 import com.example.ks.activities.policydetail.ChangePolicyDetailViewModel
@@ -50,6 +51,9 @@ val viewModels = module {
     viewModel { (uiCallBacks: UICallBacks)->EditProfileViewModel(uiCallBacks,get()) }
 
     viewModel { (uiCallBacks: UICallBacks)->ChangePolicyDetailViewModel(uiCallBacks,get()) }
+
+    viewModel { (uiCallBacks: UICallBacks)->ForgotPasswordViewModel(uiCallBacks,get()) }
+
 
 }
 

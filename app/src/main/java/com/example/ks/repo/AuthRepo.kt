@@ -5,6 +5,7 @@ import com.example.ks.api.ApiService
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
+import com.example.ks.model.forgot.ForgotPasswordResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.profile.ProfileDetailResponse
@@ -98,6 +99,17 @@ class AuthRepo(private val apiService: ApiService
 
     suspend fun policyUpdate(body:HashMap<String,String?>): ResultWrapper<PolicyUpdateResponse?> {
         return when(val call = safeApiCall { apiService.policyUpdate(body) }){
+            is ResultWrapper.Success ->{
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
+    }
+
+    suspend fun forgotPassword(body:HashMap<String,String?>): ResultWrapper<ForgotPasswordResponse?> {
+        return when(val call = safeApiCall { apiService.forgotPassword(body) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
             }

@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
         <activity android:name=".activities.editprofile.EditProfileActivity" />
-        <activity android:name=".activities.ForgotPasswordActivity" />
+        <activity android:name=".activities.forgot.ForgotPasswordActivity" />
         <activity android:name=".activities.ConfirmationActivity" />
         <activity
             android:name=".activities.loginsignup.LoginSignUpActivity"
