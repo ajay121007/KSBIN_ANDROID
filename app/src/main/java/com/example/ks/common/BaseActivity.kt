@@ -30,7 +30,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
                 dialogView=layoutInflater.inflate(R.layout.progress_layout, null)
                 dialog= BottomSheetDialog(this)
                 dialog.setContentView(dialogView)
-                dialog.setCancelable(false)
+//                dialog.setCancelable(false)
                 dialogView.minimumHeight=600
                 dialog.show()
             }

@@ -8,6 +8,7 @@ import com.example.ks.R
 import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityFileClaimBinding
+import com.example.ks.utils.PathUtils
 import gun0912.tedbottompicker.TedBottomPicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -37,7 +38,7 @@ class FileClaimActivity : BaseActivity() {
         binding.attacheClaimPics.setOnClickListener {
             TedBottomPicker.with(this)
                 .show {
-                    val uriString: String = it.toString()
+                    val uriString: String = PathUtils.getPath(this,it)
                     val myFile = File(uriString)
                     val path: String = myFile.getAbsolutePath()
                     binding.image.setImageURI(it)

@@ -10,8 +10,10 @@ import com.example.ks.R
 import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityUploadDocumentBinding
+import com.example.ks.utils.PathUtils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
+import gun0912.tedbottompicker.TedRxBottomPicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.io.File
@@ -68,25 +70,29 @@ class UploadDocumentActivity : BaseActivity() {
         val intent = Intent()
         intent.type = "application/pdf"
         intent.action = Intent.ACTION_GET_CONTENT
+
         startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
-            val uri: Uri = data?.data!!
-            val uriString: String = uri.toString()
-            val myFile = File(uriString)
-            val path: String = myFile.getAbsolutePath()
+           data?.data?.let {
+               val uriString: String = it.toString()
+              val pathUtils= PathUtils.getPath(this,it)
+               val myFile = File(pathUtils)
+               val path: String = myFile.getAbsolutePath()
 
-            binding.txtFileName.text =myFile.path
-            filePath = myFile.absolutePath
-            filename= myFile.name
+               binding.txtFileName.text =myFile.path
+               filePath = myFile.absolutePath
+               filename= myFile.name
 
 
 
 
-            Log.e("path ", path+"=>"+myFile.name)
+               Log.e("path ", path+"=>"+myFile.name)
+           }
+
         }
     }
 }

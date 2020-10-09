@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_10dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +80,7 @@
                 android:textColor="@android:color/black"
                 app:layout_constraintVertical_bias="0.031" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="193dp"
                 android:layout_height="33dp"
                 android:background="@drawable/text_round_corner"
@@ -158,7 +157,7 @@
                 android:textColor="@android:color/black"
                 app:layout_constraintVertical_bias="0.031" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="193dp"
                 android:layout_height="33dp"
                 android:background="@drawable/text_round_corner"
@@ -235,7 +234,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv3"
                 app:layout_constraintVertical_bias="0.031" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="193dp"
                 android:layout_height="33dp"
                 android:background="@drawable/text_round_corner"
@@ -306,7 +305,7 @@
                 android:textColor="@android:color/black"
                 app:layout_constraintVertical_bias="0.031" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:layout_width="193dp"
                 android:layout_height="33dp"
                 android:background="@drawable/text_round_corner"
