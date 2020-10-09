@@ -11,6 +11,7 @@ import com.example.ks.activities.ChangeMyPolicyDetialsActivity
 import com.example.ks.activities.claim.FileClaimActivity
 import com.example.ks.activities.document.IdCardDocumentActivity
 import com.example.ks.activities.payment.PaymentActivity
+import com.example.ks.activities.policydetail.ChangePolicyDetials1Activity
 import com.example.ks.activities.signabledocument.SignableDocumentActivity
 import com.example.ks.activities.upload.UploadDocumentActivity
 import com.example.ks.adapters.Documents
@@ -18,8 +19,10 @@ import com.example.ks.adapters.GridAdapter
 import com.example.ks.adapters.OnItemPositionClick
 import com.example.ks.adapters.PolicyAdapter
 import com.example.ks.common.BaseActivity
+import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityDashboardBinding
 import com.example.ks.databinding.PolicyCardLayoutBinding
+import com.example.ks.models.DashBoardResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -49,6 +52,7 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
                   binding.root
               }
                 pageCount = it.data?.policies?.size?:0
+                UserConstants.policyArrayList= it.data?.policies as ArrayList<DashBoardResponse.Data.Policy>
                 }
 
 
@@ -71,7 +75,7 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
             Documents.SIGNABLE_DOCS -> startActivity(Intent(this,SignableDocumentActivity::class.java))
             Documents.PAYMENT -> startActivity(Intent(this,PaymentActivity::class.java))
             Documents.ID_CARDS -> startActivity(Intent(this,IdCardDocumentActivity::class.java))
-            Documents.CHANGE_MY_DOCS -> startActivity(Intent(this,ChangeMyPolicyDetialsActivity::class.java))
+            Documents.CHANGE_MY_DOCS -> startActivity(Intent(this,ChangePolicyDetials1Activity::class.java))
             Documents.UPLOAD_DOCS -> startActivity(Intent(this, UploadDocumentActivity::class.java))
             Documents.CLAIM_FILE -> startActivity(Intent(this, FileClaimActivity::class.java))
         }

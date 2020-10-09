@@ -18,7 +18,8 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
             this,
             message,
             Toast.LENGTH_SHORT
-        ).show() }
+        ).show()
+        }
     }
 
     override fun onLoading(loading: Boolean) {

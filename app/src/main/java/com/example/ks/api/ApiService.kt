@@ -12,6 +12,7 @@ import com.example.ks.model.upload.UploadResponse
 
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
+import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 
 
@@ -66,8 +67,9 @@ interface ApiService {
     @POST("upload-claim")
     suspend fun uploadClaim(@FieldMap map: HashMap<String,String?>):Response<ResponseBody>
 
+    @FormUrlEncoded
     @POST("policy-update")
-    suspend fun policyUpdate(@FieldMap map: HashMap<String,String?>):Response<ResponseBody>
+    suspend fun policyUpdate(@FieldMap map: HashMap<String,String?>):Response<PolicyUpdateResponse>
 
     @GET("profile-details")
     suspend fun getProfileInfo():Response<ProfileResponse>
@@ -87,6 +89,11 @@ interface ApiService {
     suspend fun updateProfile(@Part userImage: MultipartBody.Part, @Part userName: MultipartBody.Part,
                               @Part userPhone: MultipartBody.Part,
                               @Part userEmail: MultipartBody.Part): Response<UploadClaimImageResponse>
+
+
+    @POST("policy-update")
+    @FormUrlEncoded
+    suspend fun updatePolicy(@FieldMap updatePolicyPArms: HashMap<String,String?>):Response<PolicyUpdateResponse>
 
 }
 

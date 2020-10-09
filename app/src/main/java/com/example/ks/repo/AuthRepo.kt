@@ -6,6 +6,7 @@ import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
 import com.example.ks.model.invoice.InvoiceListResponse
+import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.profile.ProfileDetailResponse
 import com.example.ks.model.upload.UploadResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
@@ -95,7 +96,7 @@ class AuthRepo(private val apiService: ApiService
         }
     }
 
-    suspend fun policyUpdate(body:HashMap<String,String?>): ResultWrapper<ResponseBody?> {
+    suspend fun policyUpdate(body:HashMap<String,String?>): ResultWrapper<PolicyUpdateResponse?> {
         return when(val call = safeApiCall { apiService.policyUpdate(body) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
@@ -154,4 +155,6 @@ class AuthRepo(private val apiService: ApiService
             ResultWrapper.NetworkError -> ResultWrapper.NetworkError
         }
     }
+
+
 }

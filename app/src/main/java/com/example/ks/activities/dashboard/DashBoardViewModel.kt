@@ -3,6 +3,7 @@ package com.example.ks.activities.dashboard
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.ks.common.UICallBacks
+import com.example.ks.constants.UserConstants
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.repo.UserRepo
 import com.example.ks.utils.MyViewModel
@@ -19,9 +20,13 @@ fun getDashBoardData(){
     coroutineScope.launch {
         when(val response=userRepo.getDashBoardData()){
             is ResultWrapper.Success -> {
+                UserConstants.policyArrayList = ArrayList()
                 uiCallBacks.onLoading(false)
                 uiCallBacks.onToast(response.value?.message)
+               // UserConstants.policyArrayList = data?.value?.data?.policies as ArrayList<DashBoardResponse.Data.Policy>
                 data.postValue(response.value)
+
+
                 Log.i(this.javaClass.simpleName, "Success: ")
             }
             is ResultWrapper.GenericError -> {

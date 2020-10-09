@@ -27,10 +27,14 @@ class SignableDocumentActivity : BaseActivity(), OnContractItemClick {
         initView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getContractList()
+    }
     private fun initView() {
         adapter= SignbaleAdapter(this)
         binding.rv.adapter=adapter
-        viewModel.getContractList()
+
         viewModel.liveData.observe(this, Observer {
             adapter.submitList(it)
         })

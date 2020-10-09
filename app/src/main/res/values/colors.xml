@@ -6,4 +6,7 @@
     <color name="editTextStyles" tools:override="true">#6262E3</color>
     <color name="light_purple">#C0C0F6</color>
     <color name="color_bg">#F5F5F9</color>
+    <color name="purple_light">#d7d8f5</color>
+
+    <color name="graybgColor">#D3D3D3</color>
 </resources>

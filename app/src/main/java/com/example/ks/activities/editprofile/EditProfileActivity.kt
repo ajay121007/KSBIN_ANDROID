@@ -40,7 +40,6 @@ class EditProfileActivity : BaseActivity() {
     }
 
     private fun updateProfileView() {
-
         UserConstants.userProfile?.let {
             it.data?.user?.let {
                binding.editUserName.setText(it.name)

@@ -18,7 +18,16 @@
         <activity android:name=".activities.profile.ProfileActivity"></activity>
         <activity android:name=".activities.dashboard.DashBoardActivity" />
         <activity android:name=".activities.payment.PaymentActivity" />
-        <activity android:name=".activities.ChangePolicyDetials1Activity" />
+        <activity android:name=".activities.policydetail.ChangePolicyDetials1Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+           <!-- <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="com.package.name.MyActivity"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+        </activity>
         <activity android:name=".activities.SignableDocument2Activity" />
         <activity android:name=".activities.signabledocument.SignableDocumentActivity" />
         <activity android:name=".activities.document.IdCardDocumentActivity" />
