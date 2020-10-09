@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.ks.activities.profile.ProfileViewModel" />
+</data>
 <LinearLayout
     android:orientation="vertical"
     android:gravity="center_horizontal"
@@ -160,6 +164,7 @@
         android:id="@+id/sign_out_btn"
         android:layout_width="167dp"
         android:layout_height="38dp"
+        android:onClick="@{()->viewModel.logoutUser()}"
         android:drawableLeft="@drawable/ic_signout"
         android:text="Sign Out"
         android:background="@drawable/btn_corners"

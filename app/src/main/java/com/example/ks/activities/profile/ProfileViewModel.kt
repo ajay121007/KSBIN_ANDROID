@@ -8,6 +8,7 @@ import com.example.ks.repo.AuthRepo
 import com.example.ks.repo.UserRepo
 import com.example.ks.utils.MyViewModel
 import com.example.ks.utils.ResultWrapper
+import com.example.ks.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 /**
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
  */
 class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userRepo: AuthRepo) : MyViewModel(uiCallBacks){
     val liveData=MutableLiveData<ProfileResponse>()
+    val logout=SingleLiveEvent<Boolean>()
     fun getProfileData(){
         uiCallBacks.onLoading(true)
         coroutineScope.launch {
@@ -26,6 +28,17 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
                     uiCallBacks.onLoading(false)
                     uiCallBacks.onToast(response.value?.message)
                 }
+                is ResultWrapper.GenericError -> TODO()
+                ResultWrapper.SocketTimeOutError -> TODO()
+                ResultWrapper.NetworkError -> TODO()
+            }
+        }
+    }
+    fun logoutUser(){
+        uiCallBacks.onLoading(true)
+        coroutineScope.launch {
+            when(userRepo.logOut()){
+                is ResultWrapper.Success ->logout.postValue(true)
                 is ResultWrapper.GenericError -> TODO()
                 ResultWrapper.SocketTimeOutError -> TODO()
                 ResultWrapper.NetworkError -> TODO()

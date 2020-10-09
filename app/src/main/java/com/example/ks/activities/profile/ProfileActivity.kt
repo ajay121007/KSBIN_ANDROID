@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.ks.R
 import com.example.ks.activities.editprofile.EditProfileActivity
+import com.example.ks.activities.loginsignup.LoginSignUpActivity
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityProfileBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,9 +33,21 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
         }
         profileBinding.lifecycleOwner=this
         profileBinding.executePendingBindings()
-
+        bindObeserver()
 
         }
+
+    private fun bindObeserver() {
+        profileViewModel.logout.observe(this, Observer {
+            if (it) {
+                val i = Intent(this, LoginSignUpActivity::class.java)
+// set the new task and clear flags
+// set the new task and clear flags
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(i)
+            }
+        })
+    }
 
     override fun onResume() {
         super.onResume()
@@ -42,7 +56,7 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when(item?.itemId){
-            R.id.edit->{
+            R.id.edit -> {
                 startActivity(Intent(this, EditProfileActivity::class.java))
                 true
             }
