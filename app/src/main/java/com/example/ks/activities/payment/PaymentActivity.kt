@@ -2,7 +2,6 @@ package com.example.ks.activities.payment
 
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -36,6 +35,6 @@ class PaymentActivity : BaseActivity() {
     }
 
     private fun initView() {
-      //  viewModel.getInvoiceList()
+        viewModel.getInvoiceList()
     }
 }

@@ -1,5 +1,4 @@
 package com.example.ks.activities.upload
-
 import android.Manifest
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
 import com.example.ks.activities.signabledocument.SignableDocumentModel
+import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityUploadDocumentBinding
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
@@ -18,7 +18,7 @@ import java.io.File
 
 
 
-class UploadDocumentActivity : AppCompatActivity() {
+class UploadDocumentActivity : BaseActivity() {
     val viewModel: UploadViewModel by viewModel { parametersOf(this) }
     val PDF_PICKER_RESULTS=104
     lateinit var binding: ActivityUploadDocumentBinding
@@ -79,7 +79,7 @@ class UploadDocumentActivity : AppCompatActivity() {
             val myFile = File(uriString)
             val path: String = myFile.getAbsolutePath()
 
-            binding.fileName.text =myFile.absolutePath
+            binding.txtFileName.text =myFile.path
             filePath = myFile.absolutePath
             filename= myFile.name
 

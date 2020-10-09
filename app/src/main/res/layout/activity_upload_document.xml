@@ -55,6 +55,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardLayout"
             android:layout_width="@dimen/margin_70dp"
             android:layout_height="@dimen/margin_70dp"
             app:cardCornerRadius="@dimen/dim_16dp"
@@ -80,26 +81,29 @@
 
             </LinearLayout>
 
-                <TextView
-                    android:id="@+id/fileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="file name"
-                    android:textSize="@dimen/dim_15sp"
-                    android:layout_toRightOf="@+id/layoutUpload"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="@dimen/padding_10dp"
-                    android:layout_marginLeft="@dimen/dim_20dp"/>
+
+
+
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtFileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_marginTop="@dimen/dim_20dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dim_15sp" />
+
         <Button
             android:id="@+id/upload_document_btn"
             android:layout_width="@dimen/dim_269dp"
             android:layout_height="@dimen/dim_42dp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dim_250dp"
+            android:layout_marginTop="@dimen/dim_200dp"
             android:background="@drawable/rouned_corner_btn"
             android:text="Upload Now"
             android:textAllCaps="false"

@@ -43,6 +43,7 @@
     <dimen name="dim_308dp">308dp</dimen>
     <dimen name="dim_111dp">111dp</dimen>
     <dimen name="dim_250dp">250dp</dimen>
+    <dimen name="dim_200dp">200dp</dimen>
     <dimen name="dim_16dp">16dp</dimen>
     <dimen name="dim_14sp">14sp</dimen>
     <dimen name="dim_70dp">71dp</dimen>

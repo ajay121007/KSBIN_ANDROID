@@ -1,6 +1,8 @@
 package com.example.ks.common
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -47,4 +49,5 @@ interface UICallBacks{
     fun onToast(message: String?)
 
     fun onLoading(loading: Boolean)
+
 }

@@ -37,4 +37,5 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
         }
         else dialog.dismiss()
     }
+
 }

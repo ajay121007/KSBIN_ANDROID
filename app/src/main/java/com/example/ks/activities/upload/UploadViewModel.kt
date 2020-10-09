@@ -30,7 +30,6 @@ class UploadViewModel(override val uiCallBacks: UICallBacks, val authRepo: AuthR
             "file", file.name,
             requestFile2
         )
-
         val fileName = MultipartBody.Part.createFormData("file_name", fileName)
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
