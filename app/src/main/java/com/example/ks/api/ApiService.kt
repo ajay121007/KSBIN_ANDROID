@@ -12,6 +12,7 @@ import com.example.ks.model.upload.UploadResponse
 
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
+import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 
 
 import com.example.ks.models.DashBoardResponse
@@ -75,6 +76,10 @@ interface ApiService {
     @POST("upload-document")
     suspend fun uploadDocs(@Part fileDocs: MultipartBody.Part, @Part fileName: MultipartBody.Part): Response<UploadResponse>
 
+
+    @Multipart
+    @POST("upload-claim")
+    suspend fun uploadClaimDocs(@Part fileDocs: MultipartBody.Part, @Part fileName: MultipartBody.Part): Response<UploadClaimImageResponse>
 }
 
 

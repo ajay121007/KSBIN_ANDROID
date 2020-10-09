@@ -18,11 +18,10 @@ class FileClaimViewModel (override val uiCallBacks: UICallBacks, val authRepo: A
 
 
     fun uploadDocs(filePath: String, fileName: String){
-
         val url = Uri.parse(filePath.toString())
         val file = File(url.path)
         val requestFile2 =
-            RequestBody.create("*//*".toMediaTypeOrNull(), file)
+            RequestBody.create("*/*".toMediaTypeOrNull(), file)
         val  filePath = MultipartBody.Part.createFormData(
             "file", file.name,
             requestFile2
@@ -31,7 +30,7 @@ class FileClaimViewModel (override val uiCallBacks: UICallBacks, val authRepo: A
         val fileName = MultipartBody.Part.createFormData("file_name", fileName)
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
-            when(val response=authRepo.uploadDocs(filePath, fileName)){
+            when(val response=authRepo.uploadClaims(filePath, fileName)){
 
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
