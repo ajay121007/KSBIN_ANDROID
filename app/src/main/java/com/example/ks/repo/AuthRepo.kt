@@ -141,4 +141,17 @@ class AuthRepo(private val apiService: ApiService
             ResultWrapper.NetworkError -> ResultWrapper.NetworkError
         }
     }
+
+
+    suspend fun updateProfile(file: MultipartBody.Part,
+                             userName: MultipartBody.Part, userPhone: MultipartBody.Part,userEmail: MultipartBody.Part): ResultWrapper<UploadClaimImageResponse?> {
+        return when(val call = safeApiCall { apiService.updateProfile(file,userName,userPhone,userEmail) }){
+            is ResultWrapper.Success ->{
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
+    }
 }
