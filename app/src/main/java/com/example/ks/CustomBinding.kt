@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
+import com.bumptech.glide.annotation.GlideOption
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -30,32 +31,19 @@ fun View.setVisibility(visibility: Boolean?){
     else View.GONE
 }
 
-@BindingAdapter("bind:imageUrl")
-fun loadImage(view: ImageView, imageUrl: String?) {
+@BindingAdapter("bind:imageUrl",)
+    fun loadImage(view: ImageView, imageUrl: String?) {
+        Glide.with(view)
+            .load(imageUrl)
+            .placeholder(R.drawable.user_name_icon)
+            .circleCrop()
+            .into(view)
+
+
+}
+@BindingAdapter("bind:fullImage")
+fun fullImage(view: ImageView, imageUrl: String?) {
     Glide.with(view)
-        .load(imageUrl).circleCrop()
-        .addListener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
-                Log.i(this.javaClass.simpleName, "Glide Failed with ${e?.localizedMessage}: ")
-                return true
-            }
-
-            override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
-            ): Boolean {
-                Log.i(this.javaClass.simpleName, "Glide Loaded ")
-                return true
-            }
-
-        })
+        .load(imageUrl)
         .into(view)
 }

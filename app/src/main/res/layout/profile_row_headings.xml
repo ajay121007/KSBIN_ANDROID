@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ks.activities.profile.ProfileViewModel" />
+    </data>
 <LinearLayout
 
     android:orientation="vertical"
@@ -12,7 +17,7 @@
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eeth Rogen"
+        android:text="@{viewModel.liveData.data.user.name}"
         android:layout_marginTop="5dp"
         android:textSize="22sp"
         android:textColor="@android:color/black"/>
@@ -20,7 +25,7 @@
         android:id="@+id/profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EethRogen@gmail.com"
+        android:text="@{viewModel.liveData.data.user.email}"
         android:textSize="14sp"
         android:layout_marginTop="1dp"
         android:textColor="@android:color/black"/>
@@ -31,7 +36,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:background="@drawable/rouned_corner_btn"
-        android:text="Contract Manger\n Jyoti Roe"
+        android:text="@{`Contract Manger\n `+viewModel.liveData.data.user.name}"
         android:layout_marginTop="30dp"/>
 
 

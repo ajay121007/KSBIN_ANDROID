@@ -23,11 +23,6 @@
         <activity android:name=".activities.RenewalActivity" />
         <activity android:name=".activities.claim.FileClaimActivity" />
         <activity android:name=".activities.upload.UploadDocumentActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="com.package.name.MyActivity"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
         <activity android:name=".activities.EditProfileActivity" />
@@ -40,11 +35,11 @@
         <activity
             android:name=".activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
-           <!-- <intent-filter>
+          <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="com.package.name.MyActivity"/>
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
     </application>

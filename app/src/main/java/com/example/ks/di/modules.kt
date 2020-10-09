@@ -10,6 +10,7 @@ import com.example.ks.activities.dashboard.DashBoardViewModel
 import com.example.ks.activities.document.IdCardDocumentViewModel
 import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.activities.loginsignup.SignUpViewModel
+import com.example.ks.activities.profile.ProfileViewModel
 
 import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.activities.upload.UploadViewModel
@@ -43,6 +44,7 @@ val viewModels = module {
     viewModel { (uiCallBacks: UICallBacks)->IdCardDocumentViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->UploadViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->FileClaimViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)->ProfileViewModel(uiCallBacks,get()) }
 
 }
 

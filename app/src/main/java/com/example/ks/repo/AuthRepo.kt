@@ -9,6 +9,7 @@ import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
 import com.example.ks.model.upload.UploadResponse
 import com.example.ks.models.LoginResponse
+import com.example.ks.models.ProfileResponse
 import com.example.ks.models.SignUpResponse
 import com.example.ks.sharedpref.SharedPreferenceHelper
 import com.example.ks.utils.ResultWrapper
@@ -105,7 +106,7 @@ class AuthRepo(private val apiService: ApiService
     }
 
 
-    suspend fun getProfileInfo(): ResultWrapper<ProfileDetailResponse?> {
+    suspend fun getProfileInfo(): ResultWrapper<ProfileResponse?> {
         return when(val call = safeApiCall { apiService.getProfileInfo() }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)

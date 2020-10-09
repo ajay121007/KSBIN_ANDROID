@@ -69,7 +69,7 @@ interface ApiService {
     suspend fun policyUpdate(@FieldMap map: HashMap<String,String?>):Response<ResponseBody>
 
     @GET("profile-details")
-    suspend fun getProfileInfo():Response<ProfileDetailResponse>
+    suspend fun getProfileInfo():Response<ProfileResponse>
 
     @Multipart
     @POST("upload-document")

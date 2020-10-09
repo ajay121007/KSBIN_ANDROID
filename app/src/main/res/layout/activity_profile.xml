@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ks.activities.profile.ProfileViewModel" />
+    </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,17 +24,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+               >
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    app:fullImage="@{viewModel.liveData.data.user.userImageUrl}"
                     android:scaleType="centerCrop"
                     android:src="#500000" />
 
 
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
+                    app:menu="@menu/profile_menu"
+                    android:id="@+id/toolbar"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
@@ -42,7 +51,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -53,14 +62,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:orientation="vertical">
 
-                    <include layout="@layout/profile_row_headings" />
-                    <include layout="@layout/policy_card_layout"/>
-                    <include layout="@layout/profile_layout"
-                        />
+                    <include
+                        android:id="@+id/row_name"
+                        app:viewModel="@{viewModel}"
+                        layout="@layout/profile_row_headings" />
+                    <include
+                        layout="@layout/policy_card_layout"/>
+                    <include
+                        layout="@layout/profile_layout" />
 
 
                 </LinearLayout>
@@ -74,6 +87,7 @@
             android:id="@+id/profile_image_floating"
             android:layout_width="98dp"
             android:layout_height="98dp"
+            app:imageUrl="@{viewModel.liveData.data.user.userImageUrl}"
             android:src="@color/colorPrimaryDark"
             app:layout_anchor="@+id/appBarLayout"
             app:layout_anchorGravity="bottom|center" />
