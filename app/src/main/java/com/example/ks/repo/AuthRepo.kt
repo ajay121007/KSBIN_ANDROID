@@ -13,6 +13,7 @@ import com.example.ks.model.upload.UploadResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 import com.example.ks.models.LoginResponse
 import com.example.ks.models.ProfileResponse
+import com.example.ks.models.RefreshTokenResponse
 import com.example.ks.models.SignUpResponse
 import com.example.ks.sharedpref.SharedPreferenceHelper
 import com.example.ks.utils.ResultWrapper
@@ -182,6 +183,9 @@ class AuthRepo(private val apiService: ApiService
     }
     suspend fun createPaymentToken(id:Int): ResultWrapper<SignTokenResponse?> {
       return safeApiCall { apiService.createPaymentToken(id) }
+    }
+    suspend fun refreshToken(token:String?): ResultWrapper<RefreshTokenResponse?> {
+        return safeApiCall { apiService.refreshToken(token) }
     }
 
 }

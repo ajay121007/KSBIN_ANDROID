@@ -15,12 +15,9 @@ import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.forgot.ForgotPasswordResponse
 import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
+import com.example.ks.models.*
 
 
-import com.example.ks.models.DashBoardResponse
-import com.example.ks.models.LoginResponse
-import com.example.ks.models.ProfileResponse
-import com.example.ks.models.SignUpResponse
 import com.example.ks.utils.ErrorResponse
 import com.example.ks.utils.ResultWrapper
 import com.squareup.moshi.Moshi
@@ -106,6 +103,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST("invoice-payment")
     suspend fun createPaymentToken(@Field("invoice_id") id:Int):Response<SignTokenResponse>
+
+    @FormUrlEncoded
+    @POST("refresh-token")
+    suspend fun refreshToken(@Field("refresh_token") token:String?):Response<RefreshTokenResponse>
 }
 
 

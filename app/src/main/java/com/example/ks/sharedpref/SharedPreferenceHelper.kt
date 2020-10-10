@@ -83,6 +83,8 @@ class SharedPreferenceHelper(val context: Context) {
 
     fun saveUser(model:LoginResponse?){
         setSharedPreferenceString("user",Gson().toJson(model))
+        saveAccessToken(model?.data?.token?.accessToken)
+        saveRefreshToken(model?.data?.token?.refreshToken)
     }
 
     fun getUser():LoginResponse?{
@@ -95,4 +97,21 @@ class SharedPreferenceHelper(val context: Context) {
         val settings: SharedPreferences = context.getSharedPreferences(PREF_FILE, 0)
         settings.edit().clear().apply()
     }
+
+    fun saveAccessToken(token:String?){
+        setSharedPreferenceString("access_token",token)
+    }
+
+    fun getAccessToken(): String? {
+        return getSharedPreferenceString("access_token", null)
+    }
+
+    fun saveRefreshToken(token:String?){
+        setSharedPreferenceString("refresh_token",token)
+    }
+
+    fun getRefreshToken(): String? {
+        return getSharedPreferenceString("refresh_token", null)
+    }
+
 }

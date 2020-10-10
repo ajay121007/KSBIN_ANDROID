@@ -87,42 +87,6 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_support"
-        android:layout_margin="8dp"
-        android:layout_width="333dp"
-        app:cardCornerRadius="8dp"
-        android:layout_height="48dp">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:src="@drawable/ic_support"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Support"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="175dp"
-                android:src="@drawable/ic_arrow_forward"/>
-
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
         android:id="@+id/card_term_conditions"
         android:layout_margin="8dp"
         android:layout_width="333dp"
@@ -151,6 +115,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="92dp"
+                android:src="@drawable/ic_arrow_forward"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_support"
+        android:layout_margin="8dp"
+        android:layout_width="333dp"
+        app:cardCornerRadius="8dp"
+        android:layout_height="48dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@drawable/ic_support"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Support"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="175dp"
                 android:src="@drawable/ic_arrow_forward"/>
 
 

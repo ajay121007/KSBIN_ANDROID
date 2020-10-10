@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:grid="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        grid:layout_columnWeight="1"
+        grid:layout_gravity="fill_horizontal"
+        android:layout_height="120dp">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/dim_98dp"
-            android:layout_height="@dimen/margin_100"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:cardCornerRadius="@dimen/dim_15dp"
             android:padding="@dimen/dim_10dp"
             android:layout_margin="4dp"
@@ -25,7 +28,7 @@
                     android:id="@+id/grid_image"
                     android:layout_width="23dp"
                     android:layout_height="27dp"
-                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:layout_marginTop="@dimen/dim_20dp"
                     android:src="@drawable/ic_paymenticon" />
 
@@ -33,9 +36,9 @@
                     android:id="@+id/grid_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dim_10dp"
                     android:layout_marginTop="@dimen/dim_20dp"
                     android:text="@string/payment"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_10sp" />
 

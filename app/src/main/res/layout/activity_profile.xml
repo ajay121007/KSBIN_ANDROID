@@ -87,7 +87,6 @@
         <ImageView
             android:id="@+id/profile_image_floating"
             android:layout_width="98dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:layout_height="98dp"
             app:imageUrl="@{viewModel.liveData.data.user.userImageUrl}"
             android:src="@color/colorPrimaryDark"

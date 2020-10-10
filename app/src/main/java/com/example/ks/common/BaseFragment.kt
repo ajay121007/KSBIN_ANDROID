@@ -43,6 +43,11 @@ abstract class BaseFragment :Fragment(),UICallBacks{
         else dialog.dismiss()
     }
 
+    override fun showDialog(message: String) {
+
+    }
+
+
 }
 
 interface UICallBacks{
@@ -50,4 +55,5 @@ interface UICallBacks{
 
     fun onLoading(loading: Boolean)
 
+    fun showDialog(message:String)
 }
