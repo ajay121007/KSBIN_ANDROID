@@ -12,6 +12,7 @@ import com.example.ks.model.upload.UploadResponse
 
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
+import com.example.ks.model.forgot.ForgotPasswordResponse
 import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 
@@ -72,6 +73,11 @@ interface ApiService {
     @FormUrlEncoded
     @POST("policy-update")
     suspend fun policyUpdate(@FieldMap map: HashMap<String,String?>):Response<PolicyUpdateResponse>
+
+
+    @FormUrlEncoded
+    @POST("forget-password")
+    suspend fun forgotPassword(@FieldMap map: HashMap<String,String?>):Response<ForgotPasswordResponse>
 
     @GET("profile-details")
     suspend fun getProfileInfo():Response<ProfileResponse>
