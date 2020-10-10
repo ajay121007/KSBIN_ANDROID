@@ -6,113 +6,117 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <LinearLayout
-
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_10dp"
-        tools:context=".activities.claim.FileClaimActivity">
+        android:layout_height="wrap_content">
+        <LinearLayout
 
-        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="File a Claim" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_10dp"
+            tools:context=".activities.claim.FileClaimActivity">
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dim_20dp"
-            android:layout_marginTop="@dimen/dim_40dp"
-            android:text="Download The File and Upload it back  for \n further claim"
-            android:textSize="@dimen/dim_14sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/dim_269dp"
-            android:layout_height="@dimen/dim_70dp"
-            android:layout_marginTop="@dimen/dim_20dp"
-            android:layout_marginLeft="@dimen/dim_20dp"
-            app:cardCornerRadius="@dimen/dim_20dp">
-
-            <LinearLayout
-                android:background="@drawable/text_round_corner"
+            <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
-              android:gravity="center"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_download"/>r
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Download the File"
-                    android:textSize="@dimen/dim_16sp"
-                    android:textColor="@android:color/white"
-                    android:layout_marginLeft="@dimen/padding_10dp"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/dim_308dp"
-            android:layout_height="@dimen/dim_150dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@color/light_purple"
-            app:cardCornerRadius="@dimen/dim_20dp">
+                android:layout_height="wrap_content"
+                app:title="File a Claim" />
 
 
-            <LinearLayout
-                android:id="@+id/attacheClaimPics"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/doted_lines"
-                android:gravity="center"
-                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dim_20dp"
+                android:layout_marginTop="@dimen/dim_40dp"
+                android:text="Download The File and Upload it back  for \n further claim"
+                android:textSize="@dimen/dim_14sp"
+                android:textStyle="bold" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/dim_269dp"
+                android:layout_height="@dimen/dim_70dp"
+                android:layout_marginTop="@dimen/dim_20dp"
+                android:layout_marginLeft="@dimen/dim_20dp"
+                app:cardCornerRadius="@dimen/dim_20dp">
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/attach_file" />
-
-                <TextView
-                    android:id="@+id/fileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:background="@drawable/text_round_corner"
+                    android:layout_width="match_parent"
                     android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dim_15sp" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_download"/>r
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Download the File"
+                        android:textSize="@dimen/dim_16sp"
+                        android:textColor="@android:color/white"
+                        android:layout_marginLeft="@dimen/padding_10dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/dim_308dp"
+                android:layout_height="@dimen/dim_150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@color/light_purple"
+                app:cardCornerRadius="@dimen/dim_20dp">
+
+
+                <LinearLayout
+                    android:id="@+id/attacheClaimPics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/doted_lines"
                     android:gravity="center"
-                    android:text="@string/attach_document_photo"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/dim_15sp" />
+                    android:orientation="vertical">
 
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <Button
-            android:id="@+id/upload_document_btn"
-            android:layout_width="@dimen/dim_269dp"
-            android:layout_height="@dimen/dim_42dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="200dp"
-            android:background="@drawable/rouned_corner_btn"
-            android:text="Upload Now"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/attach_file" />
+
+                    <TextView
+                        android:id="@+id/fileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/dim_15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/attach_document_photo"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/dim_15sp" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/upload_document_btn"
+                android:layout_width="@dimen/dim_269dp"
+                android:layout_height="@dimen/dim_42dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/rouned_corner_btn"
+                android:text="Upload Now"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
 
 
 
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

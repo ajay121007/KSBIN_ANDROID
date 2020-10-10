@@ -37,6 +37,8 @@ data class ContractResponse(
         @SerializedName("userSign")
         val userSign: String?,
         @SerializedName("user_sign_url")
-        val userSignUrl: String?
+        val userSignUrl: String?,
+        @SerializedName("invoice_url")
+        val invoiceUrl: String?
     )
 }

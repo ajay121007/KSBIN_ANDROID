@@ -72,11 +72,13 @@ class WebViewActivity : BaseActivity() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
               // showProgressDialog()
+                onLoading(true)
+
                 super.onPageStarted(view, url, favicon)
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
-
+                onLoading(false)
                // hideProgressDialog()
                 super.onPageFinished(view, url)
             }

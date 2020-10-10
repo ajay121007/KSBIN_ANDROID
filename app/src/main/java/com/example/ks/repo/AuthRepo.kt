@@ -168,5 +168,8 @@ class AuthRepo(private val apiService: ApiService
             ResultWrapper.NetworkError -> ResultWrapper.NetworkError
         }
     }
+    suspend fun createPaymentToken(id:Int): ResultWrapper<SignTokenResponse?> {
+      return safeApiCall { apiService.createPaymentToken(id) }
+    }
 
 }

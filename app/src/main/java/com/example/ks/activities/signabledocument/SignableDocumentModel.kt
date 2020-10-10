@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ks.common.UICallBacks
 import com.example.ks.constants.UserConstants
 import com.example.ks.model.contarctListResponse.ContractResponse
+import com.example.ks.model.documentid.DocumentModel
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.repo.AuthRepo
 import com.example.ks.utils.MyViewModel
@@ -15,19 +16,19 @@ import skycap.android.core.livedata.SingleEventLiveData
 
 class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
 
-    val liveData=MutableLiveData<List<ContractResponse.ContractModel?>>()
+    val liveData=MutableLiveData<List<DocumentModel?>>()
     val signToken=SingleEventLiveData<String>()
     fun getContractList(){
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
-            when(val response=authRepo.getContractList()){
+            when(val response=authRepo.getDocumentIdList()){
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200)
                     {
                         uiCallBacks.onToast(data.message)
-                        response.value.data?.let {
+                        response.value.data.let {
 
                             liveData.postValue(it)
                         }

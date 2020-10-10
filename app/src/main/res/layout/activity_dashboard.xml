@@ -54,16 +54,16 @@
 
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/rv_policy"
-            app:radius="10dp"
-            android:layout_width="@dimen/dim_330dp"
-            android:layout_height="@dimen/dim_150dp"
-            android:layout_marginLeft="@dimen/dim_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginHorizontal="@dimen/dim_10dp"
             android:layout_marginTop="@dimen/dim_20dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:indicatorVisibility="gone"
             app:cardCornerRadius="@dimen/dim_10dp"
+            app:indicatorVisibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_policy"
-            android:layout_marginStart="@dimen/dim_20dp"/>
+            app:radius="10dp" />
 
 
         <TextView

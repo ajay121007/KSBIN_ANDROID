@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
 import com.example.ks.databinding.SignableRowLayoutBinding
-import com.example.ks.model.contarctListResponse.ContractResponse.ContractModel
 
-class SignbaleAdapter(private val onContractItemClick: OnContractItemClick) : ListAdapter<ContractModel, SignbaleAdapter.ItemViewholder>(SignCallBacks()) {
+import com.example.ks.model.documentid.DocumentModel
+
+class SignbaleAdapter(private val onContractItemClick: OnContractItemClick) : ListAdapter<DocumentModel, SignbaleAdapter.ItemViewholder>(SignCallBacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
         val binding=DataBindingUtil.inflate<SignableRowLayoutBinding>(LayoutInflater.from(parent.context),R.layout.signable_row_layout, parent, false)
@@ -23,7 +24,7 @@ class SignbaleAdapter(private val onContractItemClick: OnContractItemClick) : Li
     }
 
    inner class ItemViewholder(val binding: SignableRowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ContractModel) {
+        fun bind(item: DocumentModel) {
             binding.apply {
                 model=item
                 executePendingBindings()
@@ -35,21 +36,21 @@ class SignbaleAdapter(private val onContractItemClick: OnContractItemClick) : Li
     }
 }
 
-class SignCallBacks : DiffUtil.ItemCallback<ContractModel>() {
-    override fun areItemsTheSame(oldItem: ContractModel, newItem: ContractModel): Boolean {
+class SignCallBacks : DiffUtil.ItemCallback<DocumentModel>() {
+    override fun areItemsTheSame(oldItem: DocumentModel, newItem: DocumentModel): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: ContractModel,
-        newItem: ContractModel
+        oldItem: DocumentModel,
+        newItem: DocumentModel
     ): Boolean {
         return oldItem == newItem
     }
 }
 
 interface OnContractItemClick{
-    fun onItemClick(actionType:ContractActions,item:ContractModel)
+    fun onItemClick(actionType:ContractActions,item:DocumentModel)
 }
 
 enum class ContractActions{

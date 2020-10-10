@@ -97,6 +97,9 @@ interface ApiService {
     @FormUrlEncoded
     suspend fun updatePolicy(@FieldMap updatePolicyPArms: HashMap<String,String?>):Response<PolicyUpdateResponse>
 
+    @FormUrlEncoded
+    @POST("invoice-payment")
+    suspend fun createPaymentToken(@Field("invoice_id") id:Int):Response<SignTokenResponse>
 }
 
 

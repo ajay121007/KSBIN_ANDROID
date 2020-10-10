@@ -10,8 +10,7 @@ import com.example.ks.R
 import com.example.ks.activities.payment.PaymentResponse
 import com.example.ks.databinding.PaymentRowLayoutBinding
 
-class PaymentAdapter :
-    ListAdapter<PaymentResponse.PaymentModel, PaymentAdapter.ItemViewholder>(PaymentDiffCallBack()) {
+class PaymentAdapter(private val onPaymentItemClick: OnPaymentItemClick) : ListAdapter<PaymentResponse.PaymentModel, PaymentAdapter.ItemViewholder>(PaymentDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
         val binding = DataBindingUtil.inflate<PaymentRowLayoutBinding>(
@@ -30,11 +29,12 @@ class PaymentAdapter :
         holder.bind(getItem(position))
     }
 
-    class ItemViewholder(val binding: PaymentRowLayoutBinding) :
+    inner class ItemViewholder(val binding: PaymentRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PaymentResponse.PaymentModel) {
             binding.model = item
             binding.executePendingBindings()
+            binding.root.setOnClickListener {  onPaymentItemClick.onClick(getItem(adapterPosition))}
         }
     }
 }
@@ -53,5 +53,10 @@ class PaymentDiffCallBack : DiffUtil.ItemCallback<PaymentResponse.PaymentModel>(
     ): Boolean {
         return oldItem.createdAt == newItem.createdAt
     }
+
+}
+interface OnPaymentItemClick{
+    fun onClick(model:PaymentResponse.PaymentModel)
+
 
 }
