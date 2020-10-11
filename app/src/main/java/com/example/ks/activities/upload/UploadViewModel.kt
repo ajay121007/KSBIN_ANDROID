@@ -37,18 +37,18 @@ class UploadViewModel(override val uiCallBacks: UICallBacks, val authRepo: AuthR
                     uiCallBacks.onLoading(false)
                     val data = response.value ?: return@launch
                     if (data.code == 200)
-                        uiCallBacks.onToast(data.message)
+                        uiCallBacks.showDialog(data.message)
                     else uiCallBacks.onToast(data.message)
                 }
                 is ResultWrapper.GenericError -> {
                     uiCallBacks.onLoading(false)
-                    uiCallBacks.onToast(response.error?.error_des)
+                    uiCallBacks.showDialog(response.error?.error_des)
                 }
                 ResultWrapper.SocketTimeOutError -> {
-
+                    uiCallBacks.showDialog("No Internet Connection")
                 }
                 ResultWrapper.NetworkError -> {
-
+                    uiCallBacks.showDialog("Something wen wrong")
                 }
 
             }

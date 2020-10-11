@@ -10,6 +10,8 @@ import com.example.ks.repo.AuthRepo
 import com.example.ks.utils.FieldValidators
 import com.example.ks.utils.MyViewModel
 import com.example.ks.utils.ResultWrapper
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.crashlytics.internal.common.CrashlyticsCore
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(
@@ -34,14 +36,13 @@ class SignUpViewModel(
 
     val confirmPasswordErrorMed: MediatorLiveData<String> = MediatorLiveData()
 
-    val confirmPasswordError: MutableLiveData<String> = MutableLiveData()
+    val confirmPasswordError  = MediatorLiveData<String>()
 
     init {
-        confirmPasswordErrorMed.addSource(confirmPassword) {
-            if (password.value.toString() != confirmPassword.value.toString()) confirmPassword.postValue(
-                "Password Mismatched"
-            )
-            else confirmPassword.postValue(null)
+        confirmPasswordError.addSource(confirmPassword) {
+            print("testing $it")
+            if (password.value.toString() != confirmPassword.value.toString()) confirmPasswordError.postValue("Password Mismatched")
+            else confirmPasswordError.postValue(null)
         }
     }
 
@@ -51,6 +52,11 @@ class SignUpViewModel(
             && phoneError.value == null &&
             passwordError.value == null &&
             confirmPasswordError.value == null
+            && name.value?.isNotEmpty()==true
+            && email.value?.isNotEmpty()==true
+            && phone.value?.isNotEmpty()==true
+            && password.value?.isNotEmpty()==true
+            && confirmPassword.value?.isNotEmpty()==true
         ) {
             val bodyMap = HashMap<String, String?>().apply {
                 put("name", name.value)
@@ -65,8 +71,11 @@ class SignUpViewModel(
                     is ResultWrapper.Success -> {
                         uiCallBacks.onLoading(false)
                         if(response.value?.code !=200)
-                        uiCallBacks.onToast(response.value?.data?.validations?.get(0)?.errors)
-                        else uiCallBacks.onToast(response.value.message)
+                        uiCallBacks.onToast(response.value?.message)
+                        else {
+                            uiCallBacks.onToast(response.value.message)
+                            onNavigate.postValue(true)
+                        }
                     }
                     is ResultWrapper.GenericError -> {
                         Log.i(this.javaClass.simpleName, "Generic: ")

@@ -13,11 +13,14 @@ import skycap.android.core.livedata.SingleEventLiveData
 
 class ChangePolicyDetailViewModel(override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
     val liveData= SingleEventLiveData<String>()
-    fun updatePolicy(policyNumber:String, details:String, subject:String){
+    val subject= MutableLiveData<String>()
+    val policy= MutableLiveData<String>()
+    val details= MutableLiveData<String>()
+    fun updatePolicy(){
         val map=HashMap<String,String?>().apply {
-            put("policy",policyNumber)
-            put("details",details)
-            put("subject",subject)
+            put("policy",policy.value)
+            put("details",details.value)
+            put("subject",subject.value)
         }
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
@@ -27,7 +30,8 @@ class ChangePolicyDetailViewModel(override val uiCallBacks: UICallBacks, val aut
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200){
-                        uiCallBacks.onToast(data.message)
+                        uiCallBacks.showDialog(data.message)
+//                        uiCallBacks.onToast(data.message)
                         liveData.postValue(response.value.message)
                     }
 
@@ -35,13 +39,14 @@ class ChangePolicyDetailViewModel(override val uiCallBacks: UICallBacks, val aut
                 }
                 is ResultWrapper.GenericError -> {
                     uiCallBacks.onLoading(false)
-                    uiCallBacks.onToast(response.error?.error_des)
+                    uiCallBacks.showDialog(response.error?.error_des)
+//                    uiCallBacks.onToast(response.error?.error_des)
                 }
                 ResultWrapper.SocketTimeOutError -> {
-
+                    uiCallBacks.showDialog("No Internet Connection")
                 }
                 ResultWrapper.NetworkError -> {
-
+                    uiCallBacks.showDialog("Network Error")
                 }
 
             }

@@ -3,12 +3,14 @@ package com.example.ks.common
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ks.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlin.reflect.KClass
 
 /**
  * Created by skycap.
@@ -30,8 +32,18 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
         showLoading(loading)
     }
 
-    override fun showDialog(message: String) {
+    override fun showDialog(message: String?) {
         showAlertDialog(message)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return  when(item.itemId){
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else ->false
+        }
     }
 
     private  fun showLoading(loading: Boolean){
@@ -56,11 +68,13 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
 
         // add a button
         builder.setPositiveButton("OK"
-        ) { p0, p1 -> finish() }
+        ) { p0, p1 -> p0.dismiss()
+        finish()
+        }
 
         // create and show the alert dialog
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+       runOnUiThread {  val dialog: AlertDialog = builder.create()
+           dialog.show() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {

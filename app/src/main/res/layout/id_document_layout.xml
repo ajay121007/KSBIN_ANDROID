@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.example.ks.model.documentid.DocumentModel" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/dim_10dp"
+        app:cardCornerRadius="@dimen/dim_10dp"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:padding="@dimen/dim_10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_docs"
+                android:fontFamily="@font/opensans_semibold"
+                android:textSize="@dimen/dim_12sp"
+                android:layout_height="wrap_content"
+                android:text="@string/documents_n_id_cards"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_docs"
+
+                android:layout_height="wrap_content"
+                android:text="@{model.name}"
+                android:fontFamily="@font/opensans_semibold"
+                android:layout_marginTop="@dimen/dim_2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dim_12sp"
+                android:text="Updated"
+                android:fontFamily="@font/opensans_semibold"
+                android:textColor="@android:color/black"
+
+                app:layout_constraintStart_toStartOf="@+id/tv_date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_2dp"
+                android:text="@{model.update_at_str}"
+                android:id="@+id/tv_date"
+                android:fontFamily="@font/opensans_semibold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginEnd="@dimen/dim_15sp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                android:textColor="@android:color/black"
+                app:layout_constraintVertical_bias="0.031" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:id="@+id/btn_view"
+                android:background="@drawable/text_round_corner"
+                android:text="ViewDownload"
+                android:layout_marginHorizontal="@dimen/dim_50dp"
+                android:textAllCaps="false"
+
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/dim_12sp"
+                app:icon="@drawable/ic_small_download"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/dim_5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dim_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_date"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

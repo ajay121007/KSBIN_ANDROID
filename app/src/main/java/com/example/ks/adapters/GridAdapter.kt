@@ -9,15 +9,18 @@ import androidx.databinding.DataBindingUtil
 import com.example.ks.R
 import com.example.ks.databinding.GridviewRowLayoutBinding
 import com.example.ks.model.GridItems
+import com.example.ks.models.DashBoardResponse
 
 
-class GridAdapter(val context: Context,private val onItemPositionClick: OnItemPositionClick) : BaseAdapter() {
-    var gridList=GridItems.getData()
+class GridAdapter(val context: Context,private val onItemPositionClick: OnItemPositionClick,val model:DashBoardResponse?) : BaseAdapter() {
+    var gridList=GridItems.getData(model)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val grid= this.gridList[position]
         var inflator = LayoutInflater.from(context)
         val binding=DataBindingUtil.inflate<GridviewRowLayoutBinding>(inflator,R.layout.gridview_row_layout,parent,false)
+        binding.executePendingBindings()
+        binding.item=grid
         binding.gridImage.setImageResource(grid.icons)
         binding.gridTextView.text=grid.girdText
         binding.root.setOnClickListener {

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.ks.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlin.reflect.KClass
 
 
 /**
@@ -43,7 +44,7 @@ abstract class BaseFragment :Fragment(),UICallBacks{
         else dialog.dismiss()
     }
 
-    override fun showDialog(message: String) {
+    override fun showDialog(message: String?) {
 
     }
 
@@ -55,5 +56,7 @@ interface UICallBacks{
 
     fun onLoading(loading: Boolean)
 
-    fun showDialog(message:String)
+    fun showDialog(message:String?)
+
+
 }

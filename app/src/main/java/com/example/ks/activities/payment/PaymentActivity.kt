@@ -4,6 +4,8 @@ package com.example.ks.activities.payment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.R
@@ -16,7 +18,7 @@ import com.example.ks.databinding.ActivityPaymentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class PaymentActivity : BaseActivity(), OnPaymentItemClick {
+class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTextListener {
 
     lateinit var binding: ActivityPaymentBinding
 
@@ -26,6 +28,13 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
+        binding.apply {
+            searchView.onActionViewExpanded()
+            searchView.setOnQueryTextListener(this@PaymentActivity)
+            Handler().postDelayed({ searchView.clearFocus() }, 300)
+        }
+        setSupportActionBar(binding.toolbar)
+        binding.executePendingBindings()
         initView()
         bindOberver()
     }
@@ -36,9 +45,10 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick {
             binding.rv.adapter=paymentAdapter
             paymentAdapter.submitList(it)
         })
-        viewModel.onNavigate.observe(this, Observer {
-            UserConstants.signWebUrl= "https://ksbin.sarwara.com/authorize-token/"+it
-            startActivityForResult(Intent(this, WebViewActivity::class.java),101)
+        viewModel.onData.observe(this, Observer {
+            startActivityForResult(Intent(this, WebViewActivity::class.java).apply {
+                putExtra("token",it)
+            },101)
         })
     }
 
@@ -56,5 +66,18 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         viewModel.getInvoiceList()
+        if(resultCode== RESULT_OK){
+            onToast("Payment Successful")
+        }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        viewModel.searchQuery.postValue(query)
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        viewModel.searchQuery.postValue(newText)
+        return true
     }
 }

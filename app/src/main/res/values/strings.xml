@@ -19,7 +19,7 @@
     <string name="upload_ddc_licence">Upload DDC Licence</string>
     <string name="upload_tcl_licence">Upload TCL Licence</string>
     <string name="upload_send"><![CDATA[Upload & Send]]></string>
-    <string name="documents_n_id_cards">Documents \n Id Cards</string>
+    <string name="documents_n_id_cards">Documents</string>
     <string name="documents_naadhar_cards_id">Documents \nAadhar Cards Id</string>
     <string name="documents_ndriving_license">Documents \nDriving License</string>
     <string name="documents_nvoter_card">Documents \nVoter Card</string>
@@ -35,4 +35,7 @@
     <string name="enter_details">Enter Details</string>
     <string name="policy">Policy</string>
     <string name="payment">Payment</string>
+    <string name="sign_up_to_continue">Sign Up to Continue</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="sign_in_to_continue">Sign In to continue</string>
 </resources>

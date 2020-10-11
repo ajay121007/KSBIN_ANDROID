@@ -2,10 +2,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/opensans_regular</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,6 +23,9 @@
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
 
+    </style>
+    <style name="Theme" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffffff</item>
     </style>
 
 </resources>

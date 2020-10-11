@@ -70,8 +70,7 @@
                         android:id="@+id/row_name"
                         app:viewModel="@{viewModel}"
                         layout="@layout/profile_row_headings" />
-                    <include
-                        layout="@layout/policy_card_layout"/>
+
                     <include
                         app:viewModel="@{viewModel}"
                         layout="@layout/profile_layout" />

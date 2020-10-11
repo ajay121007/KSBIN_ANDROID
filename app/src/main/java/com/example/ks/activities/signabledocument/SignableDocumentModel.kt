@@ -1,5 +1,6 @@
 package com.example.ks.activities.signabledocument
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ks.common.UICallBacks
@@ -15,21 +16,34 @@ import kotlinx.coroutines.launch
 import skycap.android.core.livedata.SingleEventLiveData
 
 class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
-
-    val liveData=MutableLiveData<List<DocumentModel?>>()
+    val searchQuery=MutableLiveData<String>()
+    private val list= ArrayList<ContractResponse.ContractModel?>()
+    val liveData=MediatorLiveData<List<ContractResponse.ContractModel?>>()
     val signToken=SingleEventLiveData<String>()
+    init {
+        liveData.addSource(searchQuery){query->
+            if(query.isNotEmpty())
+            {
+                liveData.postValue(list.filter { it?.id?.contains(query,ignoreCase = true)==true}.toList())
+            }
+            else{
+                liveData.postValue(list)
+            }
+        }
+    }
     fun getContractList(){
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
-            when(val response=authRepo.getDocumentIdList()){
+            when(val response=authRepo.getContractList()){
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200)
                     {
-                        uiCallBacks.onToast(data.message)
+//                        uiCallBacks.onToast(data.message)
                         response.value.data.let {
-
+                            list.clear()
+                            it?.toList()?.let { it1 -> list.addAll(it1) }
                             liveData.postValue(it)
                         }
                     }
@@ -60,7 +74,7 @@ class SignableDocumentModel(override val uiCallBacks: UICallBacks, val authRepo:
             when(val response= authRepo.signContractToken(map)){
                 is ResultWrapper.Success -> {
                     UserConstants.signToken= response.value?.data?.token.toString()
-                    uiCallBacks.onToast(response.value?.data?.token)
+//                    uiCallBacks.onToast(response.value?.data?.token)
                     uiCallBacks.onLoading(false)
                     signToken.postValue(response.value?.data?.token)
                 }

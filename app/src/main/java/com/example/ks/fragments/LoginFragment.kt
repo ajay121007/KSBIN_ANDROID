@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.ks.R
 import com.example.ks.activities.forgot.ForgotPasswordActivity
 import com.example.ks.activities.dashboard.DashBoardActivity
@@ -39,13 +40,18 @@ class LoginFragment : BaseFragment() {
                 startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
             }
         }
-
+        bindObserver()
         return fragmentSignInBinding.root
     }
 
-    override fun onToast(message: String?) {
-        super.onToast(message)
-        startActivity(Intent(requireContext(), DashBoardActivity::class.java))
+
+
+    private fun bindObserver() {
+        loginViewModel.onNavigate.observe(viewLifecycleOwner, Observer {
+            if(it)
+            startActivity(Intent(requireContext(), DashBoardActivity::class.java))
+        })
     }
+
 
 }

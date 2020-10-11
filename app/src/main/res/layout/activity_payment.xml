@@ -9,31 +9,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/color_bg"
         android:padding="@dimen/dim_10dp"
         tools:context=".activities.PaymentActivity">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
             app:title="Payment" />
 <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signIn_email_editText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:drawablePadding="5dp"
-                android:hint="search" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:queryHint="Search..."
+            app:iconifiedByDefault="false"
+            android:focusableInTouchMode="true"
+            android:iconifiedByDefault="false"
+            app:defaultQueryHint="Search..."
+            android:background="@drawable/search_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_signable1"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:id="@+id/rv"
+            android:layout_marginHorizontal="@dimen/dim_10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dim_20dp"

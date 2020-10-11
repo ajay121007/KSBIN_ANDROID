@@ -26,8 +26,16 @@ import okhttp3.ResponseBody
  */
 class AuthRepo(private val apiService: ApiService
                ,private val sharedPreferenceHelper: SharedPreferenceHelper){
-    suspend fun signUp(body:HashMap<String,String?>): ResultWrapper<SignUpResponse?> {
-        return safeApiCall { apiService.signUp(body) }
+    suspend fun signUp(body:HashMap<String,String?>): ResultWrapper<LoginResponse?> {
+        return when(val call = safeApiCall { apiService.signUp(body) }){
+            is ResultWrapper.Success ->{
+                sharedPreferenceHelper.saveUser(call.value)
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
     }
 
     suspend fun login(body:HashMap<String,String?>): ResultWrapper<LoginResponse?> {

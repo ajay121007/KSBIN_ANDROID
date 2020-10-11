@@ -43,6 +43,7 @@
                     android:background="@drawable/text_round_corner"
                     android:layout_width="match_parent"
                     android:gravity="center"
+                    android:onClick="downloadFile"
                     android:layout_height="match_parent">
 
                     <ImageView
@@ -54,6 +55,7 @@
                         android:layout_height="wrap_content"
                         android:text="Download the File"
                         android:textSize="@dimen/dim_16sp"
+
                         android:textColor="@android:color/white"
                         android:layout_marginLeft="@dimen/padding_10dp"/>
 

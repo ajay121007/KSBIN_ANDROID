@@ -1,6 +1,7 @@
 package com.example.ks.models
 
 
+import com.example.ks.utils.DateTimeUtils
 import com.google.gson.annotations.SerializedName
 
 data class DashBoardResponse(
@@ -15,17 +16,17 @@ data class DashBoardResponse(
 ) {
     data class Data(
         @SerializedName("contracts_count")
-        val contractsCount: Int?,
+        val contractsCount: Int?=0,
         @SerializedName("invoices_count")
-        val invoicesCount: Int?,
+        val invoicesCount: Int?=0,
         @SerializedName("policies")
         val policies: List<Policy?>?,
         @SerializedName("user")
         val user: User?,
         @SerializedName("user_documents_count")
-        val userDocumentsCount: Int?,
+        val userDocumentsCount: Int?=0,
         @SerializedName("user_renewals_count")
-        val userRenewalsCount: Int?
+        val userRenewalsCount: Int?=0,
     ) {
         data class Policy(
             @SerializedName("created_at")
@@ -50,7 +51,10 @@ data class DashBoardResponse(
             val updatedAt: String?,
             @SerializedName("user_id")
             val userId: Int?
-        )
+        ){
+            var progress:Int= DateTimeUtils.getProgressDuration(policyFrom,policyTo)
+            var daysLeft:String= DateTimeUtils.getDaysLeft(policyFrom,policyTo)
+        }
 
         data class User(
             @SerializedName("contracts")

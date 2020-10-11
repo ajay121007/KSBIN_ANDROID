@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "47899945746",
+    "firebase_url": "https://ksbin-client.firebaseio.com",
+    "project_id": "ksbin-client",
+    "storage_bucket": "ksbin-client.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47899945746:android:85267d30b37d6e0bcda1cb",
+        "android_client_info": {
+          "package_name": "com.amit.ks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47899945746-d3gh8snmogk0am1v12o3atsu7rsnppva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amit.ks",
+            "certificate_hash": "1aa1cebd70f98dbdcd60ac4f43be9c4d4b659b28"
+          }
+        },
+        {
+          "client_id": "47899945746-i23c9i47vv3d6e83qpori15ala5rl1ru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrp8LFhsP96Pma6eN_MeiwqN2fSEoOfeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47899945746-i23c9i47vv3d6e83qpori15ala5rl1ru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

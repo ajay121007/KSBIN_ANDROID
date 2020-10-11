@@ -3,6 +3,7 @@
 
 package com.example.ks.activities.payment
 
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 
 import com.example.ks.common.UICallBacks
@@ -14,8 +15,21 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class PaymentViewModel (override val uiCallBacks: UICallBacks, val authRepo: AuthRepo) : MyViewModel(uiCallBacks){
-    val liveData=MutableLiveData<List<PaymentResponse.PaymentModel>>()
-    val onNavigate=SingleLiveEvent<String>()
+     val searchQuery=MutableLiveData<String>()
+    private val list=ArrayList<PaymentResponse.PaymentModel>()
+    val liveData=MediatorLiveData<List<PaymentResponse.PaymentModel>>()
+    val onData=SingleLiveEvent<String>()
+    init {
+        liveData.addSource(searchQuery){query->
+            if(query.isNotEmpty())
+            {
+                liveData.postValue(list.filter { it.invoiceNo.contains(query,ignoreCase = true)}.toList())
+            }
+            else{
+                liveData.postValue(list)
+            }
+        }
+    }
     fun getInvoiceList(){
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
@@ -24,8 +38,11 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks, val authRepo: Aut
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
+//                    uiCallBacks.showDialog(data.message)
                     if(data.code==200){
                         uiCallBacks.onToast(data.message)
+                        list.clear()
+                        list.addAll(response.value.data)
                         liveData.postValue(response.value.data)
                     }
 
@@ -53,7 +70,7 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks, val authRepo: Aut
             when(val response=authRepo.createPaymentToken(id)){
                 is ResultWrapper.Success -> {
                     uiCallBacks.onLoading(false)
-                    onNavigate.postValue(response.value?.data?.token)
+                    onData.postValue(response.value?.data?.token)
                 }
                 is ResultWrapper.GenericError -> {
                     uiCallBacks.onLoading(false)

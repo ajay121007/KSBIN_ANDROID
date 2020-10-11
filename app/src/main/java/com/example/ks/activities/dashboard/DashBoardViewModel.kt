@@ -21,8 +21,8 @@ fun getDashBoardData(){
         when(val response=userRepo.getDashBoardData()){
             is ResultWrapper.Success -> {
                 UserConstants.policyArrayList = ArrayList()
-                uiCallBacks.onLoading(false)
-                uiCallBacks.onToast(response.value?.message)
+                 uiCallBacks.onLoading(false)
+//                uiCallBacks.onToast(response.value?.data?.policies?.get(1)?.progress.toString())
                // UserConstants.policyArrayList = data?.value?.data?.policies as ArrayList<DashBoardResponse.Data.Policy>
                 data.postValue(response.value)
 

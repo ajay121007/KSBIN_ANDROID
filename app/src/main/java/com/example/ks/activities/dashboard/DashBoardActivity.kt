@@ -38,12 +38,13 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
         activityDashboardBinding.lifecycleOwner=this
         activityDashboardBinding.executePendingBindings()
         dashBoardViewModel.getDashBoardData()
-        setAdapter()
+
         bindObserver()
     }
 
     private fun bindObserver() {
         dashBoardViewModel.data.observe(this, Observer {
+            setAdapter(it)
             activityDashboardBinding.rvPolicy.apply {
               setViewListener {position->
                     val binding=DataBindingUtil.inflate<PolicyCardLayoutBinding>(layoutInflater,R.layout.policy_card_layout, null, false)
@@ -59,10 +60,10 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
         })
     }
 
-    private fun setAdapter() {
+    private fun setAdapter(model: DashBoardResponse?) {
         
       
-        val gridAdapter = GridAdapter(this,this)
+        val gridAdapter = GridAdapter(this,this,model)
         activityDashboardBinding.gridView.adapter = gridAdapter
     }
 
@@ -71,15 +72,25 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
     }
 
     override fun onItem(documents: Documents) {
+
         when(documents){
             Documents.SIGNABLE_DOCS -> startActivity(Intent(this,SignableDocumentActivity::class.java))
             Documents.PAYMENT -> startActivity(Intent(this,PaymentActivity::class.java))
             Documents.ID_CARDS -> startActivity(Intent(this,IdCardDocumentActivity::class.java))
-            Documents.CHANGE_MY_DOCS -> startActivity(Intent(this,ChangePolicyDetials1Activity::class.java))
+            Documents.CHANGE_MY_DOCS -> {
+                val list = dashBoardViewModel.data.value?.data?.policies?.map { it?.policyNumber.toString() }?.toList()?:return
+                val arrayList=ArrayList<String>()
+                arrayList.addAll(list)
+                startActivity(Intent(this,ChangePolicyDetials1Activity::class.java).apply {
+                    putStringArrayListExtra("policy",arrayList)
+                })
+            }
             Documents.UPLOAD_DOCS -> startActivity(Intent(this, UploadDocumentActivity::class.java))
             Documents.CLAIM_FILE -> startActivity(Intent(this, FileClaimActivity::class.java))
         }
     }
+
+
 }
 interface OnDashBoardActions{
     fun onTapProfile()

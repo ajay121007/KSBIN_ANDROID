@@ -1,16 +1,18 @@
 package com.example.ks.model
 
 import com.example.ks.R
+import com.example.ks.models.DashBoardResponse
 
 class GridItems(var icons:Int,
-                var girdText:String) {
+                var girdText:String, var count:Int?=0) {
     companion object{
 
-        fun getData(): ArrayList<GridItems> {
+        fun getData(model:DashBoardResponse?): ArrayList<GridItems> {
+
             return arrayListOf<GridItems>(
-                GridItems(R.drawable.ic_notes,"Signable \nDocumnets"),
-                GridItems(R.drawable.ic_paymenticon,"Payment"),
-                GridItems(R.drawable.ic_idcards_icon,"ID Cards &\nDocuments"),
+                GridItems(R.drawable.ic_notes,"Signable \nDocumnets",model?.data?.contractsCount),
+                GridItems(R.drawable.ic_paymenticon,"Payment",model?.data?.invoicesCount),
+                GridItems(R.drawable.ic_idcards_icon,"ID Cards &\nDocuments",model?.data?.userDocumentsCount),
                 GridItems(R.drawable.ic_policydoc_icon,"Change my&\nPolicy Documents"),
                 GridItems(R.drawable.ic_uploaddocs_icon,"Upload&\nPolicy Documents"),
                 GridItems(R.drawable.ic_file_claim,"File a Claim"),

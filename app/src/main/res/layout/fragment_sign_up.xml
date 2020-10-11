@@ -12,8 +12,8 @@
         android:layout_height="wrap_content">
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/padding_10dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dim_25dp"
             tools:context=".fragments.SignUpFragment">
 
             <LinearLayout
@@ -34,10 +34,12 @@
                         android:id="@+id/sign_up_name_editText"
                         android:layout_width="match_parent"
                         android:text="@={viewModel.name}"
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
                         android:layout_height="match_parent"
                         android:drawableLeft="@drawable/user_name_icon"
                         android:drawablePadding="@dimen/padding_5dp"
-                        
+
                         android:hint="Name" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,6 +54,8 @@
                         android:id="@+id/sign_up_email_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
                         android:text="@={viewModel.email}"
                         android:drawableLeft="@drawable/email_icon"
                         android:drawablePadding="@dimen/padding_5dp"
@@ -70,8 +74,10 @@
                         android:id="@+id/sign_up_phn_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
                         android:text="@={viewModel.phone}"
-                        android:drawableLeft="@drawable/phone_icon"
+                        android:drawableStart="@drawable/phone_icon"
                         android:drawablePadding="@dimen/padding_5dp"
                         android:hint="Tel" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -89,8 +95,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@={viewModel.password}"
+                        android:imeOptions="actionNext"
                         android:drawableStart="@drawable/lock_icon"
-                        android:drawableLeft="@drawable/lock_icon"
                         android:drawablePadding="@dimen/padding_5dp"
                         android:hint="Password"
                         android:inputType="textPassword"
@@ -113,6 +119,7 @@
                         android:drawablePadding="@dimen/padding_5dp"
                         android:text="@={viewModel.confirmPassword}"
                         android:hint="Confirm Password"
+                        android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         tools:ignore="RtlCompat" />
                 </com.google.android.material.textfield.TextInputLayout>

@@ -45,7 +45,10 @@ class LoginViewModel(override val uiCallBacks: UICallBacks,val authRepo: AuthRep
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200)
-                    uiCallBacks.onToast(data.message)
+                    {
+                        uiCallBacks.onToast(data.message)
+                        onNavigate.postValue(true)
+                    }
                     else uiCallBacks.onToast(data.message)
                 }
                 is ResultWrapper.GenericError -> {

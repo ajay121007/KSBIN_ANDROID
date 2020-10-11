@@ -35,7 +35,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@={viewModel.email}"
-                        android:drawableLeft="@drawable/email_icon"
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:drawableStart="@drawable/email_icon1"
                         android:drawablePadding="5dp"
                         android:hint="Email" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -55,6 +57,7 @@
                         android:text="@={viewModel.password}"
                         android:drawableStart="@drawable/lock_icon"
                         android:hint="Password"
+                        android:imeOptions="actionDone"
                         android:drawablePadding="5dp"
                         android:inputType="textPassword"
                         tools:ignore="RtlCompat"/>

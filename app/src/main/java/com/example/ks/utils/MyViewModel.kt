@@ -15,7 +15,7 @@ open class MyViewModel(open val uiCallBacks: UICallBacks) : ViewModel() {
 
     val errorMessage=MutableLiveData<String>()
     val onLoading=MutableLiveData<Boolean>().apply { value=false }
-
+    val onNavigate=SingleLiveEvent<Boolean>()
     /**
      * This is the job for all coroutines started by this ViewModel.
      * Cancelling this job will cancel all coroutines started by this ViewModel.

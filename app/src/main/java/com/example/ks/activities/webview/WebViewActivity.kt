@@ -1,9 +1,13 @@
 package com.example.ks.activities.webview
 
+import android.annotation.SuppressLint
+import android.app.Instrumentation
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -11,6 +15,7 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
+import com.example.ks.api.Constants
 import com.example.ks.common.BaseActivity
 import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.WebviewLayoutBinding
@@ -22,9 +27,24 @@ class WebViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.webview_layout)
+        setSupportActionBar(binding.toolbar.apply {
+            title = "Signable Documents "
+
+
+        })
+
        initView();
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       return  when(item.itemId){
+            android.R.id.home->{
+                onBackPressed()
+                true
+            }
+            else ->false
+        }
+    }
     private fun initView() {
 
     loadWebView()
@@ -40,10 +60,11 @@ class WebViewActivity : BaseActivity() {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun loadWebView() {
 
         binding.webview.settings.javaScriptEnabled=true
-        binding.webview.loadUrl(UserConstants.signWebUrl)
+        binding.webview.loadUrl(Constants.BASE_URL_DEV_WEB+intent.getStringExtra("token"))
         binding.webview.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
 
@@ -80,6 +101,12 @@ class WebViewActivity : BaseActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 onLoading(false)
                // hideProgressDialog()
+                if(url==Constants.BASE_URL)
+                {
+                    finish()
+                    setResult(RESULT_OK)
+                }
+                Log.i(this.javaClass.simpleName, "Page Finished: $url ")
                 super.onPageFinished(view, url)
             }
             override fun onLoadResource(view: WebView?, url: String) {

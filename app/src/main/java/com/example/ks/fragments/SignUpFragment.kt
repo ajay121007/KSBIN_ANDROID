@@ -1,5 +1,6 @@
 package com.example.ks.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.R
+import com.example.ks.activities.dashboard.DashBoardActivity
 import com.example.ks.activities.loginsignup.SignUpViewModel
 import com.example.ks.common.BaseFragment
 import com.example.ks.databinding.FragmentSignUpBinding
@@ -25,8 +27,9 @@ class SignUpFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loginViewModel.email.observe(this, Observer {
+        loginViewModel.onNavigate.observe(this, Observer {
           //  Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(requireContext(),DashBoardActivity::class.java))
         })
 
     }

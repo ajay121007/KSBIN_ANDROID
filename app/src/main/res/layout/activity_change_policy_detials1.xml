@@ -4,7 +4,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <data>
+        <variable
+            name="model"
+            type="com.example.ks.activities.policydetail.ChangePolicyDetailViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,23 +19,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/backImage"
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
-                android:src="@drawable/ic_back_arrow"
-                android:padding="@dimen/dim_10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="?actionBarSize"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="@dimen/dim_20dp"
-                android:text="Change My Policy Details"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_20dp" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:id="@+id/toolbar"
+                app:title="Change My Policy Details"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                android:layout_height="?actionBarSize"/>
         </RelativeLayout>
 
 
@@ -51,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dim_15dp"
                 android:layout_marginTop="@dimen/dim_20dp"
-                android:text="select a subject" />
+                android:text="Select a subject" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtVehcle"
@@ -59,16 +52,22 @@
                 android:layout_height="?actionBarSize"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_20dp"
+                android:visibility="gone"
                 android:background="@drawable/rouded_bg"
                 android:gravity="center|start"
                 android:drawableEnd="@drawable/down_arrow"
                 android:drawablePadding="@dimen/dim_5dp"
+                android:fontFamily="@font/opensans_semibold"
                 android:layout_marginTop="@dimen/dim_10dp"
                 android:paddingStart="@dimen/dim_10dp"
                 android:layout_gravity="center"
                 android:text="Change Vehicle "/>
 
-
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
 
 
 
@@ -76,23 +75,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dim_15dp"
+                android:fontFamily="@font/opensans_semibold"
                 android:layout_marginTop="@dimen/dim_20dp"
-                android:text="select a subject" />
+                android:text="Select a policy" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtPolicy"
+            <Spinner
+                android:id="@+id/spinner2"
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/dim_20dp"
-                android:layout_marginTop="@dimen/dim_10dp"
-                android:background="@drawable/rouded_bg"
-                android:gravity="center|start"
-                android:drawableEnd="@drawable/down_arrow"
-                android:drawablePadding="@dimen/dim_5dp"
-                android:paddingStart="@dimen/dim_10dp"
-                android:layout_gravity="center"
-                android:text="Change Vehicle "/>
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/dim_103dp"
                 android:maxHeight="@dimen/dim_200dp"
+                android:text="@={model.details}"
                 android:gravity="start"
                 android:paddingStart="@dimen/dim_10dp"
                 android:paddingTop="@dimen/dim_5dp"
@@ -126,6 +118,7 @@
                 android:layout_marginRight="15dp"
                 android:background="@drawable/rouned_corner_btn"
                 android:text="Submit"
+                android:onClick="@{()->model.updatePolicy()}"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
 

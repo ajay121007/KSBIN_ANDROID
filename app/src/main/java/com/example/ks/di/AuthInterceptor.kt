@@ -29,9 +29,11 @@ class AuthInterceptor(private val  sharedPreferenceHelper: SharedPreferenceHelpe
         var response= chain.proceed(req)
         if(response.code==401){
             val refreshTokenBody = FormBody.Builder()
-                .add("refresh_token", sharedPreferenceHelper.getRefreshToken()?:"")
+                .add("refresh_token", sharedPreferenceHelper.getUser()?.data?.token?.refreshToken?:"")
+
                 .build()
             val refreshTokenRequest = Request.Builder()
+                .addHeader("Accept", "application/json")
                 .url(Constants.BASE_URL_DEV + "refresh-token")
                 .post(refreshTokenBody)
                 .build()

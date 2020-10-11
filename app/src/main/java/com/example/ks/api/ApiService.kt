@@ -38,7 +38,7 @@ interface ApiService {
     @FormUrlEncoded
     suspend fun signUp(
         @FieldMap map: HashMap<String,String?>
-    ):Response<SignUpResponse>
+    ):Response<LoginResponse>
 
     @POST("login")
     @FormUrlEncoded

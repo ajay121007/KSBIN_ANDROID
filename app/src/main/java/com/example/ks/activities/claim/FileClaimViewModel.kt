@@ -5,6 +5,7 @@ import com.example.ks.common.UICallBacks
 import com.example.ks.repo.AuthRepo
 import com.example.ks.utils.MyViewModel
 import com.example.ks.utils.ResultWrapper
+import com.example.ks.utils.SingleLiveEvent
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -16,9 +17,10 @@ class FileClaimViewModel (override val uiCallBacks: UICallBacks, val authRepo: A
     uiCallBacks
 ){
 
-
+    val onData=SingleLiveEvent<String>()
     fun uploadDocs(filePath: String, fileName: String){
         val url = Uri.parse(filePath.toString())
+
         val file = File(url.path)
         val requestFile2 =
             RequestBody.create("*/*".toMediaTypeOrNull(), file)
@@ -36,18 +38,21 @@ class FileClaimViewModel (override val uiCallBacks: UICallBacks, val authRepo: A
                     uiCallBacks.onLoading(false)
                     val data = response.value ?: return@launch
                     if (data.code == 200)
+                    {
+                        onData.postValue(data.data.token)
                         uiCallBacks.onToast(data.message)
+                    }
                     else uiCallBacks.onToast(data.message)
                 }
                 is ResultWrapper.GenericError -> {
                     uiCallBacks.onLoading(false)
-                    uiCallBacks.onToast(response.error?.error_des)
+                    uiCallBacks.showDialog(response.error?.error_des)
                 }
                 ResultWrapper.SocketTimeOutError -> {
-
+                    uiCallBacks.showDialog("No Internet Connection")
                 }
                 ResultWrapper.NetworkError -> {
-
+                    uiCallBacks.showDialog("Something went wrong")
                 }
 
             }

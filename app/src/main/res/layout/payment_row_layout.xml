@@ -11,7 +11,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dim_103dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/dim_10dp"
             android:padding="@dimen/dim_10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:padding="@dimen/dim_10dp"
                 android:layout_marginHorizontal="@dimen/dim_10dp"
                 android:layout_gravity="center"
                 android:layout_marginVertical="@dimen/dim_5dp">
@@ -32,8 +32,10 @@
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10dp"
+
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="@{model.userId}"
+                    android:textSize="@dimen/dim_16sp"
                     android:textColor="@android:color/black"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +44,8 @@
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10dp"
+                    android:textSize="@dimen/dim_15sp"
+                    android:fontFamily="@font/opensans_semibold"
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="@{`$`+model.price}"
                     android:textColor="@android:color/black"
@@ -52,8 +55,10 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_10dp"
+                    android:layout_marginTop="@dimen/dim_20dp"
                     android:text="Invoice"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textSize="@dimen/dim_12sp"
                     android:textColor="@android:color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -63,7 +68,8 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_5dp"
+                    android:layout_marginTop="@dimen/dim_20dp"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="@{model.paid==0?`Filed`:`Successfull`}"
                     android:textColor="@{model.paid==0?@color/md_red_900:@color/colorPrimary}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +79,8 @@
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dim_5dp"
+                    android:layout_marginTop="@dimen/dim_2dp"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="@{model.invoiceNo}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"
@@ -84,8 +91,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{model.createdAt}"
+                    android:layout_marginTop="@dimen/dim_2dp"
+                    android:fontFamily="@font/opensans_semibold"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/dim_14sp"
+                    android:textSize="@dimen/dim_16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
