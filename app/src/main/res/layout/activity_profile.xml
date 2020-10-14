@@ -73,6 +73,7 @@
 
                     <include
                         app:viewModel="@{viewModel}"
+                        android:id="@+id/profile_layout"
                         layout="@layout/profile_layout" />
 
 
@@ -86,6 +87,7 @@
         <ImageView
             android:id="@+id/profile_image_floating"
             android:layout_width="98dp"
+            android:visibility="gone"
             android:layout_height="98dp"
             app:imageUrl="@{viewModel.liveData.data.user.userImageUrl}"
             android:src="@color/colorPrimaryDark"

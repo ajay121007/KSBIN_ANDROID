@@ -26,8 +26,7 @@ class EditProfileViewModel (override val uiCallBacks: UICallBacks, val authRepo:
         else {
             val url = Uri.parse(filePath.toString())
             val file = File(url.path)
-            val requestFile2 =
-                RequestBody.create("*/*".toMediaTypeOrNull(), file)
+            val requestFile2 = RequestBody.create("*/*".toMediaTypeOrNull(), file)
             uploadFilePath = MultipartBody.Part.createFormData(
                 "user_image", file.name,
                 requestFile2

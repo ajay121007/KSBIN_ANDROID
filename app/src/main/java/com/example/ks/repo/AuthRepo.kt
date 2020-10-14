@@ -9,6 +9,7 @@ import com.example.ks.model.forgot.ForgotPasswordResponse
 import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.policy.PolicyUpdateResponse
 import com.example.ks.model.profile.ProfileDetailResponse
+import com.example.ks.model.renewals.RenewalResponse
 import com.example.ks.model.upload.UploadResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 import com.example.ks.models.LoginResponse
@@ -20,6 +21,7 @@ import com.example.ks.utils.ResultWrapper
 import com.example.ks.utils.safeApiCall
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
+import retrofit2.http.Part
 
 /**
  * Created by skycap.
@@ -166,7 +168,9 @@ class AuthRepo(private val apiService: ApiService
 
 
     suspend fun updateProfile(file: MultipartBody.Part,
-                             userName: MultipartBody.Part, userPhone: MultipartBody.Part,userEmail: MultipartBody.Part): ResultWrapper<UploadClaimImageResponse?> {
+                             userName: MultipartBody.Part,
+                              userPhone: MultipartBody.Part,
+                              userEmail: MultipartBody.Part): ResultWrapper<UploadClaimImageResponse?> {
         return when(val call = safeApiCall { apiService.updateProfile(file,userName,userPhone,userEmail) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
@@ -192,8 +196,23 @@ class AuthRepo(private val apiService: ApiService
     suspend fun createPaymentToken(id:Int): ResultWrapper<SignTokenResponse?> {
       return safeApiCall { apiService.createPaymentToken(id) }
     }
-    suspend fun refreshToken(token:String?): ResultWrapper<RefreshTokenResponse?> {
-        return safeApiCall { apiService.refreshToken(token) }
+    suspend fun getRenewalsList(): ResultWrapper<RenewalResponse?> {
+        return safeApiCall { apiService.getRenewalsList() }
     }
 
+    suspend fun uploadRenewals( dmv: MultipartBody.Part?,
+                                tcl: MultipartBody.Part?,
+                                ddc: MultipartBody.Part?, ): ResultWrapper<UploadClaimImageResponse?> {
+        return when(val call = safeApiCall { apiService.uploadRenewal(dmv,tcl,ddc) }){
+            is ResultWrapper.Success ->{
+                ResultWrapper.Success(call.value)
+            }
+            is ResultWrapper.GenericError -> ResultWrapper.GenericError()
+            ResultWrapper.SocketTimeOutError -> ResultWrapper.SocketTimeOutError
+            ResultWrapper.NetworkError -> ResultWrapper.NetworkError
+        }
+    }
+    suspend fun renewalDocument(id:Int,type:String): ResultWrapper<SignTokenResponse?> {
+        return safeApiCall { apiService.renewalDocument(id,type) }
+    }
 }

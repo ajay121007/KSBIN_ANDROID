@@ -14,6 +14,7 @@ import com.example.ks.activities.loginsignup.LoginViewModel
 import com.example.ks.activities.loginsignup.SignUpViewModel
 import com.example.ks.activities.policydetail.ChangePolicyDetailViewModel
 import com.example.ks.activities.profile.ProfileViewModel
+import com.example.ks.activities.renewal.RenewalViewModel
 
 import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.activities.upload.UploadViewModel
@@ -53,6 +54,7 @@ val viewModels = module {
     viewModel { (uiCallBacks: UICallBacks)->ChangePolicyDetailViewModel(uiCallBacks,get()) }
 
     viewModel { (uiCallBacks: UICallBacks)->ForgotPasswordViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)->RenewalViewModel(uiCallBacks,get()) }
 
 
 }

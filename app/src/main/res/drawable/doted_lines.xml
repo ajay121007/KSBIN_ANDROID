@@ -4,8 +4,8 @@
     <stroke
         android:width="@dimen/dim_3dp"
         android:color="@color/colorPrimary"
-        android:dashWidth="10dp"
-        android:dashGap="@dimen/dim_3dp" />
-    <corners android:radius="@dimen/dim_20dp"/>
+        android:dashWidth="5dp"
+        android:dashGap="5dp" />
+    <corners android:radius="@dimen/dim_5dp"/>
 
 </shape>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.example.ks.adapters.RenewalOptions"/>
+        <variable
+            name="handler"
+            type="com.example.ks.adapters.OnCLickOptions" />
+        <variable
+            name="model"
+            type="com.example.ks.model.renewals.RenewalResponse.RenewalModel" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dim_10dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Options1"
+                    android:textSize="@dimen/dim_12sp"
+                    android:id="@+id/tv_options1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@{`$`+model.price+`/`}"
+                    android:id="@+id/tv_options1_value"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options1"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Annual"
+                    android:id="@+id/tv_options1_type"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options1"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintTop_toTopOf="@id/tv_options1_value"
+                    app:layout_constraintStart_toEndOf="@id/tv_options1_value"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="150dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_options1_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/btn_option1"
+                    android:text="@{`$`+model.option1+` Pay now`}"
+                    android:layout_marginTop="@dimen/dim_15dp"
+                    android:textAllCaps="false"
+                    android:onClick="@{()->handler.onOptions1(model.id,RenewalOptions.OPTIONS1)}"
+                    android:textSize="@dimen/dim_15sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_options1"
+                    android:textColor="@color/md_white_1000"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:background="@drawable/rouned_corner_btn"
+                    android:layout_height="@dimen/dim_30dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dim_10dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Options2"
+                    android:textSize="@dimen/dim_12sp"
+                    android:id="@+id/tv_options2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@{`$`+model.monthly+`/`}"
+                    android:id="@+id/tv_options2_value"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options2"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Monthly"
+                    android:id="@+id/tv_options2_type"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options2"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintTop_toTopOf="@id/tv_options2_value"
+                    app:layout_constraintStart_toEndOf="@id/tv_options2_value"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="150dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_options2_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/btn_option2"
+                    android:text="@{`$`+model.option2+` Pay now`}"
+                    android:onClick="@{()->handler.onOptions1(model.id,RenewalOptions.OPTIONS2)}"
+                    android:layout_marginTop="@dimen/dim_15dp"
+                    android:textAllCaps="false"
+                    app:layout_constraintTop_toTopOf="@id/tv_options2"
+                    android:textColor="@color/md_white_1000"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:background="@drawable/rouned_corner_btn"
+                    android:layout_height="@dimen/dim_30dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+
+                android:orientation="vertical"
+                android:layout_margin="@dimen/dim_10dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Pay in Full"
+                    android:id="@+id/tv_options3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="@dimen/dim_12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@{`$`+model.monthly2+`/`}"
+                    android:id="@+id/tv_options3_value"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options3"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/opensans_bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Monthly"
+                    android:id="@+id/tv_options3_type"
+                    app:layout_constraintTop_toBottomOf="@id/tv_options3"
+                    android:textSize="@dimen/dim_14sp"
+                    android:textColor="@color/md_black_1000"
+                    app:layout_constraintTop_toTopOf="@id/tv_options3_value"
+                    app:layout_constraintStart_toEndOf="@id/tv_options3_value"
+                    android:fontFamily="@font/opensans_regular"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="150dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_options3_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/btn_option3"
+                    android:text="@{`$`+model.fullPrice+` Pay now`}"
+                    android:layout_marginTop="@dimen/dim_15dp"
+                    android:textAllCaps="false"
+                    android:onClick="@{()->handler.onOptions1(model.id,RenewalOptions.PAY_IN_FULL)}"
+                    app:layout_constraintTop_toTopOf="@id/tv_options3"
+                    android:textColor="@color/md_white_1000"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:background="@drawable/rouned_corner_btn"
+                    android:layout_height="@dimen/dim_30dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

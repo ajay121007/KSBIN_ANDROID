@@ -14,6 +14,7 @@ import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.forgot.ForgotPasswordResponse
 import com.example.ks.model.policy.PolicyUpdateResponse
+import com.example.ks.model.renewals.RenewalResponse
 import com.example.ks.model.uploadClaim.UploadClaimImageResponse
 import com.example.ks.models.*
 
@@ -107,6 +108,24 @@ interface ApiService {
     @FormUrlEncoded
     @POST("refresh-token")
     suspend fun refreshToken(@Field("refresh_token") token:String?):Response<RefreshTokenResponse>
+
+
+    @GET("renewals-list")
+    suspend fun getRenewalsList():Response<RenewalResponse>
+
+    @Multipart
+    @POST("update-profile")
+    suspend fun uploadRenewal(@Part dmv: MultipartBody.Part?,
+                              @Part tcl: MultipartBody.Part?,
+                              @Part ddc: MultipartBody.Part?,
+    ): Response<UploadClaimImageResponse>
+
+    @FormUrlEncoded
+    @POST("document-renewal-payment")
+    suspend fun renewalDocument(
+        @Field("renewal_id",) id:Int,
+        @Field("type",) type:String,
+    ):Response<SignTokenResponse>
 }
 
 

@@ -29,9 +29,8 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTe
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
         binding.apply {
-            searchView.onActionViewExpanded()
-            searchView.setOnQueryTextListener(this@PaymentActivity)
-            Handler().postDelayed({ searchView.clearFocus() }, 300)
+
+
         }
         setSupportActionBar(binding.toolbar)
         binding.executePendingBindings()

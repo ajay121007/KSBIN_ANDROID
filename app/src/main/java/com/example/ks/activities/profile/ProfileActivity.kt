@@ -1,6 +1,7 @@
 package com.example.ks.activities.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -41,6 +42,10 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
                 lifecycleOwner=this@ProfileActivity
                 executePendingBindings()
 
+            }
+            profileLayout.cardSupport.setOnClickListener {
+                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "Your Phone_number"))
+                startActivity(intent)
             }
             toolbar.setOnMenuItemClickListener(this@ProfileActivity)
 //            setSupportActionBar(toolbar)

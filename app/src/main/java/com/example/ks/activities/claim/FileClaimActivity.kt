@@ -27,6 +27,7 @@ import java.io.File
 
 class FileClaimActivity : BaseActivity(), OnDownloadListener {
 
+    private val PDF_PICKER_RESULTS: Int=1010
     lateinit var binding: ActivityFileClaimBinding
     val viewModel: FileClaimViewModel by viewModel { parametersOf(this) }
      var filePath:String=""
@@ -82,19 +83,24 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     }
 
     private fun selectDocs() {
-        TedBottomPicker.with(this)
-            .show {
-                val uriString: String = PathUtils.getPath(this, it)
-                val myFile = File(uriString)
-                val path: String = myFile.getAbsolutePath()
-                binding.image.setImageURI(it)
-                binding.image.setImageURI(Uri.parse(path))
-                binding.fileName.text = path
-                filePath= it.toString()
-                fileName= myFile.name
+        val intent = Intent()
+        intent.type = "*/*"
+        intent.action = Intent.ACTION_GET_CONTENT
 
-
-            }
+        startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
+//        TedBottomPicker.with(this)
+//            .show {
+//                val uriString: String = PathUtils.getPath(this, it)
+//                val myFile = File(uriString)
+//                val path: String = myFile.getAbsolutePath()
+//                binding.image.setImageURI(it)
+//                binding.image.setImageURI(Uri.parse(path))
+//                binding.fileName.text = path
+//                filePath= it.toString()
+//                fileName= myFile.name
+//
+//
+//            }
     }
 
     fun downloadFile(view: View) {
@@ -120,5 +126,23 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     override fun onError(error: Error?) {
         onLoading(false)
         onToast("Failed to Download")
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode==PDF_PICKER_RESULTS) {
+            data?.data?.let {
+                val path1 = PathUtils.getPath(this, it)
+                val myFile = File(path1)
+                val path: String = myFile.absolutePath
+                binding.image.setImageURI(it)
+                binding.image.setImageURI(Uri.parse(path))
+                binding.fileName.text = path
+                filePath= path1
+                fileName= myFile.name
+            }
+        }
+        else if(resultCode== RESULT_OK){
+            showAlertDialog("File claimed Successfully")
+        }
     }
 }

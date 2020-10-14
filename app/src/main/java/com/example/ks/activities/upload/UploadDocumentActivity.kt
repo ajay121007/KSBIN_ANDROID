@@ -68,7 +68,7 @@ class UploadDocumentActivity : BaseActivity() {
 
     fun selectDocs(){
         val intent = Intent()
-        intent.type = "application/pdf"
+        intent.type = "*/*"
         intent.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)

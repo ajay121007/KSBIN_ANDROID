@@ -58,7 +58,8 @@ SIGNABLE_DOCS,
     ID_CARDS,
     CHANGE_MY_DOCS,
     UPLOAD_DOCS,
-    CLAIM_FILE
+    CLAIM_FILE,
+    RENEWALS
 }
 fun getEnumFromPosition(position: Int):Documents{
     return when(position){
@@ -68,6 +69,7 @@ fun getEnumFromPosition(position: Int):Documents{
         3-> Documents.CHANGE_MY_DOCS
         4-> Documents.UPLOAD_DOCS
         5-> Documents.CLAIM_FILE
+        6->Documents.RENEWALS
         else -> Documents.SIGNABLE_DOCS
     }
 }
