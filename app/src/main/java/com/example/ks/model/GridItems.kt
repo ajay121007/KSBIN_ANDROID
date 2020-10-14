@@ -16,14 +16,11 @@ class GridItems(var icons:Int,
                 GridItems(R.drawable.ic_policydoc_icon,"Change my&\nPolicy Documents"),
                 GridItems(R.drawable.ic_uploaddocs_icon,"Upload&\nPolicy Documents"),
                 GridItems(R.drawable.ic_file_claim,"File a Claim"),
+                GridItems(R.drawable.ic_file_claim,"Renewal"),
 
             )
         }
 
  }
-
-
-
-
 
     }

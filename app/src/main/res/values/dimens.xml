@@ -82,4 +82,5 @@
     <dimen name="default_collapsed_padding">200dp</dimen>
     <dimen name="default_expanded_padding">0dp</dimen>
     <dimen name="activity_margin">24dp</dimen>
+    <dimen name="dim_400dp">400dp</dimen>
 </resources>

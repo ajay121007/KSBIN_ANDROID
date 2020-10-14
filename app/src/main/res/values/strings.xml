@@ -14,7 +14,7 @@
     <string name="done">Done</string>
     <string name="update">Update</string>
     <string name="upload_your_document">Upload your Document</string>
-    <string name="attach_document_photo">Attach Document Photo \n Max size: 10MB</string>
+    <string name="attach_document_photo">Attach Document Photo \nMax size: 10MB</string>
     <string name="upload_dmv_licence">Upload DMV Licence</string>
     <string name="upload_ddc_licence">Upload DDC Licence</string>
     <string name="upload_tcl_licence">Upload TCL Licence</string>

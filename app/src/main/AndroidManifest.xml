@@ -3,8 +3,9 @@
     package="com.example.ks">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".InsuranceApp"
         android:allowBackup="true"
@@ -12,21 +13,26 @@
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/app_icon"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activities.webview.WebViewActivity"/>
-        <activity android:name=".activities.profile.ProfileActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activities.renewal.RenewalListActivity"></activity>
+        <activity android:name=".activities.webview.WebViewActivity" />
+        <activity android:name=".activities.profile.ProfileActivity" />
         <activity android:name=".activities.dashboard.DashBoardActivity" />
         <activity android:name=".activities.payment.PaymentActivity" />
-        <activity android:name=".activities.policydetail.ChangePolicyDetials1Activity"
+        <activity
+            android:name=".activities.policydetail.ChangePolicyDetials1Activity"
             android:theme="@style/AppTheme.NoActionBar">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
 
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="com.package.name.MyActivity"/>
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
 
         </activity>
         <activity android:name=".activities.SignableDocument2Activity" />
@@ -34,9 +40,7 @@
         <activity android:name=".activities.document.IdCardDocumentActivity" />
         <activity android:name=".activities.RenewalActivity" />
         <activity android:name=".activities.claim.FileClaimActivity" />
-        <activity android:name=".activities.upload.UploadDocumentActivity" >
-            
-        </activity>
+        <activity android:name=".activities.upload.UploadDocumentActivity"></activity>
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
         <activity android:name=".activities.editprofile.EditProfileActivity" />
         <activity android:name=".activities.forgot.ForgotPasswordActivity" />
@@ -48,15 +52,13 @@
         <activity
             android:name=".activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.package.name.MyActivity" />
 
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="com.package.name.MyActivity"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
