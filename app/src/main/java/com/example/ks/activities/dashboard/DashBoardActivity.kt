@@ -2,24 +2,20 @@ package com.example.ks.activities.dashboard
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.activities.profile.ProfileActivity
 import com.example.ks.R
-import com.example.ks.activities.ChangeMyPolicyDetialsActivity
-import com.example.ks.activities.RenewalActivity
 import com.example.ks.activities.claim.FileClaimActivity
 import com.example.ks.activities.document.IdCardDocumentActivity
 import com.example.ks.activities.payment.PaymentActivity
 import com.example.ks.activities.policydetail.ChangePolicyDetials1Activity
-import com.example.ks.activities.renewal.RenewalListActivity
+import com.example.ks.activities.renewal.PaymentPlanActivity
 import com.example.ks.activities.signabledocument.SignableDocumentActivity
 import com.example.ks.activities.upload.UploadDocumentActivity
 import com.example.ks.adapters.Documents
 import com.example.ks.adapters.GridAdapter
 import com.example.ks.adapters.OnItemPositionClick
-import com.example.ks.adapters.PolicyAdapter
 import com.example.ks.common.BaseActivity
 import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityDashboardBinding
@@ -89,7 +85,7 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
             }
             Documents.UPLOAD_DOCS -> startActivity(Intent(this, UploadDocumentActivity::class.java))
             Documents.CLAIM_FILE -> startActivity(Intent(this, FileClaimActivity::class.java))
-            Documents.RENEWALS -> startActivity(Intent(this,RenewalListActivity::class.java))
+            Documents.RENEWALS -> startActivity(Intent(this,PaymentPlanActivity::class.java))
         }
     }
 

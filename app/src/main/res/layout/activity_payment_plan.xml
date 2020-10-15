@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/dim_10dp"
-        tools:context=".activities.renewal.RenewalListActivity">
+        tools:context=".activities.renewal.PaymentPlanActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="?attr/homeAsUpIndicator"
-            app:title="Renewal List"
+            app:title="Payment Plan"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dim_10dp"
             android:background="@drawable/rouned_corner_btn"
-            android:text="Add Rewewal"
+            android:text="Update / Add Documents"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"

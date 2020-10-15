@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.example.ks.R
 import com.example.ks.activities.editprofile.EditProfileActivity
 import com.example.ks.activities.loginsignup.LoginSignUpActivity
+import com.example.ks.api.Constants
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityProfileBinding
 import com.google.android.material.appbar.AppBarLayout
@@ -44,7 +45,7 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
 
             }
             profileLayout.cardSupport.setOnClickListener {
-                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "Your Phone_number"))
+                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "${Constants.YOUR_CONTACT}"))
                 startActivity(intent)
             }
             toolbar.setOnMenuItemClickListener(this@ProfileActivity)

@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.renewal.RenewalListActivity"></activity>
+        <activity android:name=".activities.renewal.PaymentPlanActivity"></activity>
         <activity android:name=".activities.webview.WebViewActivity" />
         <activity android:name=".activities.profile.ProfileActivity" />
         <activity android:name=".activities.dashboard.DashBoardActivity" />

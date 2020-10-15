@@ -1,9 +1,7 @@
 package com.example.ks.activities.renewal
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.R
@@ -13,27 +11,27 @@ import com.example.ks.adapters.OnCLickOptions
 import com.example.ks.adapters.RenewalAdapter
 import com.example.ks.adapters.RenewalOptions
 import com.example.ks.common.BaseActivity
-import com.example.ks.databinding.ActivityRenewalListBinding
+import com.example.ks.databinding.ActivityPaymentPlanBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class RenewalListActivity : BaseActivity(), OnCLickOptions {
+class PaymentPlanActivity : BaseActivity(), OnCLickOptions {
     private val renewalViewModel:RenewalViewModel by viewModel { parametersOf(this) }
-    private lateinit var renewalListBinding: ActivityRenewalListBinding
+    private lateinit var activityPaymentPlanBinding: ActivityPaymentPlanBinding
     lateinit var renewalAdapter: RenewalAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_renewal_list)
-        renewalListBinding=DataBindingUtil.setContentView(this,R.layout.activity_renewal_list)
+        activityPaymentPlanBinding=DataBindingUtil.setContentView(this,R.layout.activity_payment_plan)
         renewalAdapter= RenewalAdapter(this)
-        renewalListBinding.apply {
+        activityPaymentPlanBinding.apply {
             recycleRenewal.adapter=renewalAdapter
-            lifecycleOwner=this@RenewalListActivity
+            lifecycleOwner=this@PaymentPlanActivity
             executePendingBindings()
         }
-        setSupportActionBar(renewalListBinding.toolbar)
+        setSupportActionBar(activityPaymentPlanBinding.toolbar)
         renewalViewModel.getRenewalsList()
-        renewalListBinding.addRenewalBtn.setOnClickListener {
+        activityPaymentPlanBinding.addRenewalBtn.setOnClickListener {
             startActivity(Intent(this,RenewalActivity::class.java))
         }
         renewalViewModel.data.observe(this, Observer {
