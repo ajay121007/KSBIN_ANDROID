@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ks">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.renewal.PaymentPlanActivity"></activity>
+        <activity android:name=".activities.payment.MakePaymentActivity"></activity>
+        <activity android:name=".activities.renewal.PaymentPlanActivity" />
         <activity android:name=".activities.webview.WebViewActivity" />
         <activity android:name=".activities.profile.ProfileActivity" />
         <activity android:name=".activities.dashboard.DashBoardActivity" />
@@ -40,7 +42,7 @@
         <activity android:name=".activities.document.IdCardDocumentActivity" />
         <activity android:name=".activities.RenewalActivity" />
         <activity android:name=".activities.claim.FileClaimActivity" />
-        <activity android:name=".activities.upload.UploadDocumentActivity"></activity>
+        <activity android:name=".activities.upload.UploadDocumentActivity" />
         <activity android:name=".activities.ChangeMyPolicyDetialsActivity" />
         <activity android:name=".activities.editprofile.EditProfileActivity" />
         <activity android:name=".activities.forgot.ForgotPasswordActivity" />
