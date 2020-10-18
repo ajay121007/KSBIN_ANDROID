@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dim_10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cardtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card Holder Name"
+            android:textColor="@android:color/black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_50dp"
+            app:cardCornerRadius="8dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Ravi kumar"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_14sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/cardRouting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:text="Routing Number"
+            android:textColor="@android:color/black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_50dp"
+            app:cardCornerRadius="8dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="111 1 11111 11"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_14sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/account_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:text="Account Number"
+            android:textColor="@android:color/black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_50dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="@dimen/dim_5dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="5493 4251 2351 4653"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_14sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/postal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:text="Postal Code"
+            android:textColor="@android:color/black" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_50dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="@dimen/dim_5dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="42315"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dim_14sp" />
+        </androidx.cardview.widget.CardView>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:gravity="center"
+          android:paddingHorizontal="@dimen/dim_20dp"
+          android:layout_marginTop="@dimen/margin_100"
+          android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/done_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rouned_corner_btn"
+            android:text="Send"
+            android:textAllCaps="false"
+
+            android:textColor="@android:color/white"/>
+      </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+</layout>
