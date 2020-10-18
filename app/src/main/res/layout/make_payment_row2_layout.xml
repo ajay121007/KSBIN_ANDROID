@@ -3,6 +3,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.example.ks.activities.payment.PaymentViewModel" />
+    </data>
     <LinearLayout
         android:padding="@dimen/dim_10dp"
         android:layout_width="match_parent"
@@ -22,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Expiry Date"
+                android:layout_marginStart="@dimen/dim_5dp"
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_12sp" />
@@ -30,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CVV"
+                android:layout_marginStart="@dimen/dim_10dp"
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_12sp" />
@@ -47,14 +54,20 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="8dp"
-               android:layout_marginRight="@dimen/dim_40dp"
-                android:layout_height="@dimen/dim_50dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6/12"
+                app:cardUseCompatPadding="true"
+                android:padding="@dimen/dim_5dp"
+               android:layout_marginEnd="@dimen/dim_10dp"
+                android:layout_height="@dimen/margin_60dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="06/12"
+                    android:maxLength="5"
+                    app:expiryText="@{model.cardExpiry}"
+                    android:background="@null"
+                    android:text="@={model.cardExpiry}"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"/>
 
@@ -63,14 +76,17 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="8dp"
-                android:layout_marginRight="@dimen/dim_40dp"
-                android:layout_height="@dimen/dim_50dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="215"
+                app:cardUseCompatPadding="true"
+                android:layout_marginEnd="@dimen/dim_10dp"
+                android:layout_height="@dimen/margin_60dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="215"
+                    android:text="@={model.cardCvv}"
+                    android:background="@null"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"/>
 
@@ -90,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="Postal Code"
                 android:layout_weight="1"
+                android:layout_marginStart="@dimen/dim_5dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_12sp" />
 
@@ -97,6 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Policy Number"
+                android:layout_marginStart="@dimen/dim_10dp"
                 android:layout_weight="1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/dim_12sp" />
@@ -114,14 +132,17 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="8dp"
-                android:layout_marginRight="@dimen/dim_40dp"
-                android:layout_height="@dimen/dim_50dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="453323"
+                app:cardUseCompatPadding="true"
+                android:layout_marginRight="@dimen/dim_10dp"
+                android:layout_height="@dimen/margin_60dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="453323"
+                    android:text="@={model.cardPostal}"
+                    android:background="@null"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"/>
 
@@ -130,14 +151,16 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 app:cardCornerRadius="8dp"
-                android:layout_marginRight="@dimen/dim_40dp"
-                android:layout_height="@dimen/dim_50dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="adc12345"
+                app:cardUseCompatPadding="true"
+                android:layout_marginEnd="@dimen/dim_10dp"
+                android:layout_height="@dimen/margin_60dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="adc12345"
+                    android:background="@null"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dim_10dp"
+                    android:layout_marginStart="@dimen/dim_10dp"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_14sp"/>
 

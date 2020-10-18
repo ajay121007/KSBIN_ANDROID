@@ -90,3 +90,10 @@ fun String.getProgressDuration(d2: String?): Int {
     val daysGone= DateTimeUtils.getDifferenceFroMCurrentDate(this)
     return ((daysGone.toDouble()/totalDays)*100).toInt()
 }
+
+@BindingAdapter("bind:expiryText")
+fun TextView.expiryText(data:String?) {
+    if(data?.length==2){
+        this.text= "$data/"
+    }
+}

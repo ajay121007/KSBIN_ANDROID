@@ -28,9 +28,7 @@ class WebViewActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.webview_layout)
         setSupportActionBar(binding.toolbar.apply {
-            title = "Signable Documents "
-
-
+            title = intent?.getStringExtra("title")?:"Signable Documents "
         })
 
        initView();

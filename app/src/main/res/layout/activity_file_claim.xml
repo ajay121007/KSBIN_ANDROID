@@ -19,6 +19,8 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
+                android:id="@+id/toolbar"
+                app:navigationIcon="?attr/homeAsUpIndicator"
                 android:layout_height="wrap_content"
                 app:title="File a Claim" />
 

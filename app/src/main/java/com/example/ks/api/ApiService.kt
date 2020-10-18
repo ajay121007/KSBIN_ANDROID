@@ -126,6 +126,18 @@ interface ApiService {
         @Field("renewal_id",) id:Int,
         @Field("type",) type:String,
     ):Response<SignTokenResponse>
+
+    @FormUrlEncoded
+    @POST("card-payment")
+    suspend fun cardPayment(
+        @FieldMap map:HashMap<String,String>
+    ):Response<PaymentResponse>
+
+    @FormUrlEncoded
+    @POST("save-bank-account")
+    suspend fun bankPayment(
+        @FieldMap map:HashMap<String,String>
+    ):Response<PaymentResponse>
 }
 
 

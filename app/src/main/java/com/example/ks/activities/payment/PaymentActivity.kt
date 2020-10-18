@@ -47,6 +47,7 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTe
         viewModel.onData.observe(this, Observer {
             startActivityForResult(Intent(this, WebViewActivity::class.java).apply {
                 putExtra("token",it)
+                putExtra("title","Payment")
             },101)
         })
     }
@@ -56,7 +57,7 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTe
     }
 
     override fun onClick(model: PaymentResponse.PaymentModel) {
-        onToast(model.id.toString())
+//        onToast(model.id.toString())
         if(model.paid==0){
         viewModel.createPaymentToken(model.id)
         }

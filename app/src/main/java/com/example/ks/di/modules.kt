@@ -2,6 +2,7 @@ package com.example.ks.di
 
 
 
+import android.content.Context
 import com.example.ks.activities.claim.FileClaimViewModel
 
 import com.example.ks.activities.payment.PaymentViewModel
@@ -24,6 +25,8 @@ import com.example.ks.common.UICallBacks
 import com.example.ks.repo.AuthRepo
 import com.example.ks.repo.UserRepo
 import com.example.ks.sharedpref.SharedPreferenceHelper
+import net.authorize.acceptsdk.AcceptSDKApiClient
+
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -44,7 +47,7 @@ val viewModels = module {
     viewModel { (uiCallBacks: UICallBacks)->LoginViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->DashBoardViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->SignableDocumentModel(uiCallBacks,get()) }
-    viewModel { (uiCallBacks: UICallBacks)-> PaymentViewModel(uiCallBacks,get()) }
+    viewModel { (uiCallBacks: UICallBacks)-> PaymentViewModel(uiCallBacks,get(),get()) }
     viewModel { (uiCallBacks: UICallBacks)->IdCardDocumentViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->UploadViewModel(uiCallBacks,get()) }
     viewModel { (uiCallBacks: UICallBacks)->FileClaimViewModel(uiCallBacks,get()) }
@@ -65,6 +68,7 @@ val networkModule = module {
     single { provideOkHttpClient(get()) }
     single { provideRetrofit(get()) }
     single { provideForecastApi(get()) }
+    single { provideApiClient(androidContext()) }
     single { SharedPreferenceHelper(androidContext()) }
 }
 val repos= module {
@@ -91,3 +95,10 @@ fun provideForecastApi(retrofit: Retrofit): ApiService = retrofit.create(ApiServ
 private fun httpInterceptor() = HttpLoggingInterceptor().apply {
     level = HttpLoggingInterceptor.Level.BODY
 }
+fun provideApiClient(context: Context): AcceptSDKApiClient = AcceptSDKApiClient.Builder(
+    context,
+    AcceptSDKApiClient.Environment.SANDBOX
+)
+    .connectionTimeout(5000) // optional connection time out in milliseconds
+    .build()
+

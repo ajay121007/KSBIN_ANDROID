@@ -30,6 +30,10 @@ class UploadDocumentActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_upload_document)
+        binding.apply {
+            setSupportActionBar(toolbar)
+        }
+        binding.executePendingBindings()
         initView()
 
 
@@ -68,7 +72,7 @@ class UploadDocumentActivity : BaseActivity() {
 
     fun selectDocs(){
         val intent = Intent()
-        intent.type = "*/*"
+        intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)

@@ -215,4 +215,11 @@ class AuthRepo(private val apiService: ApiService
     suspend fun renewalDocument(id:Int,type:String): ResultWrapper<SignTokenResponse?> {
         return safeApiCall { apiService.renewalDocument(id,type) }
     }
+    suspend fun cardPayment(map:HashMap<String,String>): ResultWrapper<PaymentResponse?> {
+        return safeApiCall { apiService.cardPayment(map) }
+    }
+
+    suspend fun bankPayment(map:HashMap<String,String>): ResultWrapper<PaymentResponse?> {
+        return safeApiCall { apiService.bankPayment(map) }
+    }
 }

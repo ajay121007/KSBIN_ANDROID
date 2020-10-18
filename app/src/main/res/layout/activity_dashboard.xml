@@ -28,6 +28,7 @@
         <ImageView
             android:id="@+id/profile_image"
             android:layout_width="@dimen/dim_41dp"
+            android:visibility="visible"
             android:layout_height="@dimen/dim_42dp"
             app:imageUrl="@{viewModel.data.Data.user.userImageUrl}"
             android:onClick="@{()->handler.onTapProfile()}"

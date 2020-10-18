@@ -35,6 +35,10 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_file_claim)
+        binding.apply {
+            setSupportActionBar(toolbar)
+            executePendingBindings()
+        }
         initView()
         bindObeserver()
     }
@@ -43,6 +47,7 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
         viewModel.onData.observe(this, Observer {
             startActivityForResult(Intent(this, WebViewActivity::class.java).apply {
                 putExtra("token", it)
+                putExtra("title","File a claim")
             }, 101)
         })
     }
@@ -84,7 +89,7 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
 
     private fun selectDocs() {
         val intent = Intent()
-        intent.type = "*/*"
+        intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
@@ -141,7 +146,7 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
                 fileName= myFile.name
             }
         }
-        else if(resultCode== RESULT_OK){
+        if(requestCode==101&&resultCode== RESULT_OK){
             showAlertDialog("File claimed Successfully")
         }
     }

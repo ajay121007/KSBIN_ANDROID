@@ -76,7 +76,7 @@ data class DashBoardResponse(
             @SerializedName("mobile_number")
             val mobileNumber: String?,
             @SerializedName("name")
-            val name: String?,
+            val name: String?="",
             @SerializedName("note")
             val note: Any?,
             @SerializedName("policies")

@@ -38,7 +38,7 @@ class IdCardDocumentViewModel (override val uiCallBacks: UICallBacks, val authRe
                         list.clear()
                         list.addAll(response.value.data)
                         onData.postValue(response.value.data)
-                        uiCallBacks.onToast(data.message)
+//                        uiCallBacks.onToast(data.message)
                     }
                     else uiCallBacks.onToast(data.message)
                 }
