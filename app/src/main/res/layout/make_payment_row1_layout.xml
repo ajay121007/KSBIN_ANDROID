@@ -58,7 +58,7 @@
         android:id="@+id/text_creditcard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Credtit Card Number"
+        android:text="Credit Card Number"
         app:layout_constraintTop_toBottomOf="@id/card2"
         app:layout_constraintLeft_toLeftOf="@id/card2"
         android:textStyle="bold"
