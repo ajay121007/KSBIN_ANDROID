@@ -109,7 +109,6 @@
             android:background="@drawable/rouned_corner_btn"
             android:text="Send"
             android:textAllCaps="false"
-
             android:textColor="@android:color/white"/>
       </LinearLayout>
 
