@@ -17,6 +17,9 @@ import com.example.ks.api.Constants
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityFileClaimBinding
 import com.example.ks.utils.PathUtils
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.config.Configurations
+import com.jaiselrahman.filepicker.model.MediaFile
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import gun0912.tedbottompicker.TedBottomPicker
@@ -63,7 +66,8 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
             val permissions =
                 arrayOf<String>(
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
                 )
             Permissions.check(
                 this /*context*/,
@@ -88,11 +92,17 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     }
 
     private fun selectDocs() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-
-        startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
+        val intent = Intent(this, FilePickerActivity::class.java)
+        intent.putExtra(
+            FilePickerActivity.CONFIGS, Configurations.Builder()
+                .setCheckPermission(true)
+                .setShowImages(true)
+                .enableImageCapture(true)
+                .setMaxSelection(1)
+                .setSkipZeroSizeFiles(true)
+                .build()
+        )
+        startActivityForResult(intent, PDF_PICKER_RESULTS)
 //        TedBottomPicker.with(this)
 //            .show {
 //                val uriString: String = PathUtils.getPath(this, it)
@@ -135,19 +145,23 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
-            data?.data?.let {
-                val path1 = PathUtils.getPath(this, it)
-                val myFile = File(path1)
-                val path: String = myFile.absolutePath
-                binding.image.setImageURI(it)
-                binding.image.setImageURI(Uri.parse(path))
-                binding.fileName.text = path
-                filePath= path1
-                fileName= myFile.name
+
+            val mediaFile: MediaFile? =
+                data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                    ?.get(0)
+
+            val path: String? = mediaFile?.path
+
+            binding.image.setImageURI(Uri.parse(path))
+            binding.fileName.text = path
+            if (path != null) {
+                filePath = path
             }
-        }
-        if(requestCode==101&&resultCode== RESULT_OK){
-            showAlertDialog("File claimed Successfully")
-        }
-    }
+            fileName = mediaFile?.name.toString()
+
+
+            if (requestCode == 101 && resultCode == RESULT_OK) {
+                showAlertDialog("File claimed Successfully")
+            }
+        }}
 }

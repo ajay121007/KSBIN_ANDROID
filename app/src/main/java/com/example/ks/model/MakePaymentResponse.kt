@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 
-data class PaymentResponse(
+data class MakePaymentResponse(
     @SerializedName("code")
     var code: Int?,
     @SerializedName("data")

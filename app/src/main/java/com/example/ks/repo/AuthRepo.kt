@@ -2,6 +2,7 @@ package com.example.ks.repo
 
 import com.example.ks.activities.payment.PaymentResponse
 import com.example.ks.api.ApiService
+import com.example.ks.model.MakePaymentResponse
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
@@ -215,11 +216,15 @@ class AuthRepo(private val apiService: ApiService
     suspend fun renewalDocument(id:Int,type:String): ResultWrapper<SignTokenResponse?> {
         return safeApiCall { apiService.renewalDocument(id,type) }
     }
-    suspend fun cardPayment(map:HashMap<String,String>): ResultWrapper<PaymentResponse?> {
-        return safeApiCall { apiService.cardPayment(map) }
+    suspend fun cardPayment(map:HashMap<String,String?>): ResultWrapper<MakePaymentResponse?> {
+        return safeApiCall { apiService.cardPayment(map.apply {
+            put("customer_email",sharedPreferenceHelper.getUser()?.data?.user?.email)
+        }) }
     }
 
-    suspend fun bankPayment(map:HashMap<String,String>): ResultWrapper<PaymentResponse?> {
-        return safeApiCall { apiService.bankPayment(map) }
+    suspend fun bankPayment(map:HashMap<String,String?>): ResultWrapper<MakePaymentResponse?> {
+        return safeApiCall { apiService.bankPayment(map.apply {
+            put("customer_email",sharedPreferenceHelper.getUser()?.data?.user?.email)
+        }) }
     }
 }

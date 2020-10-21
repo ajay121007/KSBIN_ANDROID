@@ -2,6 +2,7 @@ package com.example.ks.activities.dashboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.activities.profile.ProfileActivity
@@ -43,7 +44,9 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
     private fun bindObserver() {
         dashBoardViewModel.data.observe(this, Observer {
             setAdapter(it)
+            activityDashboardBinding.profileName.visibility= View.VISIBLE
             activityDashboardBinding.rvPolicy.apply {
+
               setViewListener {position->
                     val binding=DataBindingUtil.inflate<PolicyCardLayoutBinding>(layoutInflater,R.layout.policy_card_layout, null, false)
                     binding.model=it?.data?.policies?.get(position)

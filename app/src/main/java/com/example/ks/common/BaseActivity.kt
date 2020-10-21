@@ -1,6 +1,7 @@
 package com.example.ks.common
 
-import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
@@ -10,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ks.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlin.reflect.KClass
+
 
 /**
  * Created by skycap.
@@ -34,6 +35,32 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
 
     override fun showDialog(message: String?) {
         showAlertDialog(message)
+    }
+
+    override fun showDialogDownload(message: String?, url: String?) {
+        runOnUiThread {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle("Confirmation")
+            builder.setMessage(message)
+
+            // add a button
+            builder.setNegativeButton(
+                "OK"
+            ) { p0, p1 -> p0.dismiss()
+                finish()
+            }
+            builder.setPositiveButton(
+                "Download Invoice"
+            ) { p0, p1 -> p0.dismiss()
+                finish()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(browserIntent)
+            }
+
+            // create and show the alert dialog
+            runOnUiThread {  val dialog: AlertDialog = builder.create()
+                dialog.show() }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,7 +94,8 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
         builder.setMessage(message)
 
         // add a button
-        builder.setPositiveButton("OK"
+        builder.setPositiveButton(
+            "OK"
         ) { p0, p1 -> p0.dismiss()
         finish()
         }

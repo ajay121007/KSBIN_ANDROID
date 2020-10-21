@@ -35,7 +35,7 @@ class ForgotPasswordViewModel (override val uiCallBacks: UICallBacks, val authRe
                     uiCallBacks.onLoading(false)
                     val data=response.value?:return@launch
                     if(data.code==200)
-                        uiCallBacks.onToast(data.message)
+                        uiCallBacks.showDialog(data.message)
                     else uiCallBacks.onToast(data.message)
                 }
                 is ResultWrapper.GenericError -> {

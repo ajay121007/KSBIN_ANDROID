@@ -6,12 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.R
 import com.example.ks.activities.RenewalActivity
+import com.example.ks.activities.payment.MakePaymentActivity
 import com.example.ks.activities.webview.WebViewActivity
 import com.example.ks.adapters.OnCLickOptions
 import com.example.ks.adapters.RenewalAdapter
 import com.example.ks.adapters.RenewalOptions
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityPaymentPlanBinding
+import com.example.ks.model.renewals.RenewalResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -45,12 +47,28 @@ class PaymentPlanActivity : BaseActivity(), OnCLickOptions {
         })
     }
 
-    override fun onOptions1(id: Int, options: RenewalOptions) {
-        when(options){
-            RenewalOptions.OPTIONS1 -> renewalViewModel.renewDocuments(id,"options1")
-            RenewalOptions.OPTIONS2 -> renewalViewModel.renewDocuments(id,"options12")
-            RenewalOptions.PAY_IN_FULL -> renewalViewModel.renewDocuments(id,"payinfull")
+    override fun onOptions1(id: RenewalResponse.RenewalModel, options: RenewalOptions) {
+        val intent=Intent(this,MakePaymentActivity::class.java).apply {
+            putExtra("type","renewal")
+            putExtra("id",id.id.toString())
+
+
         }
+        when(options){
+            RenewalOptions.OPTIONS1 -> {
+                intent.putExtra("options","option1")
+                intent.putExtra("price",id.option1?.toInt())
+            }
+            RenewalOptions.OPTIONS2 -> {
+                intent.putExtra("price",id.option2?.toInt())
+                intent.putExtra("options","option2")
+            }
+            RenewalOptions.PAY_IN_FULL -> {
+                intent.putExtra("price",id.fullPrice?.toInt())
+                intent.putExtra("options","fullPrice")
+            }
+        }
+        startActivityForResult(intent,101)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

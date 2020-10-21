@@ -7,6 +7,7 @@ import com.example.ks.model.invoice.InvoiceListResponse
 import com.example.ks.model.profile.ProfileDetailResponse
 
 import com.example.ks.activities.payment.PaymentResponse
+import com.example.ks.model.MakePaymentResponse
 
 import com.example.ks.model.upload.UploadResponse
 
@@ -130,14 +131,14 @@ interface ApiService {
     @FormUrlEncoded
     @POST("card-payment")
     suspend fun cardPayment(
-        @FieldMap map:HashMap<String,String>
-    ):Response<PaymentResponse>
+        @FieldMap map:HashMap<String,String?>
+    ):Response<MakePaymentResponse>
 
     @FormUrlEncoded
     @POST("save-bank-account")
     suspend fun bankPayment(
-        @FieldMap map:HashMap<String,String>
-    ):Response<PaymentResponse>
+        @FieldMap map:HashMap<String,String?>
+    ):Response<MakePaymentResponse>
 }
 
 

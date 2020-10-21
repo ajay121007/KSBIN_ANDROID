@@ -12,9 +12,11 @@ import com.example.ks.R
 import com.example.ks.activities.webview.WebViewActivity
 import com.example.ks.adapters.OnPaymentItemClick
 import com.example.ks.adapters.PaymentAdapter
+import com.example.ks.api.Constants
 import com.example.ks.common.BaseActivity
 import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityPaymentBinding
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -59,7 +61,12 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTe
     override fun onClick(model: PaymentResponse.PaymentModel) {
 //        onToast(model.id.toString())
         if(model.paid==0){
-        viewModel.createPaymentToken(model.id)
+//        viewModel.createPaymentToken(model.id)
+            startActivityForResult(Intent(this,MakePaymentActivity::class.java).apply {
+                putExtra("type",Constants.INVOICE_PAYMENT)
+                putExtra("model", Gson().toJson(model))
+                putExtra("price",model.price)
+            },101)
         }
     }
 

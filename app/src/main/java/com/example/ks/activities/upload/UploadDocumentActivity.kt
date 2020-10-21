@@ -1,23 +1,22 @@
 package com.example.ks.activities.upload
+
 import android.Manifest
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
-import com.example.ks.activities.signabledocument.SignableDocumentModel
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityUploadDocumentBinding
 import com.example.ks.utils.PathUtils
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.config.Configurations
+import com.jaiselrahman.filepicker.model.MediaFile
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
-import gun0912.tedbottompicker.TedRxBottomPicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.io.File
-
 
 
 class UploadDocumentActivity : BaseActivity() {
@@ -48,14 +47,18 @@ class UploadDocumentActivity : BaseActivity() {
 
         binding.uploadDocumentBtn.setOnClickListener {
             if (filePath.isNotEmpty()){
-                viewModel.uploadDocs(filePath,filename)
+                viewModel.uploadDocs(filePath, filename)
             }
         }
 
         binding.layoutUpload.setOnClickListener {
 
             val permissions =
-                arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                arrayOf<String>(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
+                )
             Permissions.check(
                 this /*context*/,
                 permissions,
@@ -71,31 +74,44 @@ class UploadDocumentActivity : BaseActivity() {
     }
 
     fun selectDocs(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
+        val intent = Intent(this, FilePickerActivity::class.java)
+        intent.putExtra(
+            FilePickerActivity.CONFIGS, Configurations.Builder()
+                .setCheckPermission(true)
+                .setShowImages(true)
+                .enableImageCapture(true)
+                .setMaxSelection(1)
+                .setSkipZeroSizeFiles(true)
+                .build()
+        )
+        startActivityForResult(intent, PDF_PICKER_RESULTS)
 
-        startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//
+//        startActivityForResult(Intent.createChooser(intent, "Select PDF"), PDF_PICKER_RESULTS)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
-           data?.data?.let {
-               val uriString: String = it.toString()
-              val pathUtils= PathUtils.getPath(this,it)
-               val myFile = File(pathUtils)
-               val path: String = myFile.getAbsolutePath()
 
-               binding.txtFileName.text =myFile.path
-               filePath = myFile.absolutePath
-               filename= myFile.name
+               data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)
+//              val pathUtils= PathUtils.getPath(this, it)
+//               val myFile = File(pathUtils)
+               val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                   ?.get(0)
+
+               binding.txtFileName.text =mediaFile?.name
+               filePath = mediaFile?.path.toString()
+               filename= mediaFile?.name.toString()
 
 
 
 
-               Log.e("path ", path+"=>"+myFile.name)
-           }
+//               Log.e("path ", path + "=>" + myFile.name)
+
 
         }
     }

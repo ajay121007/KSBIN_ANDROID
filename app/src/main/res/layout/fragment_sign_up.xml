@@ -40,7 +40,7 @@
                         android:drawableLeft="@drawable/user_name_icon"
                         android:drawablePadding="@dimen/padding_5dp"
 
-                        android:hint="Name" />
+                        android:hint="First Name, Last Name" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

@@ -41,7 +41,7 @@ class RenewalAdapter(private val onCLickOptions: OnCLickOptions) : ListAdapter<R
     }
 }
 interface OnCLickOptions{
-    fun onOptions1(id:Int,options: RenewalOptions)
+    fun onOptions1(id:RenewalModel,options: RenewalOptions)
 }
 enum class RenewalOptions{
     OPTIONS1,

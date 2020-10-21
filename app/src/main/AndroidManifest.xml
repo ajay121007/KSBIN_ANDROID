@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:name=".InsuranceApp"
@@ -22,7 +24,8 @@
         </activity>
         <activity android:name=".activities.renewal.PaymentPlanActivity" />
         <activity android:name=".activities.webview.WebViewActivity" />
-        <activity android:name=".activities.profile.ProfileActivity" />
+        <activity android:name=".activities.profile.ProfileActivity"
+            android:exported="true"/>
         <activity android:name=".activities.dashboard.DashBoardActivity" />
         <activity android:name=".activities.payment.PaymentActivity" />
         <activity
@@ -55,6 +58,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SplashScreen"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

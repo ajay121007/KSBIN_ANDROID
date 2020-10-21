@@ -48,6 +48,9 @@ abstract class BaseFragment :Fragment(),UICallBacks{
 
     }
 
+    override fun showDialogDownload(message: String?, url: String?) {
+
+    }
 
 }
 
@@ -57,6 +60,7 @@ interface UICallBacks{
     fun onLoading(loading: Boolean)
 
     fun showDialog(message:String?)
+    fun showDialogDownload(message:String?,url:String?)
 
 
 }

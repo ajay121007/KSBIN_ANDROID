@@ -20,6 +20,11 @@ class ForgotPasswordActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forgot_password)
+        binding.viewModel=viewModel
+        binding.apply {
+            lifecycleOwner=this@ForgotPasswordActivity
+            executePendingBindings()
+        }
         initView()
     }
 
@@ -39,6 +44,6 @@ class ForgotPasswordActivity : BaseActivity() {
     }
     override fun onToast(message: String?) {
         super.onToast(message)
-        finish()
+//        finish()
     }
 }

@@ -66,7 +66,9 @@ class EditProfileActivity : BaseActivity() {
         binding.userProfile.setOnClickListener {
 
             val permissions =
-                arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)
             Permissions.check(
                 this /*context*/,
                 permissions,
