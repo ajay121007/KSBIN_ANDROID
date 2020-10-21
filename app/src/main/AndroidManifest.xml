@@ -19,9 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.payment.MakePaymentActivity">
-
-        </activity>
+        <activity android:name=".activities.profile.ChangePasswordActivity"></activity>
+        <activity android:name=".activities.payment.MakePaymentActivity"></activity>
         <activity android:name=".activities.renewal.PaymentPlanActivity" />
         <activity android:name=".activities.webview.WebViewActivity" />
         <activity android:name=".activities.profile.ProfileActivity"
