@@ -10,6 +10,10 @@
             name="model"
             type="com.example.ks.model.renewals.RenewalResponse.RenewalModel" />
     </data>
+
+
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardCornerRadius="5dp"
@@ -156,7 +160,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Monthly"
+                    android:text=""
                     android:id="@+id/tv_options3_type"
                     app:layout_constraintTop_toBottomOf="@id/tv_options3"
                     android:textSize="@dimen/dim_14sp"
