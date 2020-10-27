@@ -25,6 +25,8 @@ import net.authorize.acceptsdk.datamodel.transaction.TransactionObject
 import net.authorize.acceptsdk.datamodel.transaction.TransactionType
 import net.authorize.acceptsdk.datamodel.transaction.callbacks.EncryptTransactionCallback
 import net.authorize.acceptsdk.parser.JSONConstants
+import java.math.RoundingMode
+import kotlin.math.roundToInt
 
 class PaymentViewModel (override val uiCallBacks: UICallBacks,
                         val authRepo: AuthRepo,private val paymentApi: AcceptSDKApiClient
@@ -35,7 +37,7 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
     val liveData=MediatorLiveData<List<PaymentResponse.PaymentModel>>()
     val onData=SingleLiveEvent<String>()
 
-    val isCardSelected=MutableLiveData<Boolean>(false)
+    val isCardSelected=MutableLiveData<Boolean>(true)
     // for making payments
     val cardHolderName=MutableLiveData<String>()
     val cardNumber=MutableLiveData<String>()
@@ -57,12 +59,12 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
         (if(it) {
             (3.50).times(amount.value?:0).div(100)
         } else {
-            1.00
-        }) as Double?
+            3.00
+        }) .toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
     }
 
     val totalAmount:LiveData<Double?>? = Transformations.map(fee){fees->
-      amount.value?.let { it+ fees}
+      amount.value?.let { it+ fees}?.toBigDecimal()?.setScale(1, RoundingMode.UP)?.toDouble()
     }
 //    val cardHolderName=MutableLiveData<String>()
     init {

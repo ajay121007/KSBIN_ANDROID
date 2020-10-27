@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dim_20dp"
                     android:fontFamily="@font/opensans_semibold"
-                    android:text="@{model.paid==0?`Filed`:`Successfull`}"
+                    android:text="@{model.paid==0?`Unpaid`:`Paid`}"
                     android:textColor="@{model.paid==0?@color/md_red_900:@color/colorPrimary}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_price" />
@@ -90,15 +90,59 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{model.createdAt}"
+                    android:text="@{model.updatedAtStr}"
                     android:layout_marginTop="@dimen/dim_2dp"
+                    android:id="@+id/tv_createdAt"
                     android:fontFamily="@font/opensans_semibold"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/dim_16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                <TextView
+                    android:id="@+id/tv_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5dp"
+                    android:text="Policy Number"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textSize="@dimen/dim_12sp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_createdAt" />
+                <TextView
+                    android:id="@+id/tv_policy_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_2dp"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="@{model.policy}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dim_14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_policy" />
 
-
+                <TextView
+                    android:id="@+id/tv_due"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_5dp"
+                    android:text="Due Date"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textSize="@dimen/dim_12sp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_createdAt" />
+                <TextView
+                    android:id="@+id/tv_due_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dim_2dp"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="@{model.dueDateStr}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/dim_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_due" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

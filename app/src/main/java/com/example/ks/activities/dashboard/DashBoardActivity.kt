@@ -1,16 +1,21 @@
 package com.example.ks.activities.dashboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.work.*
 import com.example.ks.activities.profile.ProfileActivity
 import com.example.ks.R
 import com.example.ks.activities.claim.FileClaimActivity
 import com.example.ks.activities.document.IdCardDocumentActivity
+import com.example.ks.activities.editprofile.EditProfileViewModel
 import com.example.ks.activities.payment.PaymentActivity
 import com.example.ks.activities.policydetail.ChangePolicyDetials1Activity
+import com.example.ks.activities.profile.ProfileViewModel
 import com.example.ks.activities.renewal.PaymentPlanActivity
 import com.example.ks.activities.signabledocument.SignableDocumentActivity
 import com.example.ks.activities.upload.UploadDocumentActivity
@@ -22,8 +27,11 @@ import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityDashboardBinding
 import com.example.ks.databinding.PolicyCardLayoutBinding
 import com.example.ks.models.DashBoardResponse
+import com.example.ks.repo.AuthRepo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
 
 class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick {
@@ -93,7 +101,10 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
     }
 
 
+
 }
 interface OnDashBoardActions{
     fun onTapProfile()
 }
+
+

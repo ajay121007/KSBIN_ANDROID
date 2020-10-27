@@ -3,6 +3,7 @@ package com.example.ks.repo
 import com.example.ks.activities.payment.PaymentResponse
 import com.example.ks.api.ApiService
 import com.example.ks.model.MakePaymentResponse
+import com.example.ks.model.contarctListResponse.ChangePasswordResponse
 import com.example.ks.model.contarctListResponse.ContractResponse
 import com.example.ks.model.contarctListResponse.SignTokenResponse
 import com.example.ks.model.documentid.DocumentIdListResponse
@@ -168,10 +169,10 @@ class AuthRepo(private val apiService: ApiService
     }
 
 
-    suspend fun updateProfile(file: MultipartBody.Part,
-                             userName: MultipartBody.Part,
-                              userPhone: MultipartBody.Part,
-                              userEmail: MultipartBody.Part): ResultWrapper<UploadClaimImageResponse?> {
+    suspend fun updateProfile(file: MultipartBody.Part?,
+                             userName: MultipartBody.Part?,
+                              userPhone: MultipartBody.Part?,
+                              userEmail: MultipartBody.Part?): ResultWrapper<UploadClaimImageResponse?> {
         return when(val call = safeApiCall { apiService.updateProfile(file,userName,userPhone,userEmail) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)
@@ -226,5 +227,9 @@ class AuthRepo(private val apiService: ApiService
         return safeApiCall { apiService.bankPayment(map.apply {
             put("customer_email",sharedPreferenceHelper.getUser()?.data?.user?.email)
         }) }
+    }
+
+    suspend fun updatePassword(map:HashMap<String,String?>): ResultWrapper<ChangePasswordResponse?> {
+        return safeApiCall { apiService.updatePassword(map) }
     }
 }

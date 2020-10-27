@@ -1,6 +1,7 @@
 package com.example.ks.activities.editprofile
 
 import android.Manifest
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,10 +12,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ks.R
 import com.example.ks.activities.claim.FileClaimViewModel
+import com.example.ks.activities.profile.ChangePasswordActivity
 import com.example.ks.common.BaseActivity
 import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityEditProfileBinding
 import com.example.ks.databinding.ActivityFileClaimBinding
+import com.example.ks.utils.PathUtils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import gun0912.tedbottompicker.TedBottomPicker
@@ -24,13 +27,22 @@ import java.io.File
 
 class EditProfileActivity : BaseActivity() {
     lateinit var binding: ActivityEditProfileBinding
-    val viewModel: EditProfileViewModel by viewModel { parametersOf(this) }
+    val profileViewModel: EditProfileViewModel by viewModel { parametersOf(this) }
     var filePath=""
     var fileName=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
+        binding.apply {
+            viewModel=profileViewModel
+            lifecycleOwner=this@EditProfileActivity
+            executePendingBindings()
+
+        }
+        binding.changePasswordCard.setOnClickListener {
+            startActivity(Intent(this@EditProfileActivity,ChangePasswordActivity::class.java))
+        }
         initView()
 
     }
@@ -42,10 +54,12 @@ class EditProfileActivity : BaseActivity() {
     private fun updateProfileView() {
         UserConstants.userProfile?.let {
             it.data?.user?.let {
-               binding.editUserName.setText(it.name)
-               binding.editProfileEmailEditText.setText(it.email)
-               binding.editPhone.setText(it.mobileNumber?:"")
-
+//               binding.editUserName.setText(it.name)
+//               binding.editProfileEmailEditText.setText(it.email)
+//               binding.editPhone.setText(it.mobileNumber?:"")
+                profileViewModel.usernName.postValue(it.name)
+                profileViewModel.userEmail.postValue(it.email)
+                profileViewModel.userMobile.postValue(it.mobileNumber)
                 var imageUrl = ""
                 if (!it.userImageUrl.isNullOrEmpty()){
                     imageUrl = it.userImageUrl
@@ -80,13 +94,13 @@ class EditProfileActivity : BaseActivity() {
                             .show {
                                 val uriString: String = it.toString()
                                 val myFile = File(uriString)
-                                val path: String = myFile.getAbsolutePath()
+                                val path: String = PathUtils.getPath(this@EditProfileActivity,it)
                                 val bitmap =
                                     MediaStore.Images.Media.getBitmap(getContentResolver(), it)
                                 binding.userProfile.setImageBitmap(bitmap)
                                 filePath= it.toString()
                                 fileName= myFile.name
-
+                                profileViewModel.filePath.postValue(path)
                             }
                     }
                 })
@@ -98,8 +112,7 @@ class EditProfileActivity : BaseActivity() {
             if (binding.editUserName.text.toString().isNotEmpty() &&binding.editProfileEmailEditText.text.toString().isNotEmpty()
                 && binding.editPhone.text.toString().isNotEmpty() && binding.editProfileEmailEditText.text.toString().isNotEmpty()){
 
-                viewModel.updateProfile(filePath,fileName,binding.editUserName.text.toString(), binding.editPhone.text.toString(),
-                binding.editProfileEmailEditText.text.toString())
+                profileViewModel.updateProfile()
 
 
             }

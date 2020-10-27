@@ -8,6 +8,7 @@ import com.example.ks.model.profile.ProfileDetailResponse
 
 import com.example.ks.activities.payment.PaymentResponse
 import com.example.ks.model.MakePaymentResponse
+import com.example.ks.model.contarctListResponse.ChangePasswordResponse
 
 import com.example.ks.model.upload.UploadResponse
 
@@ -93,9 +94,10 @@ interface ApiService {
 
     @Multipart
     @POST("update-profile")
-    suspend fun updateProfile(@Part userImage: MultipartBody.Part, @Part userName: MultipartBody.Part,
-                              @Part userPhone: MultipartBody.Part,
-                              @Part userEmail: MultipartBody.Part): Response<UploadClaimImageResponse>
+    suspend fun updateProfile(@Part userImage: MultipartBody.Part?,
+                              @Part userName: MultipartBody.Part?,
+                              @Part userPhone: MultipartBody.Part?,
+                              @Part userEmail: MultipartBody.Part?): Response<UploadClaimImageResponse>
 
 
     @POST("policy-update")
@@ -139,6 +141,13 @@ interface ApiService {
     suspend fun bankPayment(
         @FieldMap map:HashMap<String,String?>
     ):Response<MakePaymentResponse>
+
+
+    @POST("update-password")
+    @FormUrlEncoded
+    suspend fun updatePassword(
+        @FieldMap map:HashMap<String,String?>
+    ):Response<ChangePasswordResponse>
 }
 
 

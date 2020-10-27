@@ -3,8 +3,12 @@ package com.example.ks
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.downloader.PRDownloader
 import com.downloader.PRDownloaderConfig
+import com.example.ks.activities.dashboard.DashBoardActivity
+
 import com.example.ks.di.networkModule
 import com.example.ks.di.repos
 import com.example.ks.di.viewModels
@@ -33,5 +37,10 @@ class InsuranceApp:Application(){
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    override fun onTerminate() {
+
+        super.onTerminate()
     }
 }

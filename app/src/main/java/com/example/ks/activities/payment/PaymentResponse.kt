@@ -32,7 +32,11 @@ data class PaymentResponse(
         val price: Int,
         @SerializedName("updated_at")
         val updatedAt: String,
+        @SerializedName("updated_at_str")
+        val updatedAtStr: String,
         @SerializedName("user_id")
-        val userId: String
+        val userId: String,
+        @SerializedName("due_date_str")
+    val dueDateStr: String
     )
 }

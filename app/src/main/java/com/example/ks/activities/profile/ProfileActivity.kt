@@ -1,6 +1,5 @@
 package com.example.ks.activities.profile
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,8 +15,6 @@ import com.example.ks.api.Constants
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityProfileBinding
 import com.google.android.material.appbar.AppBarLayout
-import com.nabinbhandari.android.permissions.PermissionHandler
-import com.nabinbhandari.android.permissions.Permissions
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -49,6 +46,17 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
             profileLayout.cardTermConditions.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://ksbin.com"))
                 startActivity(browserIntent)
+            }
+            profileLayout.apply {
+                cardShare.setOnClickListener {
+                    shareText()
+                }
+                cardRate.setOnClickListener {
+                    val browserIntent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://g.page/ksbin/review?gm"))
+                    startActivity(browserIntent)
+                }
+
             }
             profileLayout.cardSupport.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${Constants.YOUR_CONTACT}}"))
@@ -161,6 +169,13 @@ class ProfileActivity : BaseActivity(), Toolbar.OnMenuItemClickListener {
         }
     }
 
+    fun shareText() {
+        val txtIntent = Intent(Intent.ACTION_SEND)
+        txtIntent.type = "text/plain"
+        txtIntent.putExtra(Intent.EXTRA_SUBJECT, "https://ksbin.com/")
+        txtIntent.putExtra(Intent.EXTRA_TEXT, "Please visit our website")
+        startActivity(Intent.createChooser(txtIntent, "Share"))
+    }
 
 }
 

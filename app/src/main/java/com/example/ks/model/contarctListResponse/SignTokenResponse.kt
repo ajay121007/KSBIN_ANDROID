@@ -18,3 +18,17 @@ data class SignTokenResponse(
         val token: String?
     )
 }
+
+data class ChangePasswordResponse(
+    @SerializedName("code")
+    val code: Int?,
+    @SerializedName("message")
+    val message: String?,
+    @SerializedName("valid")
+    val valid: Boolean?
+) {
+    data class Data(
+        @SerializedName("token")
+        val token: String?
+    )
+}
