@@ -204,7 +204,7 @@ class AuthRepo(private val apiService: ApiService
 
     suspend fun uploadRenewals( dmv: MultipartBody.Part?,
                                 tcl: MultipartBody.Part?,
-                                ddc: MultipartBody.Part?, ): ResultWrapper<UploadClaimImageResponse?> {
+                                ddc: MultipartBody.Part?, ): ResultWrapper<Any?> {
         return when(val call = safeApiCall { apiService.uploadRenewal(dmv,tcl,ddc) }){
             is ResultWrapper.Success ->{
                 ResultWrapper.Success(call.value)

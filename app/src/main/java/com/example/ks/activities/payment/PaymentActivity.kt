@@ -31,8 +31,6 @@ class PaymentActivity : BaseActivity(), OnPaymentItemClick, SearchView.OnQueryTe
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
         binding.apply {
-
-
         }
         setSupportActionBar(binding.toolbar)
         binding.executePendingBindings()

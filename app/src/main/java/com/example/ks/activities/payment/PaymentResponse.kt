@@ -29,7 +29,7 @@ data class PaymentResponse(
         @SerializedName("policy")
         val policy: String,
         @SerializedName("price")
-        val price: Int,
+        val price: Float,
         @SerializedName("updated_at")
         val updatedAt: String,
         @SerializedName("updated_at_str")

@@ -45,7 +45,7 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
         activityDashboardBinding.lifecycleOwner=this
         activityDashboardBinding.executePendingBindings()
         dashBoardViewModel.getDashBoardData()
-
+//        showDialogDownload("Success","http://epay.ksbin.com/invoice.php?id=0&nm=trs&em=4mit.inc@gmail.com&mt=card&fee=3.50&sub=100&ttl=103.50")
         bindObserver()
     }
 
@@ -83,23 +83,27 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
     override fun onItem(documents: Documents) {
 
         when(documents){
-            Documents.SIGNABLE_DOCS -> startActivity(Intent(this,SignableDocumentActivity::class.java))
-            Documents.PAYMENT -> startActivity(Intent(this,PaymentActivity::class.java))
-            Documents.ID_CARDS -> startActivity(Intent(this,IdCardDocumentActivity::class.java))
+            Documents.SIGNABLE_DOCS -> startActivityForResult(Intent(this,SignableDocumentActivity::class.java),100)
+            Documents.PAYMENT -> startActivityForResult(Intent(this,PaymentActivity::class.java),10)
+            Documents.ID_CARDS -> startActivityForResult(Intent(this,IdCardDocumentActivity::class.java),100)
             Documents.CHANGE_MY_DOCS -> {
                 val list = dashBoardViewModel.data.value?.data?.policies?.map { it?.policyNumber.toString() }?.toList()?:return
                 val arrayList=ArrayList<String>()
                 arrayList.addAll(list)
-                startActivity(Intent(this,ChangePolicyDetials1Activity::class.java).apply {
+                startActivityForResult(Intent(this,ChangePolicyDetials1Activity::class.java).apply {
                     putStringArrayListExtra("policy",arrayList)
-                })
+                },100)
             }
-            Documents.UPLOAD_DOCS -> startActivity(Intent(this, UploadDocumentActivity::class.java))
-            Documents.CLAIM_FILE -> startActivity(Intent(this, FileClaimActivity::class.java))
-            Documents.RENEWALS -> startActivity(Intent(this,PaymentPlanActivity::class.java))
+            Documents.UPLOAD_DOCS -> startActivityForResult(Intent(this, UploadDocumentActivity::class.java),100)
+            Documents.CLAIM_FILE -> startActivityForResult(Intent(this, FileClaimActivity::class.java),100)
+            Documents.RENEWALS -> startActivityForResult(Intent(this,PaymentPlanActivity::class.java),100)
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        dashBoardViewModel.getDashBoardData()
+    }
 
 
 }

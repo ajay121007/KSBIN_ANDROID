@@ -21,7 +21,7 @@ android {
         applicationId "com.amit.ks"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 3
+        versionCode 11
         versionName "1.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -32,7 +32,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
         }
         dataBinding {
             enabled true
@@ -117,8 +116,8 @@ dependencies {
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
     implementation 'com.nabinbhandari.android:permissions:3.8'
 
-    implementation 'gun0912.ted:tedbottompicker:2.0.1'
-
+//    implementation 'gun0912.ted:tedbottompicker:2.0.1'
+    implementation 'gun0912.ted:tedimagepicker:1.0.8'
     //circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'joda-time:joda-time:2.10.6'

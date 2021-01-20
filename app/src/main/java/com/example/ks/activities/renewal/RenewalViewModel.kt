@@ -22,7 +22,8 @@ class RenewalViewModel(override val uiCallBacks: UICallBacks, private val userRe
     val tcl=MutableLiveData<String>()
     val dmv=MutableLiveData<String>()
     val onToken=SingleLiveEvent<String>()
-fun getRenewalsList(){
+
+    fun getRenewalsList(){
     uiCallBacks.onLoading(true)
     coroutineScope.launch {
         when(val response=userRepo.getRenewalsList()){
@@ -36,7 +37,6 @@ fun getRenewalsList(){
             ResultWrapper.SocketTimeOutError -> {
                     uiCallBacks.onLoading(false)
                 }
-
             ResultWrapper.NetworkError -> {
                 uiCallBacks.onLoading(false)
             }
@@ -45,6 +45,7 @@ fun getRenewalsList(){
 }
 
     fun uploadRenewals(){
+        if(dmv.value==null&&tcl.value==null&&ddc.value==null)return
         var dmvFile:MultipartBody.Part?=null
         var tclFile:MultipartBody.Part?=null
         var ddcFile:MultipartBody.Part?=null
@@ -64,7 +65,7 @@ fun getRenewalsList(){
                 requestFile2
             )
         }
-        dmv.value?.let {
+        ddc.value?.let {
             val file = File(it)
             val requestFile2 = RequestBody.create("*/*".toMediaTypeOrNull(), file)
             ddcFile = MultipartBody.Part.createFormData(
@@ -79,9 +80,9 @@ fun getRenewalsList(){
                     uiCallBacks.onLoading(false)
                     uiCallBacks.showDialog("Documents Uploaded Successfully")
                 }
-                is ResultWrapper.GenericError -> TODO()
-                ResultWrapper.SocketTimeOutError -> TODO()
-                ResultWrapper.NetworkError -> TODO()
+                is ResultWrapper.GenericError -> {}
+                ResultWrapper.SocketTimeOutError -> {}
+                ResultWrapper.NetworkError -> {}
             }
         }
     }

@@ -31,7 +31,7 @@ data class MakePaymentResponse(
         @SerializedName("nm")
         var nm: String?,
         @SerializedName("sub")
-        var sub: Int?,
+        var sub: Float?,
         @SerializedName("ttl")
         var ttl: String?
     )

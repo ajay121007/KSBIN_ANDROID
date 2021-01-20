@@ -70,13 +70,13 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
             builder.setNegativeButton(
                 "OK"
             ) { p0, p1 -> p0.dismiss()
-                finish()
+//                finish()
             }
             builder.setPositiveButton(
                 "Download Invoice"
             ) { p0, p1 -> p0.dismiss()
-                finish()
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                finish()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url?.replace("dev.","")))
                 startActivity(browserIntent)
             }
 
@@ -116,7 +116,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
         builder.setTitle("Confirmation")
         builder.setMessage(message)
 
-        // add a button
+        // add a button9
         builder.setPositiveButton(
             "OK"
         ) { p0, p1 -> p0.dismiss()

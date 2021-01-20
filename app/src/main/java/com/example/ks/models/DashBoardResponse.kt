@@ -139,7 +139,7 @@ data class DashBoardResponse(
                 @SerializedName("policy")
                 val policy: String?,
                 @SerializedName("price")
-                val price: Int?,
+                val price: Float?,
                 @SerializedName("updated_at")
                 val updatedAt: String?,
                 @SerializedName("user_id")

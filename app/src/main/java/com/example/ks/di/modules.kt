@@ -97,7 +97,7 @@ private fun httpInterceptor() = HttpLoggingInterceptor().apply {
 }
 fun provideApiClient(context: Context): AcceptSDKApiClient = AcceptSDKApiClient.Builder(
     context,
-    AcceptSDKApiClient.Environment.SANDBOX
+    AcceptSDKApiClient.Environment.PRODUCTION
 )
     .connectionTimeout(5000) // optional connection time out in milliseconds
     .build()

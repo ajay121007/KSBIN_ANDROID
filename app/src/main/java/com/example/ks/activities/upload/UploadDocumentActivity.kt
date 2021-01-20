@@ -97,15 +97,22 @@ class UploadDocumentActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
 
-               data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)
+               val files=data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)
 //              val pathUtils= PathUtils.getPath(this, it)
 //               val myFile = File(pathUtils)
-               val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
-                   ?.get(0)
+            when (files?.size) {
+                0 -> {
 
-               binding.txtFileName.text =mediaFile?.name
-               filePath = mediaFile?.path.toString()
-               filename= mediaFile?.name.toString()
+                }
+                else -> {
+                    val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                        ?.get(0)
+
+                    binding.txtFileName.text =mediaFile?.name
+                    filePath = mediaFile?.path.toString()
+                    filename= mediaFile?.name.toString()
+                }
+            }
 
 
 

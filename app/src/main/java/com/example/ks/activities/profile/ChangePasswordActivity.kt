@@ -19,6 +19,9 @@ class ChangePasswordActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         activityChangePasswordBinding=DataBindingUtil.setContentView(this, R.layout.activity_change_password)
         activityChangePasswordBinding.apply {
+            setSupportActionBar(toolbarPwd)
+        }
+        activityChangePasswordBinding.apply {
             model=editProfileViewModel
             lifecycleOwner=this@ChangePasswordActivity
             executePendingBindings()

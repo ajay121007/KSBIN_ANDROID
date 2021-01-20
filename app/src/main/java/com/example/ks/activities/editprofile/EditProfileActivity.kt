@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -20,7 +21,8 @@ import com.example.ks.databinding.ActivityFileClaimBinding
 import com.example.ks.utils.PathUtils
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
-import gun0912.tedbottompicker.TedBottomPicker
+import gun0912.tedimagepicker.builder.TedImagePicker
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.io.File
@@ -90,18 +92,18 @@ class EditProfileActivity : BaseActivity() {
                 null /*options*/,
                 object : PermissionHandler() {
                     override fun onGranted() {
-                        TedBottomPicker.with(this@EditProfileActivity)
-                            .show {
-                                val uriString: String = it.toString()
-                                val myFile = File(uriString)
-                                val path: String = PathUtils.getPath(this@EditProfileActivity,it)
-                                val bitmap =
-                                    MediaStore.Images.Media.getBitmap(getContentResolver(), it)
-                                binding.userProfile.setImageBitmap(bitmap)
-                                filePath= it.toString()
-                                fileName= myFile.name
-                                profileViewModel.filePath.postValue(path)
-                            }
+//                        TedBottomPicker.with(this@EditProfileActivity)
+//                            .show {
+//                                val uriString: String = it.toString()
+//                                val myFile = File(uriString)
+//                                val path: String = PathUtils.getPath(this@EditProfileActivity,it)
+//                                val bitmap =
+//                                    MediaStore.Images.Media.getBitmap(getContentResolver(), it)
+//                                binding.userProfile.setImageBitmap(bitmap)
+//                                filePath= it.toString()
+//                                fileName= myFile.name
+//                                profileViewModel.filePath.postValue(path)
+//                            }
                     }
                 })
 
@@ -125,6 +127,49 @@ class EditProfileActivity : BaseActivity() {
         binding.backImage.setOnClickListener {
             finish()
         }
+
+    }
+
+    fun openImagePicker(view: View) {
+        selectDocs()
+
+    }
+    private fun selectDocs(){
+        val permissions =
+            arrayOf<String>(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,
+            )
+        Permissions.check(
+            this /*context*/,
+            permissions,
+            null /*rationale*/,
+            null /*options*/,
+            object : PermissionHandler() {
+                override fun onGranted() {
+                    TedImagePicker.with(this@EditProfileActivity)
+                        .showCameraTile(true)
+                        .start {
+                            profileViewModel.filePath.postValue(it.path)
+                            val requestOptions = RequestOptions()
+                            requestOptions.placeholder(R.drawable.user_defult)
+                            requestOptions.error(R.drawable.user_defult)
+                            Glide.with(binding.userProfile.context)
+                                .setDefaultRequestOptions(requestOptions)
+                                .load(it.path).into(binding.userProfile)
+                        }
+
+
+
+//                    val intent = Intent()
+////                    intent.type = "/*/"
+//                    intent.type = "*/*"
+//                    intent.action = Intent.ACTION_GET_CONTENT
+//
+//                    startActivityForResult(Intent.createChooser(intent, "Select PDF"), requestCode)
+                }
+            })
 
     }
 

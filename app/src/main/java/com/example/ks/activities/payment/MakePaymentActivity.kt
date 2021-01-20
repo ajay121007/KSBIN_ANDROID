@@ -1,6 +1,8 @@
 package com.example.ks.activities.payment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -27,7 +29,8 @@ class MakePaymentActivity : BaseActivity(), EncryptTransactionCallback {
 //        setContentView(R.layout.activity_make_payment)
         activityMakePaymentBinding=DataBindingUtil.setContentView(this,R.layout.activity_make_payment)
         paymentViewModel.setPaymentCallback(this)
-        paymentViewModel.amount.value=intent.getIntExtra("price",0)
+        paymentViewModel.amount.value=intent.getFloatExtra("price",0.0f)
+//        onToast(intent.getFloatExtra("price",0.0f).toString())
         if(intent.getStringExtra("type")==Constants.INVOICE_PAYMENT){
             val fromJson = Gson().fromJson(
                 intent?.getStringExtra("model"),
@@ -67,6 +70,42 @@ class MakePaymentActivity : BaseActivity(), EncryptTransactionCallback {
                 }
             }
         })
+        activityMakePaymentBinding.layout2.etExpiry.addTextChangedListener(object : TextWatcher {
+
+            var sb : StringBuilder = StringBuilder("")
+
+            var _ignore = false
+
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                if(_ignore){
+                    _ignore = false
+                    return
+                }
+
+                sb.clear()
+                sb.append(if(s!!.length > 10){ s.subSequence(0,10) }else{ s })
+
+                if(sb.lastIndex == 2){
+                    if(sb[2] != '/'){
+                        sb.insert(2,"/")
+                    }
+                } else if(sb.lastIndex == 5){
+                    if(sb[5] != '/'){
+                        sb.insert(5,"/")
+                    }
+                }
+
+                _ignore = true
+                activityMakePaymentBinding.layout2.etExpiry.setText(sb.toString())
+                activityMakePaymentBinding.layout2.etExpiry.setSelection(sb.length)
+
+            }
+        })
 //        paymentViewModel.cardExpiry.observe(this, Observer {
 //            if(it.length==2){
 //                paymentViewModel.cardExpiry.value="$it/"
@@ -80,10 +119,12 @@ class MakePaymentActivity : BaseActivity(), EncryptTransactionCallback {
     }
 
     override fun onErrorReceived(error: ErrorTransactionResponse?) {
+        paymentViewModel.uiCallBacks.onLoading(false)
         Log.i(this.javaClass.simpleName, ": ${error?.firstErrorMessage}")
     }
 
     override fun onEncryptionFinished(response: EncryptTransactionResponse?) {
+        paymentViewModel.uiCallBacks.onLoading(false)
         Log.i(this.javaClass.simpleName, ":${response?.dataValue} ")
         Log.i(this.javaClass.simpleName, ":${response?.dataDescriptor} ")
         val type=intent.getStringExtra("type")

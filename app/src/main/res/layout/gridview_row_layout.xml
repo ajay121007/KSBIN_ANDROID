@@ -10,14 +10,15 @@
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="130dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             grid:layout_columnWeight="1"
+
             grid:layout_gravity="fill_horizontal"
-            android:layout_height="120dp">
+            android:layout_height="130dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
+                    android:padding="@dimen/dim_5dp"
                     android:orientation="vertical">
 
 

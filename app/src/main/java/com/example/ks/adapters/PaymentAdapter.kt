@@ -44,14 +44,14 @@ class PaymentDiffCallBack : DiffUtil.ItemCallback<PaymentResponse.PaymentModel>(
         oldItem: PaymentResponse.PaymentModel,
         newItem: PaymentResponse.PaymentModel
     ): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.id == newItem.id && oldItem.paid==newItem.paid
     }
 
     override fun areContentsTheSame(
         oldItem: PaymentResponse.PaymentModel,
         newItem: PaymentResponse.PaymentModel
     ): Boolean {
-        return oldItem.createdAt == newItem.createdAt
+        return oldItem.createdAt == newItem.createdAt&&oldItem.paid==newItem.paid
     }
 
 }

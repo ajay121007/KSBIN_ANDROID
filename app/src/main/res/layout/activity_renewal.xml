@@ -16,6 +16,8 @@
            <com.google.android.material.appbar.MaterialToolbar
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:id="@+id/toolbar"
+               app:navigationIcon="?attr/homeAsUpIndicator"
                app:title="Renewal"/>
 
            <TextView

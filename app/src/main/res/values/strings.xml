@@ -17,7 +17,7 @@
     <string name="attach_document_photo">Attach Document Photo \nMax size: 10MB</string>
     <string name="upload_dmv_licence">Upload DMV Licence</string>
     <string name="upload_ddc_licence">Upload DDC Licence</string>
-    <string name="upload_tcl_licence">Upload TCL Licence</string>
+    <string name="upload_tcl_licence">Upload TLC Licence</string>
     <string name="upload_send"><![CDATA[Upload & Send]]></string>
     <string name="documents_n_id_cards">Documents</string>
     <string name="documents_naadhar_cards_id">Documents \nAadhar Cards Id</string>

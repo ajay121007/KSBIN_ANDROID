@@ -34,7 +34,7 @@ class PaymentPlanActivity : BaseActivity(), OnCLickOptions {
         setSupportActionBar(activityPaymentPlanBinding.toolbar)
         renewalViewModel.getRenewalsList()
         activityPaymentPlanBinding.addRenewalBtn.setOnClickListener {
-            startActivity(Intent(this,RenewalActivity::class.java))
+            startActivityForResult(Intent(this,RenewalActivity::class.java),100)
         }
         renewalViewModel.data.observe(this, Observer {
 //            onToast(it?.size.toString())
@@ -51,20 +51,18 @@ class PaymentPlanActivity : BaseActivity(), OnCLickOptions {
         val intent=Intent(this,MakePaymentActivity::class.java).apply {
             putExtra("type","renewal")
             putExtra("id",id.id.toString())
-
-
         }
         when(options){
             RenewalOptions.OPTIONS1 -> {
                 intent.putExtra("options","option1")
-                intent.putExtra("price",id.option1?.toInt())
+                intent.putExtra("price",id.option1?.toFloat())
             }
             RenewalOptions.OPTIONS2 -> {
-                intent.putExtra("price",id.option2?.toInt())
+                intent.putExtra("price",id.option2?.toFloat())
                 intent.putExtra("options","option2")
             }
             RenewalOptions.PAY_IN_FULL -> {
-                intent.putExtra("price",id.fullPrice?.toInt())
+                intent.putExtra("price",id.fullPrice?.toFloat())
                 intent.putExtra("options","fullPrice")
             }
         }

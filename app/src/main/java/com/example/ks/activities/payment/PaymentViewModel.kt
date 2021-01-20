@@ -53,14 +53,17 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
     val policyNumber=MutableLiveData<String>()
 
 
-    val amount=MutableLiveData<Int>(0)
+    val amount=MutableLiveData<Float>()
 
     val fee:LiveData<Double> = Transformations.map(isCardSelected){
         (if(it) {
-            (3.50).times(amount.value?:0).div(100)
+//                val amt=amount.value?.toInt()?:0
+//             (amt/100)*3.5
+//            amount.value?.toDouble()
+            amount.value?.let { it1 -> (3.50).times(it1).div(100) }
         } else {
             3.00
-        }) .toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
+        }) ?.toBigDecimal()?.setScale(1, RoundingMode.UP)?.toDouble()
     }
 
     val totalAmount:LiveData<Double?>? = Transformations.map(fee){fees->
@@ -126,8 +129,8 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
         if(isCardSelected.value==true){
             map.put("zip_code",cardPostal.value)
             map.put("card_name",cardHolderName.value)
-            map.put("expiration_month", cardExpiry.value?.substring(0,2))
-            map.put("expiration_year",cardExpiry.value?.substring(2,4))
+            map.put("expiration_month", cardExpiry.value?.split("/")?.get(0))
+            map.put("expiration_year",cardExpiry.value?.split("/")?.get(1))
             map.put("card_token",cardToken)
             map.put("card_number", cardNumber.value?.length?.let { cardNumber.value?.substring(it-4,it) })
         }
@@ -275,11 +278,11 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
     fun generateToken(){
         if(cardNumber.value?.isNotEmpty()==true&&cardExpiry.value?.isNotEmpty()==true&&cardCvv.value?.isNotEmpty()==true)
         {
-//            uiCallBacks.onLoading(true)
+            uiCallBacks.onLoading(true)
             val cardData = CardData.Builder(
                 cardNumber.value,
                 cardExpiry.value?.substring(0,2),  // MM
-                "20${cardExpiry.value?.substring(2,4)}"
+                "20${cardExpiry.value?.substring(3,5)}"
             ) // YYYY
                 .cvvCode(cardCvv.value) // Optional
                 .zipCode(cardPostal.value) // Op

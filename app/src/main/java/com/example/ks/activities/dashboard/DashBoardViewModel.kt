@@ -22,6 +22,7 @@ fun getDashBoardData(){
             is ResultWrapper.Success -> {
                 UserConstants.policyArrayList = ArrayList()
                  uiCallBacks.onLoading(false)
+//                data.postValue(r)
 //                uiCallBacks.onToast(response.value?.data?.policies?.get(1)?.progress.toString())
                // UserConstants.policyArrayList = data?.value?.data?.policies as ArrayList<DashBoardResponse.Data.Policy>
                 data.postValue(response.value)

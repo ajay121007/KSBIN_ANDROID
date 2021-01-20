@@ -41,12 +41,14 @@
         <RelativeLayout
             android:layout_width="100dp"
             android:layout_height="110dp"
+            android:onClick="openImagePicker"
             android:layout_marginTop="@dimen/dim_20dp"
             android:layout_gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userProfile"
                 android:layout_width="100dp"
+                android:onClick="openImagePicker"
                 android:layout_height="100dp"
                 android:src="@drawable/user_defult"
                 app:civ_border_width="@dimen/dim_5dp"
@@ -55,13 +57,11 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dim_30dp"
                 android:layout_height="@dimen/dim_30dp"
+                android:onClick="openImagePicker"
                 android:src="@drawable/ic_baseline_camera_alt_24"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 />
-
-
-
 
         </RelativeLayout>
 

@@ -45,4 +45,15 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
             }
         }
     }
+    fun silentLogOut(){
+//        uiCallBacks.onLoading(loading)
+        coroutineScope.launch {
+            when(userRepo.logOut()){
+                is ResultWrapper.Success ->logout.postValue(true)
+                is ResultWrapper.GenericError -> TODO()
+                ResultWrapper.SocketTimeOutError -> TODO()
+                ResultWrapper.NetworkError -> TODO()
+            }
+        }
+    }
 }

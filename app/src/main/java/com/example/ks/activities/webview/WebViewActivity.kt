@@ -92,18 +92,18 @@ class WebViewActivity : BaseActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
               // showProgressDialog()
                 onLoading(true)
-
+                if(url==Constants.BASE_URL)
+                {
+                    finish()
+                    setResult(RESULT_OK)
+                }
                 super.onPageStarted(view, url, favicon)
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 onLoading(false)
                // hideProgressDialog()
-                if(url==Constants.BASE_URL)
-                {
-                    finish()
-                    setResult(RESULT_OK)
-                }
+
                 Log.i(this.javaClass.simpleName, "Page Finished: $url ")
                 super.onPageFinished(view, url)
             }

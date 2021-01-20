@@ -117,11 +117,11 @@ interface ApiService {
     suspend fun getRenewalsList():Response<RenewalResponse>
 
     @Multipart
-    @POST("update-profile")
+    @POST("upload-renewals")
     suspend fun uploadRenewal(@Part dmv: MultipartBody.Part?,
                               @Part tcl: MultipartBody.Part?,
                               @Part ddc: MultipartBody.Part?,
-    ): Response<UploadClaimImageResponse>
+    ): Response<Any>
 
     @FormUrlEncoded
     @POST("document-renewal-payment")
