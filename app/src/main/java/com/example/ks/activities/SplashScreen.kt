@@ -27,13 +27,11 @@ class SplashScreen : BaseActivity() {
 
         if(sharedPreferenceHelper.getUser()!=null)
         {
-//            profileViewModel.silentLogOut()
-            startActivity(Intent(this,DashBoardActivity::class.java))
+            profileViewModel.silentLogOut()
         }
-        else{
-            val intent=Intent(this, LoginSignUpActivity::class.java)
+        val intent=Intent(this, LoginSignUpActivity::class.java)
         startActivity(intent)
-        }
+
 //        Intent(this, DashBoardActivity::class.java)
 //        else
 //            val intent=Intent(this, LoginSignUpActivity::class.java)
