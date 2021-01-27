@@ -28,9 +28,16 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
                     uiCallBacks.onLoading(false)
                     uiCallBacks.onToast(response.value?.message)
                 }
-                is ResultWrapper.GenericError -> TODO()
-                ResultWrapper.SocketTimeOutError -> TODO()
-                ResultWrapper.NetworkError -> TODO()
+                is ResultWrapper.GenericError -> {
+                    uiCallBacks.onLoading(false)
+                    uiCallBacks.onToast(response.error?.error_des)
+                }
+                ResultWrapper.SocketTimeOutError -> {
+
+                }
+                ResultWrapper.NetworkError -> {
+
+                }
             }
         }
     }
@@ -39,9 +46,18 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
         coroutineScope.launch {
             when(userRepo.logOut()){
                 is ResultWrapper.Success ->logout.postValue(true)
-                is ResultWrapper.GenericError -> TODO()
-                ResultWrapper.SocketTimeOutError -> TODO()
-                ResultWrapper.NetworkError -> TODO()
+                is ResultWrapper.GenericError -> {
+                    uiCallBacks.onLoading(false)
+                    uiCallBacks.onToast("Something went wrong")
+                }
+                ResultWrapper.SocketTimeOutError -> {
+                    uiCallBacks.onLoading(false)
+                    uiCallBacks.onToast("Something went wrong")
+                }
+                ResultWrapper.NetworkError -> {
+                    uiCallBacks.onLoading(false)
+                    uiCallBacks.onToast("Something went wrong")
+                }
             }
         }
     }
@@ -50,9 +66,16 @@ class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userR
         coroutineScope.launch {
             when(userRepo.logOut()){
                 is ResultWrapper.Success ->logout.postValue(true)
-                is ResultWrapper.GenericError -> TODO()
-                ResultWrapper.SocketTimeOutError -> TODO()
-                ResultWrapper.NetworkError -> TODO()
+                is ResultWrapper.GenericError -> {
+
+
+                }
+                ResultWrapper.SocketTimeOutError -> {
+
+                }
+                ResultWrapper.NetworkError -> {
+
+                }
             }
         }
     }
