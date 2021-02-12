@@ -1,8 +1,10 @@
 package com.example.ks.activities.dashboard
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -28,10 +30,14 @@ import com.example.ks.databinding.ActivityDashboardBinding
 import com.example.ks.databinding.PolicyCardLayoutBinding
 import com.example.ks.models.DashBoardResponse
 import com.example.ks.repo.AuthRepo
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
+import ir.siaray.downloadmanagerplus.classes.Downloader
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
+import kotlin.random.Random
 
 
 class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick {
@@ -47,6 +53,24 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
         dashBoardViewModel.getDashBoardData()
 //        showDialogDownload("Success","http://epay.ksbin.com/invoice.php?id=0&nm=trs&em=4mit.inc@gmail.com&mt=card&fee=3.50&sub=100&ttl=103.50")
         bindObserver()
+//        showDialogDownload("download","")
+        val permissions =
+            arrayOf<String>(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA
+            )
+        Permissions.check(
+            this /*context*/,
+            permissions,
+            null /*rationale*/,
+            null /*options*/,
+            object : PermissionHandler() {
+                override fun onGranted() {
+
+                }
+            })
+
     }
 
     private fun bindObserver() {

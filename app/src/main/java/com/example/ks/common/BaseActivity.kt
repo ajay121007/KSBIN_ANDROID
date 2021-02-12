@@ -1,13 +1,15 @@
 package com.example.ks.common
 
+import android.Manifest
+import android.app.DownloadManager
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Environment
 import android.os.PersistableBundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.webkit.DownloadListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -17,15 +19,20 @@ import com.example.ks.activities.loginsignup.LoginSignUpActivity
 import com.example.ks.activities.profile.ProfileViewModel
 import com.example.ks.sharedpref.SharedPreferenceHelper
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
+import ir.siaray.downloadmanagerplus.classes.Downloader
+import ir.siaray.downloadmanagerplus.enums.DownloadReason
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import kotlin.random.Random
 
 
 /**
  * Created by skycap.
  */
-open class BaseActivity :AppCompatActivity(),UICallBacks{
+open class BaseActivity :AppCompatActivity(),UICallBacks {
     private var timer: CountDownTimer?=null
     var  dialogView: View?=null
      var   dialog:BottomSheetDialog?=null
@@ -62,6 +69,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
 
     override fun showDialogDownload(message: String?, url: String?) {
         runOnUiThread {
+
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
             builder.setTitle("Confirmation")
             builder.setMessage(message)
@@ -75,9 +83,45 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
             builder.setPositiveButton(
                 "Download Invoice"
             ) { p0, p1 -> p0.dismiss()
+
+                val permissions =
+                    arrayOf<String>(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA
+                    )
+                Permissions.check(
+                    this /*context*/,
+                    permissions,
+                    null /*rationale*/,
+                    null /*options*/,
+                    object : PermissionHandler() {
+                        override fun onGranted() {
+
+                            val downloader = Downloader.getInstance(this@BaseActivity)
+                                .setUrl(url?.replace("dev.",""))
+//                                .setUrl("https://en.unesco.org/inclusivepolicylab/sites/default/files/dummy-pdf_2.pdf")
+                                .setAllowedOverRoaming(true)
+                                .setAllowedOverMetered(true) //Api 16 and higher
+                                .setVisibleInDownloadsUi(true)
+                                .setDestinationDir(
+                                    Environment.getDataDirectory().absolutePath,
+                                    "invoice.pdf"
+                                )
+                                .setNotificationTitle("Downloading File")
+                                .setDescription("DownLoading file")
+                                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            downloader.start()
+                            downloader.showProgress()
+                        }
+                    })
+
+
+
 //                finish()
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url?.replace("dev.","")))
-                startActivity(browserIntent)
+//                var updatedUrl="https://docs.google.com/viewerng/viewer?url=$url";
+//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(updatedUrl.replace("dev.","")))
+//                startActivity(browserIntent)
             }
 
             // create and show the alert dialog
@@ -143,4 +187,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks{
         timer?.cancel()
         super.onDestroy()
     }
+
 }
+
+
