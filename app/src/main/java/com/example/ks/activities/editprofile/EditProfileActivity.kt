@@ -18,7 +18,9 @@ import com.example.ks.common.BaseActivity
 import com.example.ks.constants.UserConstants
 import com.example.ks.databinding.ActivityEditProfileBinding
 import com.example.ks.databinding.ActivityFileClaimBinding
+import com.example.ks.model.profile.ProfileReponse
 import com.example.ks.utils.PathUtils
+import com.google.gson.Gson
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import gun0912.tedimagepicker.builder.TedImagePicker
@@ -54,19 +56,22 @@ class EditProfileActivity : BaseActivity() {
     }
 
     private fun updateProfileView() {
-        UserConstants.userProfile?.let {
-            it.data?.user?.let {
+        val fromJson = Gson().fromJson<ProfileReponse>(
+            intent.getStringExtra("profile"),
+            ProfileReponse::class.java
+        )
+            fromJson.let {
 //               binding.editUserName.setText(it.name)
 //               binding.editProfileEmailEditText.setText(it.email)
 //               binding.editPhone.setText(it.mobileNumber?:"")
-                profileViewModel.usernName.postValue(it.name)
-                profileViewModel.userEmail.postValue(it.email)
-                profileViewModel.userMobile.postValue(it.mobileNumber)
+                profileViewModel.usernName.postValue(it.data?.user?.name)
+                profileViewModel.userEmail.postValue(it.data?.user?.email)
+                profileViewModel.userMobile.postValue(it.data?.user?.mobileNumber)
                 var imageUrl = ""
-                if (!it.userImageUrl.isNullOrEmpty()){
-                    imageUrl = it.userImageUrl
+                if (!it.data?.user?.userImageUrl.isNullOrEmpty()){
+                    imageUrl = it.data?.user?.userImageUrl?:return@let
                     filePath= imageUrl
-                    fileName= it.userImage
+                    fileName= it.data.user.userImage?:return@let
                 }
                 val requestOptions = RequestOptions()
                 requestOptions.placeholder(R.drawable.user_defult)
@@ -75,7 +80,7 @@ class EditProfileActivity : BaseActivity() {
                     .setDefaultRequestOptions(requestOptions)
                     .load(imageUrl).into(binding.userProfile)
            }
-        }
+
     }
 
     private fun clickEvent() {

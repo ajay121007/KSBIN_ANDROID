@@ -63,11 +63,11 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
             amount.value?.let { it1 -> (3.50).times(it1).div(100) }
         } else {
             3.00
-        }) ?.toBigDecimal()?.setScale(1, RoundingMode.UP)?.toDouble()
+        }) ?.toBigDecimal()?.setScale(2, RoundingMode.FLOOR)?.toDouble()
     }
 
     val totalAmount:LiveData<Double?>? = Transformations.map(fee){fees->
-      amount.value?.let { it+ fees}?.toBigDecimal()?.setScale(1, RoundingMode.UP)?.toDouble()
+      amount.value?.let { it+ fees}?.toBigDecimal()?.setScale(2,RoundingMode.FLOOR)?.toDouble()
     }
 //    val cardHolderName=MutableLiveData<String>()
     init {

@@ -49,6 +49,8 @@ class EditProfileViewModel (override val uiCallBacks: UICallBacks, val authRepo:
         val name = usernName.value?.let { MultipartBody.Part.createFormData("name", it) }
         val phone = userMobile.value?.let { MultipartBody.Part.createFormData("mobile", it) }
         val email = userEmail.value?.let { MultipartBody.Part.createFormData("email", it) }
+
+
         uiCallBacks.onLoading(true)
         GlobalScope.launch {
             when(val response=authRepo.updateProfile(uploadFilePath, name, phone,email)){

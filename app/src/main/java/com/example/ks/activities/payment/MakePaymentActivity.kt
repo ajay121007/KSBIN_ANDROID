@@ -120,6 +120,7 @@ class MakePaymentActivity : BaseActivity(), EncryptTransactionCallback {
 
     override fun onErrorReceived(error: ErrorTransactionResponse?) {
         paymentViewModel.uiCallBacks.onLoading(false)
+        onToast(error?.firstErrorMessage?.messageText)
         Log.i(this.javaClass.simpleName, ": ${error?.firstErrorMessage}")
     }
 
@@ -137,6 +138,9 @@ class MakePaymentActivity : BaseActivity(), EncryptTransactionCallback {
             )
             if(paymentViewModel.validateData())
             paymentViewModel.makeCardPayment(fromJson.id.toString(),type,fromJson.policy,response?.dataValue)
+        }
+        else{
+            paymentViewModel.makeCardPayment(id.toString(),type,intent.getStringExtra("options"),response?.dataValue)
         }
 
     }

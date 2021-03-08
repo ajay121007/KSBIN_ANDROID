@@ -44,6 +44,8 @@ class LoginFragment : BaseFragment() {
         return fragmentSignInBinding.root
     }
 
+    override fun showPicker( requestCode: Int) {
+    }
 
 
     private fun bindObserver() {

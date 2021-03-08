@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:text="@{`$ `+model.monthly2}"
+                    android:text="@{`$ `+model.price}"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dim_20dp"
@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="@{`$`+model.monthly2}"
+                    android:text="@{`$`+model.fullPrice}"
                     android:id="@+id/tv_options3_value"
                     app:layout_constraintTop_toBottomOf="@id/tv_options3"
                     android:textSize="@dimen/dim_14sp"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="@{`$`+model.price+`/`}"
+                    android:text="@{`$`+model.monthly+`/`}"
                     android:id="@+id/tv_options1_value"
                     app:layout_constraintTop_toBottomOf="@id/tv_options1"
                     android:textSize="@dimen/dim_14sp"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Annual"
+                    android:text="Monthly"
                     android:id="@+id/tv_options1_type"
                     app:layout_constraintTop_toBottomOf="@id/tv_options1"
                     android:textSize="@dimen/dim_14sp"
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="@{`$`+model.monthly+`/`}"
+                    android:text="@{`$`+model.monthly2+`/`}"
                     android:id="@+id/tv_options2_value"
                     app:layout_constraintTop_toBottomOf="@id/tv_options2"
                     android:textSize="@dimen/dim_14sp"

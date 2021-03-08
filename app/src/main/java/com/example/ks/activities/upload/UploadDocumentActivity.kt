@@ -74,18 +74,19 @@ class UploadDocumentActivity : BaseActivity() {
     }
 
     fun selectDocs(){
-        val intent = Intent(this, FilePickerActivity::class.java)
-        intent.putExtra(
-            FilePickerActivity.CONFIGS, Configurations.Builder()
-                .setCheckPermission(true)
-                .setShowImages(true)
-                .enableImageCapture(true)
-                .setMaxSelection(1)
-                .setSkipZeroSizeFiles(true)
-                .build()
-        )
-        startActivityForResult(intent, PDF_PICKER_RESULTS)
-
+//        val intent = Intent(this, FilePickerActivity::class.java)
+//        intent.putExtra(
+//            FilePickerActivity.CONFIGS, Configurations.Builder()
+//                .setCheckPermission(true)
+//                .setShowImages(true)
+//                .setShowFiles(true)
+//                .enableImageCapture(true)
+//                .setMaxSelection(1)
+//                .setSkipZeroSizeFiles(true)
+//                .build()
+//        )
+//        startActivityForResult(intent, PDF_PICKER_RESULTS)
+        showPicker(PDF_PICKER_RESULTS)
 //        val intent = Intent()
 //        intent.type = "image/*"
 //        intent.action = Intent.ACTION_GET_CONTENT
@@ -96,7 +97,7 @@ class UploadDocumentActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
-
+                if(data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)?.size==0)return
                val files=data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)
 //              val pathUtils= PathUtils.getPath(this, it)
 //               val myFile = File(pathUtils)

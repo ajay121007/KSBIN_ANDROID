@@ -54,5 +54,8 @@ class SignUpFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun showPicker(requestCode: Int) {
+    }
+
 
 }

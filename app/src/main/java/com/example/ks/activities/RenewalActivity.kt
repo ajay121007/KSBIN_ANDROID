@@ -10,6 +10,9 @@ import com.example.ks.activities.renewal.RenewalViewModel
 import com.example.ks.common.BaseActivity
 import com.example.ks.databinding.ActivityRenewalBinding
 import com.example.ks.utils.PathUtils
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.config.Configurations
+import com.jaiselrahman.filepicker.model.MediaFile
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 
@@ -26,6 +29,7 @@ import kotlin.getValue
 import kotlin.let
 
 class RenewalActivity : BaseActivity() {
+
     private val DMV_LIC: Int=100
     private val TCL_LIC: Int=101
     private val DDC_LIC: Int=102
@@ -56,25 +60,31 @@ class RenewalActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)?.size==0)return
         when (requestCode) {
             DDC_LIC -> {
-                val path = getpath(data)
+                val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                    ?.get(0)
+                val path =  mediaFile?.path
                 if (path != null) {
                     activityRenewalBinding.tvDdc.text = path
                     renewalViewModel.ddc.postValue(path)
                 }
             }
             TCL_LIC -> {
-                val path = getpath(data)
+                val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)?.get(0)
+                val path = mediaFile?.path
                 if (path != null) {
-                    activityRenewalBinding.tvTcl.text = getpath(data)
+                    activityRenewalBinding.tvTcl.text = path
                     renewalViewModel.tcl.postValue(path)
                 }
             }
             DMV_LIC -> {
-                val path = getpath(data)
+                val mediaFile: MediaFile? = data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
+                    ?.get(0)
+                val path = mediaFile?.path
                 if (path != null) {
-                    activityRenewalBinding.tvDmv.text = getpath(data)
+                    activityRenewalBinding.tvDmv.text = path
                     renewalViewModel.dmv.postValue(path)
                 }
             }
@@ -109,33 +119,20 @@ class RenewalActivity : BaseActivity() {
             null /*options*/,
             object : PermissionHandler() {
                 override fun onGranted() {
-                    TedImagePicker.with(this@RenewalActivity)
-                        .showCameraTile(true)
-                        .start {
-                            when (requestCode) {
-                                DDC_LIC -> {
-                                    val path =it.path
-                                    if (path != null) {
-                                        activityRenewalBinding.tvDdc.text = path
-                                        renewalViewModel.ddc.postValue(path)
-                                    }
-                                }
-                                TCL_LIC -> {
-                                    val path =it.path
-                                    if (path != null) {
-                                        activityRenewalBinding.tvTcl.text = path
-                                        renewalViewModel.tcl.postValue(path)
-                                    }
-                                }
-                                DMV_LIC -> {
-                                    val path =it.path
-                                    if (path != null) {
-                                        activityRenewalBinding.tvDmv.text = path
-                                        renewalViewModel.dmv.postValue(path)
-                                    }
-                                }
-                            }
-                        }
+                    showPicker(requestCode)
+//                    val intent = Intent(this@RenewalActivity, FilePickerActivity::class.java)
+//                    intent.putExtra(
+//                        FilePickerActivity.CONFIGS, Configurations.Builder()
+//                            .setCheckPermission(true)
+//                            .setShowImages(true)
+//                            .setShowFiles(true)
+//                            .enableImageCapture(true)
+//                            .setMaxSelection(1)
+//                            .setSkipZeroSizeFiles(true)
+//                            .build()
+//                    )
+//                    startActivityForResult(intent, requestCode)
+
 
 
 

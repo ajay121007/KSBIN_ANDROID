@@ -8,10 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.ks.R
@@ -62,6 +59,13 @@ class WebViewActivity : BaseActivity() {
     private fun loadWebView() {
 
         binding.webview.settings.javaScriptEnabled=true
+        binding.webview.settings.domStorageEnabled = true
+        binding.webview.apply {
+            settings.domStorageEnabled = true;
+            settings.setAppCacheEnabled(true);
+            settings.loadsImagesAutomatically = true;
+            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW;
+        }
         binding.webview.loadUrl(Constants.BASE_URL_DEV_WEB+intent.getStringExtra("token"))
         binding.webview.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -91,11 +95,13 @@ class WebViewActivity : BaseActivity() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
               // showProgressDialog()
+                print(url)
                 onLoading(true)
-                if(url==Constants.BASE_URL)
+                if(url==Constants.BASE_URL||url==Constants.BASE_URL_WITHOUT_HTTP)
                 {
-                    finish()
                     setResult(RESULT_OK)
+                    finish()
+
                 }
                 super.onPageStarted(view, url, favicon)
             }
@@ -103,7 +109,7 @@ class WebViewActivity : BaseActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 onLoading(false)
                // hideProgressDialog()
-
+                print(url)
                 Log.i(this.javaClass.simpleName, "Page Finished: $url ")
                 super.onPageFinished(view, url)
             }

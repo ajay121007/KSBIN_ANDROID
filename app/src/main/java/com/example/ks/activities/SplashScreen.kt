@@ -37,7 +37,10 @@ class SplashScreen : BaseActivity() {
 
 //        Intent(this, DashBoardActivity::class.java)
 //        else
-            val intent=Intent(this, LoginSignUpActivity::class.java)
+            val intent=Intent(this, LoginSignUpActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
         startActivity(intent)
+
     }
 }

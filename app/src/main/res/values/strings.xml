@@ -38,4 +38,7 @@
     <string name="sign_up_to_continue">Sign Up to Continue</string>
     <string name="create_new_account">Create New Account</string>
     <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="document">Document</string>
 </resources>

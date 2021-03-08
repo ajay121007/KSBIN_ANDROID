@@ -92,17 +92,19 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     }
 
     private fun selectDocs() {
-        val intent = Intent(this, FilePickerActivity::class.java)
-        intent.putExtra(
-            FilePickerActivity.CONFIGS, Configurations.Builder()
-                .setCheckPermission(true)
-                .setShowImages(true)
-                .enableImageCapture(true)
-                .setMaxSelection(1)
-                .setSkipZeroSizeFiles(true)
-                .build()
-        )
-        startActivityForResult(intent, PDF_PICKER_RESULTS)
+//        val intent = Intent(this, FilePickerActivity::class.java)
+//        intent.putExtra(
+//            FilePickerActivity.CONFIGS, Configurations.Builder()
+//                .setCheckPermission(true)
+//                .setShowImages(true)
+//                .setShowFiles(true)
+//                .enableImageCapture(true)
+//                .setMaxSelection(1)
+//                .setSkipZeroSizeFiles(true)
+//                .build()
+//        )
+//        startActivityForResult(intent, PDF_PICKER_RESULTS)
+        showPicker(PDF_PICKER_RESULTS)
 //        TedBottomPicker.with(this)
 //            .show {
 //                val uriString: String = PathUtils.getPath(this, it)
@@ -145,6 +147,7 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==PDF_PICKER_RESULTS) {
+            if(data?.getParcelableArrayExtra(FilePickerActivity.MEDIA_FILES)?.isEmpty()==true)return
 
             val mediaFile: MediaFile? =
                 data?.getParcelableArrayListExtra<MediaFile>(FilePickerActivity.MEDIA_FILES)
@@ -152,16 +155,18 @@ class FileClaimActivity : BaseActivity(), OnDownloadListener {
 
             val path: String? = mediaFile?.path
 
-            binding.image.setImageURI(Uri.parse(path))
-            binding.fileName.text = path
-            if (path != null) {
+            path?.let {
+                binding.image.setImageURI(Uri.parse(path))
+                binding.fileName.text = path
                 filePath = path
-            }
-            fileName = mediaFile?.name.toString()
+                fileName = mediaFile.name.toString()
 
 
-            if (requestCode == 101 && resultCode == RESULT_OK) {
-                showAlertDialog("File claimed Successfully")
+
             }
-        }}
+        }
+        else if (requestCode == 101 && resultCode == RESULT_OK) {
+            showAlertDialog("File claimed Successfully")
+        }
+    }
 }

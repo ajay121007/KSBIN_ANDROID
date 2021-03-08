@@ -70,7 +70,7 @@ class DashBoardActivity : BaseActivity(),OnDashBoardActions,OnItemPositionClick 
 
                 }
             })
-
+//        showPicker()
     }
 
     private fun bindObserver() {

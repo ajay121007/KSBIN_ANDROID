@@ -61,7 +61,7 @@ class RenewalViewModel(override val uiCallBacks: UICallBacks, private val userRe
             val file = File(it)
             val requestFile2 = RequestBody.create("*/*".toMediaTypeOrNull(), file)
             tclFile = MultipartBody.Part.createFormData(
-                "tcl", file.name,
+                "tlc", file.name,
                 requestFile2
             )
         }

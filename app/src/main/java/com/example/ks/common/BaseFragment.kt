@@ -52,6 +52,8 @@ abstract class BaseFragment :Fragment(),UICallBacks{
 
     }
 
+
+
 }
 
 interface UICallBacks{
@@ -61,6 +63,8 @@ interface UICallBacks{
 
     fun showDialog(message:String?)
     fun showDialogDownload(message:String?,url:String?)
+
+    fun showPicker(requestCode:Int)
 
 
 }

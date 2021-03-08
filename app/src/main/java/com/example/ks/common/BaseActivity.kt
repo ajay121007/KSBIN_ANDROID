@@ -7,26 +7,28 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Environment
 import android.os.PersistableBundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.webkit.DownloadListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.ks.R
 import com.example.ks.activities.loginsignup.LoginSignUpActivity
 import com.example.ks.activities.profile.ProfileViewModel
+import com.example.ks.databinding.PickerLayoutBinding
 import com.example.ks.sharedpref.SharedPreferenceHelper
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.jaiselrahman.filepicker.activity.FilePickerActivity
+import com.jaiselrahman.filepicker.config.Configurations
 import com.nabinbhandari.android.permissions.PermissionHandler
 import com.nabinbhandari.android.permissions.Permissions
 import ir.siaray.downloadmanagerplus.classes.Downloader
-import ir.siaray.downloadmanagerplus.enums.DownloadReason
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import kotlin.random.Random
 
 
 /**
@@ -78,7 +80,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks {
             builder.setNegativeButton(
                 "OK"
             ) { p0, p1 -> p0.dismiss()
-//                finish()
+                onBackPressed()
             }
             builder.setPositiveButton(
                 "Download Invoice"
@@ -97,9 +99,9 @@ open class BaseActivity :AppCompatActivity(),UICallBacks {
                     null /*options*/,
                     object : PermissionHandler() {
                         override fun onGranted() {
-
+                            finish()
                             val downloader = Downloader.getInstance(this@BaseActivity)
-                                .setUrl(url?.replace("dev.",""))
+                                .setUrl(url?.replace("dev.", ""))
 //                                .setUrl("https://en.unesco.org/inclusivepolicylab/sites/default/files/dummy-pdf_2.pdf")
                                 .setAllowedOverRoaming(true)
                                 .setAllowedOverMetered(true) //Api 16 and higher
@@ -128,6 +130,27 @@ open class BaseActivity :AppCompatActivity(),UICallBacks {
             runOnUiThread {  val dialog: AlertDialog = builder.create()
                 dialog.show() }
         }
+    }
+
+    override fun showPicker(requestCode:Int) {
+//        val picker=PickerFragment()
+//        picker.show(supportFragmentManager,"picker")
+        val binding= DataBindingUtil.inflate<PickerLayoutBinding>(LayoutInflater.from(this.applicationContext), R.layout.picker_layout,null,false)
+//        binding.camera.setOnClickListener {
+//            selectPicker(allowPdfFile,requestCode)
+//        }
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView( binding.root)
+        binding.document.setOnClickListener {
+            selectPicker(true,requestCode)
+            dialog.dismiss()
+        }
+        binding.gallery.setOnClickListener {
+            selectPicker(false,requestCode)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -172,6 +195,21 @@ open class BaseActivity :AppCompatActivity(),UICallBacks {
            dialog.show() }
     }
 
+    private fun selectPicker(allowPdfFile: Boolean,requestCode: Int): Unit {
+        val intent = Intent(this, FilePickerActivity::class.java)
+        intent.putExtra(
+            FilePickerActivity.CONFIGS, Configurations.Builder()
+                .setCheckPermission(true)
+                .setShowImages(!allowPdfFile)
+                .setShowFiles(allowPdfFile)
+                .enableImageCapture(true)
+                .setMaxSelection(1)
+                .setSkipZeroSizeFiles(true)
+                .build()
+        )
+        startActivityForResult(intent, requestCode)
+
+    }
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
@@ -183,7 +221,7 @@ open class BaseActivity :AppCompatActivity(),UICallBacks {
     }
 
     override fun onDestroy() {
-
+        dialog?.dismiss()
         timer?.cancel()
         super.onDestroy()
     }
