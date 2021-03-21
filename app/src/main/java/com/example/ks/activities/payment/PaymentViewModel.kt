@@ -55,19 +55,19 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
 
     val amount=MutableLiveData<Float>()
 
-    val fee:LiveData<Double> = Transformations.map(isCardSelected){
+    val fee:LiveData<Float> = Transformations.map(isCardSelected){
         (if(it) {
 //                val amt=amount.value?.toInt()?:0
 //             (amt/100)*3.5
 //            amount.value?.toDouble()
-            amount.value?.let { it1 -> (3.50).times(it1).div(100) }
+            amount.value?.let { it1 -> (3.50).times(it1).div(100) }?.toFloat()
         } else {
             3.00
-        }) ?.toBigDecimal()?.setScale(2, RoundingMode.FLOOR)?.toDouble()
+        }) ?.toFloat()
     }
 
-    val totalAmount:LiveData<Double?>? = Transformations.map(fee){fees->
-      amount.value?.let { it+ fees}?.toBigDecimal()?.setScale(2,RoundingMode.FLOOR)?.toDouble()
+    val totalAmount:LiveData<Float?> = Transformations.map(fee){fees->
+        amount.value?.plus(fees.toFloat())
     }
 //    val cardHolderName=MutableLiveData<String>()
     init {
