@@ -25,6 +25,7 @@ import net.authorize.acceptsdk.datamodel.transaction.TransactionObject
 import net.authorize.acceptsdk.datamodel.transaction.TransactionType
 import net.authorize.acceptsdk.datamodel.transaction.callbacks.EncryptTransactionCallback
 import net.authorize.acceptsdk.parser.JSONConstants
+import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.roundToInt
 
@@ -55,20 +56,20 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
 
     val amount=MutableLiveData<Float>()
 
-    val fee:LiveData<Double> = Transformations.map(isCardSelected){
+    val fee:LiveData<BigDecimal> = Transformations.map(isCardSelected){
         (if(it) {
 //                val amt=amount.value?.toInt()?:0
 //             (amt/100)*3.5
 //            amount.value?.toDouble()
-            amount.value?.let { it1 -> (3.50).times(it1).div(100) }?.toDouble()
+            amount.value?.let { it1 -> (3.50).times(it1).div(100) }?.toBigDecimal()?.setScale(2,RoundingMode.CEILING)
         } else {
             3.00
-        }) ?.toDouble()
+        }) ?.toDouble()?.toBigDecimal()
     }
 
-    val totalAmount:LiveData<Float?> = Transformations.map(fee){fees->
+    val totalAmount:LiveData<BigDecimal?> = Transformations.map(fee){fees->
 //        "%.2f".format( amount.value?.plus(3.0)).toFloat()
-        "%.2f".format( amount.value?.plus(fees.toFloat())).toFloat()
+        "%.2f".format( amount.value?.plus(fees.toDouble())).toBigDecimal()
     }
 //    val cardHolderName=MutableLiveData<String>()
     init {
