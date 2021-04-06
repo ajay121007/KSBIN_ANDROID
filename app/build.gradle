@@ -21,8 +21,8 @@ android {
         applicationId "com.amit.ks"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 24
-        versionName "1.6"
+        versionCode 16
+        versionName "1.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
