@@ -3,6 +3,7 @@
 
 package com.example.ks.activities.payment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,6 +28,7 @@ import net.authorize.acceptsdk.datamodel.transaction.callbacks.EncryptTransactio
 import net.authorize.acceptsdk.parser.JSONConstants
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 class PaymentViewModel (override val uiCallBacks: UICallBacks,
@@ -58,18 +60,38 @@ class PaymentViewModel (override val uiCallBacks: UICallBacks,
 
     val fee:LiveData<BigDecimal> = Transformations.map(isCardSelected){
         (if(it) {
-//                val amt=amount.value?.toInt()?:0
-//             (amt/100)*3.5
-//            amount.value?.toDouble()
-            amount.value?.let { it1 -> (3.50).times(it1).div(100) }?.toBigDecimal()?.setScale(2,RoundingMode.CEILING)
+           /* Log.e("ammount=>", amount.value.toString()+"==>"+it.toString()+"=>")
+                val amt= amount.value?.toDouble()?.times(3.50)?.div(100)
+                //Log.e("")
+
+            amount.value?.toDouble()*/
+
+            amount.value?.let {
+
+                    it1 -> (3.50).times(it1).div(100)
+            }?.toBigDecimal()?.setScale(2,RoundingMode.HALF_UP)
         } else {
             3.00
         }) ?.toDouble()?.toBigDecimal()
     }
 
     val totalAmount:LiveData<BigDecimal?> = Transformations.map(fee){fees->
+
+
+        Log.e("ggg=>", fees.toDouble().toString())
+
 //        "%.2f".format( amount.value?.plus(3.0)).toFloat()
+
         "%.2f".format( amount.value?.plus(fees.toDouble())).toBigDecimal()
+
+
+
+
+
+
+
+
+
     }
 //    val cardHolderName=MutableLiveData<String>()
     init {

@@ -9,7 +9,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('/Users/sanuriya/insuranceapp/meta/keystore')
+            storeFile file('/Users/mac/Documents/Ajay/ksbn/meta/keystore')
             storePassword '12345678'
             keyAlias var1
             keyPassword '12345678'
@@ -21,8 +21,8 @@ android {
         applicationId "com.amit.ks"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 22
-        versionName "1.4"
+        versionCode 24
+        versionName "1.6"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
