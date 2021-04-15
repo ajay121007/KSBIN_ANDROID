@@ -36,7 +36,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:background="@drawable/rouned_corner_btn"
-        android:text="@{`Contact Manger\n `+viewModel.liveData.data.user.managerName}"
+        android:text="@{`Contact Manager\n `+viewModel.liveData.data.user.managerName}"
         android:layout_marginTop="30dp"/>
 
 

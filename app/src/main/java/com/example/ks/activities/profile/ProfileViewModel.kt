@@ -17,13 +17,20 @@ import kotlinx.coroutines.launch
 class ProfileViewModel (override val uiCallBacks: UICallBacks, private val userRepo: AuthRepo) : MyViewModel(uiCallBacks){
     val liveData=MutableLiveData<ProfileResponse>()
     val logout=SingleLiveEvent<Boolean>()
+
+    init {
+
+
+    }
     fun getProfileData(){
         uiCallBacks.onLoading(true)
         coroutineScope.launch {
             when(val response=userRepo.getProfileInfo()){
                 is ResultWrapper.Success -> {
                     UserConstants.userProfile=response.value
-
+                    if (response.value?.data?.user?.managerName=="null" || response.value?.data?.user?.managerName==null){
+                        response.value?.data?.user?.managerName= ""
+                    }
                     liveData.postValue(response.value)
                     uiCallBacks.onLoading(false)
                     uiCallBacks.onToast(response.value?.message)

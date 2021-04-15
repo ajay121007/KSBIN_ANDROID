@@ -29,7 +29,7 @@ data class ProfileResponse(
             @SerializedName("id")
             val id: Int,
             @SerializedName("manager_name")
-            val managerName: Any,
+            var managerName: String?="",
             @SerializedName("mobile_number")
             val mobileNumber: String,
             @SerializedName("name")
